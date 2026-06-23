@@ -21,7 +21,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #030813; /* Глубокий темно-синий космический фон */
+            background-color: #020611; /* Глубокая космическая тьма */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #ffffff;
         }
@@ -31,156 +31,202 @@
             width: 100%;
             height: 100%;
             position: relative;
-            background: radial-gradient(circle at center, #071630 0%, #020712 100%);
+            background: radial-gradient(circle at center, #061938 0%, #01050f 100%);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 15px;
         }
 
-        /* ТАКТИЧЕСКИЕ ПЛАТО (Выделенные панели) */
-        
-        /* Верхнее плато статуса */
+        /* ВЕРХНЕЕ ПЛАТО СТАТУСА (НА ВСЮ ШИРИНУ) */
         .top-plate {
             z-index: 10;
-            background: rgba(10, 25, 47, 0.85); /* Плотная синяя подложка */
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-left: 4px solid #00d4ff; /* Неоново-голубой акцент */
+            background: rgba(8, 20, 38, 0.9);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-bottom: 3px solid #00d4ff;
             padding: 12px 15px;
-            border-radius: 4px;
-            max-width: 85%;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
-        }
-
-        /* Нижнее плато навигации */
-        .bottom-plate {
-            z-index: 10;
-            background: rgba(10, 25, 47, 0.9);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-bottom: 4px solid #00d4ff;
-            padding: 12px 10px;
             border-radius: 4px;
             width: 100%;
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.1);
-            margin-bottom: 5px; /* Зазор под рамку iPhone */
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 25px rgba(0, 212, 255, 0.15);
         }
 
-        /* СТИЛЬ СТАТУСА КАДЕТА */
+        .status-info {
+            flex: 1;
+        }
+
         .cadet-id {
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #00d4ff; /* Яркий тактический неон */
+            color: #00d4ff;
             font-weight: bold;
         }
 
         .cadet-rank {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: #ffffff;
             margin-top: 2px;
             margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .rank-tag {
+            font-size: 12px;
+            color: rgba(0, 212, 255, 0.7);
+            font-weight: normal;
         }
 
         .xp-container { width: 100%; }
-        .xp-text { font-size: 11px; color: #88a0c0; display: flex; justify-content: space-between; margin-bottom: 3px; }
-        .xp-bar-bg { width: 150px; height: 6px; background: rgba(255,255,255,0.05); border-radius: 0px; border: 1px solid rgba(0, 212, 255, 0.2); overflow: hidden; }
-        .xp-bar-fill { width: 0%; height: 100%; background: #00d4ff; } /* Опыт на 0% */
+        .xp-text { font-size: 10px; color: #88a0c0; display: flex; justify-content: space-between; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .xp-bar-bg { width: 160px; height: 5px; background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 212, 255, 0.2); overflow: hidden; }
+        .xp-bar-fill { width: 0%; height: 100%; background: #00d4ff; }
 
-        /* ГОЛОГРАФИЧЕСКАЯ КНОПКА ШТАБ */
-        .right-menu {
+        /* ИМПЕРСКИЙ ГЕРБ В ВЕРХНЕМ ПЛАТО */
+        .imperial-emblem {
+            width: 45px;
+            height: 45px;
+            fill: none;
+            stroke: #00d4ff;
+            stroke-width: 1.5;
+            filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.6));
+            opacity: 0.85;
+        }
+
+        /* ВЕРТИКАЛЬНЫЙ ГОЛОГРАФИЧЕСКИЙ ТЕРМИНАЛ СВЯЗИ */
+        .terminal-container {
             position: absolute;
             right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
+            /* Располагаем строго между верхним и нижним плато */
+            top: 105px;
+            bottom: 105px;
+            width: 90px;
             z-index: 10;
         }
 
         .hq-btn {
-            background: rgba(0, 212, 255, 0.05);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 212, 255, 0.03) 0%, rgba(0, 212, 255, 0.08) 100%);
             border: 2px solid #00d4ff;
+            border-right: 4px solid #00d4ff;
             color: #00d4ff;
-            padding: 18px 10px;
             border-radius: 4px;
-            width: 110px;
-            font-size: 13px;
-            font-weight: 800;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            /* Эффект мерцания и свечения голограммы */
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4), inset 0 0 10px rgba(0, 212, 255, 0.2);
-            text-shadow: 0 0 5px rgba(0, 212, 255, 0.6);
-            animation: holo-glow 3s infinite alternate;
+            padding: 15px 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.25), inset 0 0 15px rgba(0, 212, 255, 0.15);
+            text-shadow: 0 0 4px rgba(0, 212, 255, 0.5);
+            overflow: hidden;
+            position: relative;
         }
 
-        .hq-subtitle {
-            font-size: 8px;
-            color: rgba(0, 212, 255, 0.7);
-            margin-top: 4px;
+        /* ЭФФЕКТ ГОЛОГРАФИЧЕСКИХ ПОЛОС (ИЗ ЗВЕЗДНЫХ ВОЙН) */
+        .hq-btn::before {
+            content: " ";
             display: block;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: normal;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 212, 255, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0), rgba(0, 255, 0, 0), rgba(0, 0, 255, 0));
+            z-index: 2;
+            background-size: 100% 4px, 6px 100%; /* Шаг полос */
+            pointer-events: none;
+            opacity: 0.6;
         }
 
-        /* НИЖНИЕ ЖЕЛТЫЕ КНОПКИ */
-        .nav-btn {
-            flex: 1;
-            background: #ffcc00; /* Яркий желтый цвет */
-            border: 1px solid #e6b800;
-            color: #ffffff; /* Белый текст */
-            padding: 14px 5px;
-            border-radius: 0px; /* Строгие прямоугольные углы */
+        .hq-title {
             font-size: 11px;
-            font-weight: bold;
+            font-weight: 900;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            line-height: 1.3;
         }
 
-        /* АНИМАЦИЯ ГОЛОГРАММЫ */
-        @keyframes holo-glow {
-            0% { opacity: 0.9; box-shadow: 0 0 12px rgba(0, 212, 255, 0.3); }
-            50% { opacity: 1; box-shadow: 0 0 18px rgba(0, 212, 255, 0.5); }
-            100% { opacity: 0.85; box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); }
+        /* Иконка антенны/радиоволн */
+        .radio-icon {
+            width: 24px;
+            height: 24px;
+            fill: #00d4ff;
         }
 
-        /* Визуальный отклик при нажатии */
-        .hq-btn:active { transform: scale(0.96); background: rgba(0, 212, 255, 0.2); }
-        .nav-btn:active { transform: scale(0.96); background: #e6b800; }
+        /* НИЖНЕЕ НАВИГАЦИОННОЕ ПЛАТО */
+        .bottom-plate {
+            z-index: 10;
+            background: rgba(8, 20, 38, 0.95);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-top: 3px solid #00d4ff;
+            padding: 15px 12px;
+            border-radius: 4px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.15);
+            padding-bottom: 25px; /* Увеличенная зона под большой палец и челку */
+        }
+
+        /* ТЕМНО-ЖЕЛТЫЕ КНОПКИ (ПОТЕРТЫЙ МЕТАЛЛ) */
+        .nav-btn {
+            flex: 1;
+            /* Градиент создает объем металлической пластины */
+            background: linear-gradient(180deg, #c49a00 0%, #8a6d00 100%); 
+            border: 1px solid #6e5700;
+            border-bottom: 3px solid #4a3a00;
+            color: #ffffff;
+            padding: 16px 2px; /* Кнопки стали больше */
+            border-radius: 0px; /* Строгий прямоугольник */
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 8px rgba(0,0,0,0.4);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        }
+
+        /* Отклик на нажатия */
+        .hq-btn:active { transform: scale(0.97); background: rgba(0, 212, 255, 0.15); }
+        .nav-btn:active { transform: scale(0.97); background: #8a6d00; box-shadow: inset 0 2px 4px rgba(0,0,0,0.6); }
     </style>
 </head>
 <body>
 
     <div class="app-container">
 
-        <!-- ВЕРХНЕЕ ПЛАТО СТАТУСА -->
         <div class="top-plate">
-            <div class="cadet-id">IMP-CD-001</div>
-            <div class="cadet-rank">Кадет Корпуса</div>
-            <div class="xp-container">
-                <div class="xp-text"><span>Опыт (XP)</span><span>0 / 100</span></div>
-                <div class="xp-bar-bg"><div class="xp-bar-fill"></div></div>
+            <div class="status-info">
+                <div class="cadet-id">IMP-CD-001</div>
+                <div class="cadet-rank">Звание: Новобранец <span class="rank-tag">// REC</span></div>
+                <div class="xp-container">
+                    <div class="xp-text"><span>Опыт (XP)</span><span>0 / 100</span></div>
+                    <div class="xp-bar-bg"><div class="xp-bar-fill"></div></div>
+                </div>
             </div>
+            
+            <svg class="imperial-emblem" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45"/>
+                <circle cx="50" cy="50" r="38" stroke-dasharray="6 3"/>
+                <circle cx="50" cy="50" r="12"/>
+                <path d="M 50,12 L 50,38 M 50,62 L 50,88 M 12,50 L 38,50 M 62,50 L 88,50 M 23,23 L 41,41 M 59,59 L 87,87 M 23,77 L 41,59 M 59,41 L 87,13" stroke-width="3"/>
+            </svg>
         </div>
 
-        <!-- ЦЕНТРАЛЬНОЕ ПОЛЕ (Пока пустое плато контента) -->
-        <div style="flex: 1;"></div>
-
-        <!-- ЦЕНТРАЛЬНО-ПРАВАЯ ГОЛОГРАММА -->
-        <div class="right-menu">
+        <div class="terminal-container">
             <div class="hq-btn">
-                ШТАБ
-                <span class="hq-subtitle">Связь</span>
+                <div class="hq-title">Терминал<br>связи</div>
+                
+                <svg class="radio-icon" viewBox="0 0 24 24">
+                    <path d="M12 21c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM12 15c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6C7.6 3 4 6.6 4 11c0 2.2.9 4.2 2.3 5.7l1.4-1.4C6.6 14.2 6 12.7 6 11c0-3.3 2.7-6 6-6s6 2.7 6 6c0 1.7-.6 14.2-1.7 14.3l1.4 1.4c1.4-1.5 2.3-3.5 2.3-5.7 0-4.4-3.6-8-8-8z"/>
+                </svg>
             </div>
         </div>
 
-        <!-- НИЖНЕЕ НАВИГАЦИОННОЕ ПЛАТО -->
         <div class="bottom-plate">
             <div class="nav-btn">Подготовка</div>
             <div class="nav-btn">Карьера</div>
