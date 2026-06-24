@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Имперский Кадетский Корпус</title>
     
-    <link class="app-icon" rel="apple-touch-icon" sizes="180x180" href="./logo.png">
-    <link class="app-icon" rel="icon" type="image/png" sizes="32x32" href="./logo.png">
-    <link class="app-icon" rel="icon" type="image/png" sizes="16x16" href="./logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./logo.png">
 
     <style>
         * {
@@ -42,12 +42,12 @@
             padding: 15px;
         }
 
-        /* Затемняющий фильтр фона для контраста */
+        /* Затемняющий фильтр фона для читаемости */
         .app-container::after {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(2, 6, 17, 0.45);
+            background: rgba(2, 6, 17, 0.50);
             z-index: 1;
             pointer-events: none;
         }
@@ -101,7 +101,6 @@
             font-weight: normal;
         }
 
-        /* ИСПРАВЛЕНО: Шкала опыта теперь занимает всю ширину блока до самого герба */
         .xp-container {
             width: 100%;
         }
@@ -130,7 +129,6 @@
             background: #00d4ff;
         }
 
-        /* Герб выровнен ровно по оси строки звания */
         .imperial-emblem-img {
             width: 45px;
             height: 45px;
@@ -169,7 +167,7 @@
             line-height: 1.2;
         }
 
-        /* ЦЕНТРАЛЬНОЕ ОКНО */
+        /* ЦЕНТРАЛЬНОЕ ОКНО КОНТЕНТА */
         .center-content-area {
             flex: 1;
             z-index: 5;
@@ -183,17 +181,75 @@
         .center-content-area::-webkit-scrollbar { width: 4px; }
         .center-content-area::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.3); border-radius: 2px; }
 
-        /* Экраны-секции */
         .screen-section { display: none; width: 100%; }
         .screen-section.active { display: block; }
 
-        /* ОФОРМЛЕНИЕ ДРЕВА ЗВАНИЙ */
-        .career-title {
+        /* ОБЩИЕ СТИЛИ ЗАГОЛОВКОВ СЕКЦИЙ */
+        .section-title {
             font-size: 12px; color: #00d4ff; font-weight: bold;
             text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
             padding-left: 5px; border-left: 2px solid #00d4ff;
         }
 
+        /* ==========================================================================
+           СТИЛИЗАЦИЯ СЕКЦИИ «ПОДГОТОВКА» (ДОМЕННАЯ СИСТЕМА)
+           ========================================================================== */
+        .domain-row {
+            background: rgba(10, 22, 41, 0.85);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            margin-bottom: 8px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        /* Шапка домена */
+        .domain-header {
+            padding: 14px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .domain-header:active { background: rgba(0, 212, 255, 0.08); }
+
+        .domain-left { display: flex; align-items: center; gap: 12px; }
+        .domain-icon { font-size: 16px; color: #00d4ff; width: 20px; text-align: center; }
+        .domain-name { font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #ffffff; }
+        .domain-counter { font-size: 11px; color: rgba(0, 212, 255, 0.6); font-family: monospace; background: rgba(0,212,255,0.1); padding: 2px 6px; border-radius: 2px; }
+
+        /* Контейнер модулей (аккордеон) */
+        .domain-body {
+            display: none;
+            padding: 5px 15px 12px 15px;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            background: rgba(4, 12, 26, 0.6);
+        }
+        .domain-row.open .domain-body { display: block; }
+
+        /* Карточка модуля внутри домена */
+        .module-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .module-item:last-child { border-bottom: none; }
+
+        .module-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+        .module-code-name { font-size: 12px; font-weight: bold; color: #ffffff; text-transform: uppercase; }
+        
+        /* Световая кодировка нашивок (badges) */
+        .badge {
+            font-size: 8px; font-weight: 900; letter-spacing: 0.5px;
+            padding: 2px 6px; border-radius: 2px; text-transform: uppercase;
+            flex-shrink: 0; margin-top: 1px;
+        }
+        .badge.system { background: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.3); }
+        .badge.hybrid { background: rgba(241, 196, 15, 0.15); color: #f1c40f; border: 1px solid rgba(241, 196, 15, 0.4); }
+        .badge.credit { background: rgba(0, 212, 255, 0.15); color: #00d4ff; border: 1px solid rgba(0, 212, 255, 0.4); }
+        .badge.exam { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
+
+        /* ==========================================================================
+           СТИЛИЗАЦИЯ СЕКЦИИ «КАРЬЕРА»
+           ========================================================================== */
         .rank-card {
             background: rgba(10, 22, 41, 0.8) !important;
             border: 1px solid rgba(0, 212, 255, 0.15) !important;
@@ -204,7 +260,6 @@
             position: relative;
             border-radius: 2px;
         }
-
         .rank-card.current {
             background: rgba(8, 32, 64, 0.9) !important;
             border: 1px solid #00d4ff !important;
@@ -215,7 +270,6 @@
             font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px;
             background: rgba(0, 212, 255, 0.2); padding: 2px 5px; border-radius: 2px;
         }
-
         .rank-card.locked { opacity: 0.52; background: rgba(5, 12, 24, 0.75) !important; }
 
         .rank-badge {
@@ -228,7 +282,6 @@
             background: #00d4ff; color: #020611; border: 1px solid #00d4ff;
             box-shadow: 0 0 8px #00d4ff;
         }
-
         .rank-details { flex: 1; padding-right: 40px; }
         .rank-name { font-size: 14px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
         .rank-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.3; }
@@ -293,7 +346,6 @@
                         <div class="xp-bar-bg"><div class="xp-bar-fill"></div></div>
                     </div>
                 </div>
-                
                 <img class="imperial-emblem-img" src="./IMG_9973.png" alt="Empire">
             </div>
 
@@ -306,111 +358,236 @@
             
             <div id="section-default" class="screen-section active"></div>
 
-            <div id="section-career" class="screen-section">
-                <div class="career-title">Реестр продвижения по службе</div>
-                
-                <div class="rank-card current">
-                    <div class="rank-badge">REC</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Новобранец</div>
-                        <div class="rank-desc">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</div>
+            <div id="section-training" class="screen-section">
+                <div class="section-title">Модули аттестации этапа CR</div>
+
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">⚡</span>
+                            <span class="domain-name">Физический купол // CORP</span>
+                        </div>
+                        <span class="domain-counter">0 / 2</span>
+                    </div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">CORP 1.1 — Физическая готовность</span>
+                                <span class="badge hybrid">Система + Экзамен</span>
+                            </div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">CORP 1.2 — Система питания</span>
+                                <span class="badge system">Система</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CR</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет-Рекрут</div>
-                        <div class="rank-desc">Фундамент дисциплины. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</div>
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">✚</span>
+                            <span class="domain-name">Медицинский купол // MED</span>
+                        </div>
+                        <span class="domain-counter">0 / 2</span>
+                    </div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">MED 1.1 — Тактическая медицина: MARCH</span>
+                                <span class="badge exam">Экзамен</span>
+                            </div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">MED 1.2 — Гражданская медицина</span>
+                                <span class="badge credit">Зачёт</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C4</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет Четвёртого Класса</div>
-                        <div class="rank-desc">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнём и водой, уставы.</div>
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">⚙️</span>
+                            <span class="domain-name">Технический купол // TECH</span>
+                        </div>
+                        <span class="domain-counter">0 / 2</span>
+                    </div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">TECH 1.1 — Информационная безопасность</span>
+                                <span class="badge exam">Экзамен</span>
+                            </div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">TECH 1.2 — Цифровая гигиена и Чистый Стол</span>
+                                <span class="badge credit">Зачёт</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C3</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет Третьего Класса</div>
-                        <div class="rank-desc">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</div>
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">👁️</span>
+                            <span class="domain-name">Разведка и анализ // INT</span>
+                        </div>
+                        <span class="domain-counter">0 / 2</span>
+                    </div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">INT 1.1 — Ситуационная осознанность</span>
+                                <span class="badge system">Система</span>
+                            </div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">INT 1.2 — Базовая разведка: OSINT-граф</span>
+                                <span class="badge exam">Экзамен</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C2</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет Второго Класса</div>
-                        <div class="rank-desc">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</div>
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">💎</span>
+                            <span class="domain-name">Психологический купол // PSY</span>
+                        </div>
+                        <span class="domain-counter">0 / 1</span>
+                    </div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">PSY 1.1 — Психическая устойчивость: Стоицизм</span>
+                                <span class="badge system">Система</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C1</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет Первого Класса</div>
-                        <div class="rank-desc">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</div>
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">🧭</span>
+                            <span class="domain-name">Выживание и навигация // SURV</span>
+                        </div>
+                        <span class="domain-counter">0 / 1</span>
+                    </div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">SURV 1.1 — Навигация на местности</span>
+                                <span class="badge exam">Экзамен</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CS</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Старший Кадет</div>
-                        <div class="rank-desc">Командир отделения. Сортировка раненых, фортификации, психология масс, планирование операции взвода.</div>
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">⚔️</span>
+                            <span class="domain-name">Командный купол // CMD</span>
+                        </div>
+                        <span class="domain-counter">0 / 3</span>
+                    </div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">CMD 1.1 — Дисциплина среды: Гарнизон</span>
+                                <span class="badge system">Система</span>
+                            </div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">CMD 1.2 — Стандартизация отчётности</span>
+                                <span class="badge exam">Экзамен</span>
+                            </div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">CMD 1.3 — Уставной гардероб</span>
+                                <span class="badge credit">Зачёт</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CCF</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Главный Кадет</div>
-                        <div class="rank-desc">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</div>
+                <div class="domain-row">
+                    <div class="domain-header" onclick="toggleDomain(this)">
+                        <div class="domain-left">
+                            <span class="domain-icon">📜</span>
+                            <span class="domain-name">Административный купол // ADMIN</span>
+                        </div>
+                        <span class="domain-counter">0 / 1</span>
                     </div>
-                </div>
-
-                <div class="rank-card locked">
-                    <div class="rank-badge">CLD</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Ведущий Кадет</div>
-                        <div class="rank-desc">Стратег-автоном. Медицинское планирование, диверсии, устойчивость к допросам, координация подразделений.</div>
-                    </div>
-                </div>
-
-                <div class="rank-card locked">
-                    <div class="rank-badge">CEX</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет-Выпускник</div>
-                        <div class="rank-desc">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</div>
+                    <div class="domain-body">
+                        <div class="module-item">
+                            <div class="module-top">
+                                <span class="module-code-name">ADMIN 1.1 — Военная история: Азенкур</span>
+                                <span class="badge exam">Экзамен</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
+
+            <div id="section-career" class="screen-section">
+                <div class="section-title">Реестр продвижения по службе</div>
+                
+                <div class="rank-card current"><div class="rank-badge">REC</div><div class="rank-details"><div class="rank-name">Новобранец</div><div class="rank-desc">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">CR</div><div class="rank-details"><div class="rank-name">Кадет-Рекрут</div><div class="rank-desc">Фундамент дисциплины. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">C4</div><div class="rank-details"><div class="rank-name">Кадет Четвёртого Класса</div><div class="rank-desc">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнём и водой, уставы.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">C3</div><div class="rank-details"><div class="rank-name">Кадет Третьего Класса</div><div class="rank-desc">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">C2</div><div class="rank-details"><div class="rank-name">Кадет Второго Класса</div><div class="rank-desc">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">C1</div><div class="rank-details"><div class="rank-name">Кадет Первого Класса</div><div class="rank-desc">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">CS</div><div class="rank-details"><div class="rank-name">Старший Кадет</div><div class="rank-desc">Командир отделения. Сортировка раненых, фортификации, психология масс, планирование операции взвода.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">CCF</div><div class="rank-details"><div class="rank-name">Главный Кадет</div><div class="rank-desc">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">CLD</div><div class="rank-details"><div class="rank-name">Ведущий Кадет</div><div class="rank-desc">Стратег-автоном. Медицинское планирование, диверсии, устойчивость к допросам, координация подразделений.</div></div></div>
+                <div class="rank-card locked"><div class="rank-badge">CEX</div><div class="rank-details"><div class="rank-name">Кадет-Выпускник</div><div class="rank-desc">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</div></div></div>
+            </div>
         </div>
 
         <div class="bottom-plate">
-            <div class="nav-btn" onclick="openDefault()">Подготовка</div>
-            <div class="nav-btn" id="career-trigger" onclick="openCareer()">Карьера</div>
-            <div class="nav-btn" onclick="openDefault()">Архив</div>
+            <div class="nav-btn" id="training-trigger" onclick="switchTab('training')">Подготовка</div>
+            <div class="nav-btn" id="career-trigger" onclick="switchTab('career')">Карьера</div>
+            <div class="nav-btn" onclick="switchTab('default')">Архив</div>
         </div>
         
     </div>
 
     <script>
-        function openCareer() {
-            document.getElementById('section-default').classList.remove('active');
-            document.getElementById('section-career').classList.add('active');
-            document.getElementById('career-trigger').classList.add('active');
+        // Переключение основных вкладок
+        function switchTab(sectionId) {
+            document.querySelectorAll('.screen-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            if (sectionId === 'training') {
+                document.getElementById('section-training').classList.add('active');
+                document.getElementById('training-trigger').classList.add('active');
+            } else if (sectionId === 'career') {
+                document.getElementById('section-career').classList.add('active');
+                document.getElementById('career-trigger').classList.add('active');
+            } else {
+                document.getElementById('section-default').classList.add('active');
+            }
         }
 
-        function openDefault() {
-            document.getElementById('section-career').classList.remove('active');
-            document.getElementById('section-default').classList.add('active');
-            document.getElementById('career-trigger').classList.remove('active');
+        // Логика аккордеона для доменов
+        function toggleDomain(headerElement) {
+            const row = headerElement.parentElement;
+            row.classList.toggle('open');
         }
     </script>
 
