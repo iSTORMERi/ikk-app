@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Имперский Кадетский Корпус</title>
     
-    <!-- Жесткая привязка иконки (manifest и apple-touch) -->
+    <!-- Жесткая привязка иконки -->
     <link rel="apple-touch-icon" sizes="180x180" href="./logo.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./logo.png">
@@ -28,7 +28,7 @@
             color: #ffffff;
         }
 
-        /* Главный контейнер с фоном */
+        /* Главный контейнер с твоим фоном */
         .app-container {
             width: 100%;
             height: 100%;
@@ -43,19 +43,23 @@
             padding: 15px;
         }
 
-        /* Затемняющий фильтр фона */
+        /* Затемняющий фильтр фона для контраста */
         .app-container::after {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(2, 6, 17, 0.55); /* Чуть затемнили ради читаемости списков */
+            background: rgba(2, 6, 17, 0.50);
             z-index: 1;
             pointer-events: none;
         }
 
-        .top-panel-wrapper { position: relative; width: 100%; z-index: 10; }
+        /* ВЕРХНЯЯ ПАНЕЛЬ */
+        .top-panel-wrapper {
+            position: relative;
+            width: 100%;
+            z-index: 10;
+        }
 
-        /* ВЕРХНЕЕ ПЛАТО СТАТУСА */
         .top-plate {
             background: rgba(8, 20, 38, 0.92);
             border: 1px solid rgba(0, 212, 255, 0.25);
@@ -65,66 +69,134 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             box-shadow: 0 4px 25px rgba(0, 212, 255, 0.2);
         }
 
-        .status-info { flex: 1; }
-        .cadet-id { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #00d4ff; font-weight: bold; }
-        .cadet-rank { font-size: 16px; font-weight: bold; color: #ffffff; margin-top: 2px; margin-bottom: 6px; letter-spacing: 0.5px; }
-        .rank-tag { font-size: 12px; color: rgba(0, 212, 255, 0.7); font-weight: normal; }
-        .xp-container { width: 100%; }
-        .xp-text { font-size: 10px; color: #88a0c0; display: flex; justify-content: space-between; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .xp-bar-bg { width: 150px; height: 5px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.2); overflow: hidden; }
-        .xp-bar-fill { width: 0%; height: 100%; background: #00d4ff; }
+        .status-info {
+            flex: 1;
+            margin-right: 15px;
+        }
 
-        .imperial-emblem-img { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 0 5px #00d4ff) brightness(1.2); opacity: 0.95; }
+        .cadet-id {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .cadet-rank {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 2px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .rank-tag {
+            font-size: 12px;
+            color: rgba(0, 212, 255, 0.7);
+            font-weight: normal;
+        }
+
+        /* Геометрия шкалы опыта на всю ширину */
+        .xp-container {
+            width: 100%;
+        }
+
+        .xp-text {
+            font-size: 10px;
+            color: #88a0c0;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .xp-bar-bg {
+            width: 100%;
+            height: 5px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .xp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #00d4ff;
+        }
+
+        /* Герб приподнят ровно на уровень строки звания */
+        .imperial-emblem-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px #00d4ff) brightness(1.2);
+            opacity: 0.95;
+            margin-top: 10px;
+        }
 
         /* ТЕРМИНАЛ СВЯЗИ */
         .hq-btn {
-            position: absolute; right: 15px; top: 100%; width: 100px;
+            position: absolute;
+            right: 15px;
+            top: 100%;
+            width: 100px;
             background: linear-gradient(180deg, rgba(8, 20, 38, 0.95) 0%, rgba(0, 212, 255, 0.12) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.3); border-top: none; border-bottom: 2px solid #00d4ff;
-            color: #00d4ff; border-radius: 0 0 4px 4px; padding: 8px 5px;
-            display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.15); text-shadow: 0 0 4px rgba(0, 212, 255, 0.5); overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-top: none;
+            border-bottom: 2px solid #00d4ff;
+            color: #00d4ff;
+            border-radius: 0 0 4px 4px;
+            padding: 8px 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.15);
+            text-shadow: 0 0 4px rgba(0, 212, 255, 0.5);
         }
-        .hq-btn::before {
-            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 212, 255, 0.2) 50%);
-            z-index: 2; background-size: 100% 4px; pointer-events: none; opacity: 0.5;
-        }
-        .hq-title { font-size: 9px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; z-index: 3; }
 
-        /* ЦЕНТРАЛЬНОЕ ОКНО КОНТЕНТА (СКРОЛЛ-ЗОНА) */
+        .hq-title {
+            font-size: 9px;
+            font-weight: 900;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        /* ЦЕНТРАЛЬНОЕ ОКНО С ТАКТИЧЕСКИМ СКРОЛЛОМ */
         .center-content-area {
             flex: 1;
             z-index: 5;
-            margin-top: 45px; /* Зазор под терминал связи */
+            margin-top: 45px;
             margin-bottom: 15px;
-            overflow-y: auto; /* Включаем вертикальную прокрутку */
-            padding-right: 5px;
+            overflow-y: auto;
+            padding-right: 3px;
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Скрытие стандартного скроллбара */
         .center-content-area::-webkit-scrollbar { width: 4px; }
-        .center-content-area::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         .center-content-area::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.3); border-radius: 2px; }
 
-        /* Экраны секций (по умолчанию скрыты) */
+        /* Экраны-секции */
         .screen-section { display: none; width: 100%; }
         .screen-section.active { display: block; }
 
-        /* ТАКТИЧЕСКИЙ ДЕФОЛТНЫЙ ЭКРАН */
+        /* Начальное состояние центрального экрана */
         .welcome-msg {
-            text-align: center; padding: 40px 20px; color: rgba(0, 212, 255, 0.6);
-            font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-            border: 1px dashed rgba(0, 212, 255, 0.2); background: rgba(8, 20, 38, 0.4);
-            border-radius: 4px; margin-top: 50px;
+            text-align: center; padding: 30px 20px; color: rgba(0, 212, 255, 0.5);
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            border: 1px dashed rgba(0, 212, 255, 0.2); background: rgba(8, 20, 38, 0.3);
+            border-radius: 4px; margin-top: 60px;
         }
 
-        /* СТИЛИЗАЦИЯ СЕКЦИИ КАРЬЕРЫ (РЕЕСТР ЗВАНИЙ) */
+        /* ОФОРМЛЕНИЕ ДРЕВА ЗВАНИЙ */
         .career-title {
             font-size: 12px; color: #00d4ff; font-weight: bold;
             text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
@@ -132,34 +204,35 @@
         }
 
         .rank-card {
-            background: rgba(10, 22, 41, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(10, 22, 41, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.15);
             padding: 12px 14px;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             position: relative;
+            border-radius: 2px;
         }
 
-        /* Подсветка ТЕКУЩЕГО звания кадета */
+        /* Текущий статус кадета */
         .rank-card.current {
             background: rgba(8, 32, 64, 0.9);
             border: 1px solid #00d4ff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.25);
         }
         .rank-card.current::after {
-            content: "ТЕКУЩИЙ СТАТУС"; position: absolute; right: 14px; top: 12px;
+            content: "ТЕКУЩИЙ СТАТУС"; position: absolute; right: 12px; top: 12px;
             font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px;
-            background: rgba(0, 212, 255, 0.15); padding: 2px 5px; border-radius: 2px;
+            background: rgba(0, 212, 255, 0.2); padding: 2px 5px; border-radius: 2px;
         }
 
-        /* Стили для будущих заблокированных званий */
-        .rank-card.locked { opacity: 0.5; background: rgba(5, 12, 24, 0.6); }
+        /* Заблокированные звания (следующие этапы карьеры) */
+        .rank-card.locked { opacity: 0.52; background: rgba(5, 12, 24, 0.75); }
 
         .rank-badge {
-            font-size: 15px; font-weight: 900; color: #00d4ff;
+            font-size: 14px; font-weight: 900; color: #00d4ff;
             background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);
-            width: 48px; height: 36px; display: flex; justify-content: center;
+            width: 50px; height: 36px; display: flex; justify-content: center;
             align-items: center; margin-right: 15px; font-family: monospace;
         }
         .rank-card.current .rank-badge {
@@ -167,77 +240,94 @@
             box-shadow: 0 0 8px #00d4ff;
         }
 
-        .rank-details { flex: 1; padding-right: 60px; }
+        .rank-details { flex: 1; padding-right: 40px; }
         .rank-name { font-size: 14px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
-        .rank-card.locked .rank-name { color: #88a0c0; }
-        .rank-desc { font-size: 11px; color: #a0b8d0; margin-top: 4px; line-height: 1.3; }
+        .rank-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.3; }
 
         /* НИЖНЕЕ НАВИГАЦИОННОЕ ПЛАТО */
         .bottom-plate {
-            z-index: 10; background: rgba(8, 20, 38, 0.97);
-            border: 1px solid rgba(0, 212, 255, 0.25); border-top: 3px solid #00d4ff;
-            padding: 15px 12px; border-radius: 4px; width: 100%;
-            display: flex; justify-content: center; gap: 12px;
-            box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.2); padding-bottom: 25px;
+            z-index: 10;
+            background: rgba(8, 20, 38, 0.97);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-top: 3px solid #00d4ff;
+            padding: 15px 12px;
+            border-radius: 4px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.2);
+            padding-bottom: 25px;
         }
 
-        /* ТЕМНО-ЖЕЛТЫЕ КНОПКИ (МЕТАЛЛ) */
+        /* МЕТАЛЛИЧЕСКИЕ КНОПКИ */
         .nav-btn {
-            flex: 1; background: linear-gradient(180deg, #c49a00 0%, #8a6d00 100%); 
-            border: 1px solid #6e5700; border-bottom: 3px solid #4a3a00;
-            color: #ffffff; padding: 16px 2px; font-size: 11px; font-weight: 800;
-            text-align: center; text-transform: uppercase; letter-spacing: 1px;
+            flex: 1;
+            background: linear-gradient(180deg, #c49a00 0%, #8a6d00 100%); 
+            border: 1px solid #6e5700;
+            border-bottom: 3px solid #4a3a00;
+            color: #ffffff;
+            padding: 16px 2px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 8px rgba(0,0,0,0.4);
             text-shadow: 0 1px 2px rgba(0,0,0,0.6);
         }
 
-        /* Активное состояние кнопок таббара */
-        .nav-btn.active {
+        /* Физический ход кнопки вниз при глубоком зажатии */
+        .nav-btn:active, .nav-btn.active {
             background: linear-gradient(180deg, #8a6d00 0%, #5c4900 100%);
-            border: 1px solid #4a3a00; border-bottom: 2px solid #292000;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); color: #e6b800;
+            border: 1px solid #4a3a00;
+            border-bottom: 1px solid #292000;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.6);
+            transform: translateY(2px);
         }
+        .nav-btn.active { color: #e6b800; }
 
         .hq-btn:active { transform: scale(0.97); background: rgba(0, 212, 255, 0.15); }
-        .nav-btn:not(.active):active { transform: scale(0.97); background: #8a6d00; }
     </style>
 </head>
 <body>
 
     <div class="app-container">
 
-        <!-- ОБЪЕДИНЕННЫЙ ВЕРХНИЙ БЛОК -->
+        <!-- ВЕРХНИЙ БЛОК (ОБНОВЛЕННАЯ ГЕОМЕТРИЯ) -->
         <div class="top-panel-wrapper">
             <div class="top-plate">
                 <div class="status-info">
                     <div class="cadet-id">IMP-CD-001</div>
                     <div class="cadet-rank">Звание: Новобранец <span class="rank-tag">// REC</span></div>
+                    
                     <div class="xp-container">
                         <div class="xp-text"><span>Опыт (XP)</span><span>0 / 100</span></div>
                         <div class="xp-bar-bg"><div class="xp-bar-fill"></div></div>
                     </div>
                 </div>
+                
                 <img class="imperial-emblem-img" src="./IMG_9973.png" alt="Empire">
             </div>
 
             <div class="hq-btn">
-                <div class="hq-title">Terminal<br>active</div>
+                <div class="hq-title">Терминал<br>связи</div>
             </div>
         </div>
 
         <!-- ЦЕНТРАЛЬНОЕ ПОЛЕ КОНТЕНТА -->
         <div class="center-content-area">
             
-            <!-- Секция по умолчанию (пока ничего не нажато) -->
+            <!-- Стартовый экран-заглушка -->
             <div id="section-default" class="screen-section active">
-                <div class="welcome-msg">Ожидание выбора тактического раздела...</div>
+                <div class="welcome-msg">Ожидание тактического приказа...</div>
             </div>
 
             <!-- СЕКЦИЯ КАРЬЕРЫ (РЕЕСТР ЗВАНИЙ) -->
             <div id="section-career" class="screen-section">
                 <div class="career-title">Реестр продвижения по службе</div>
                 
-                <!-- Звание 0 (Текущее) -->
+                <!-- 0 -->
                 <div class="rank-card current">
                     <div class="rank-badge">REC</div>
                     <div class="rank-details">
@@ -246,7 +336,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 1 (Блокировано) -->
+                <!-- 1 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">CR</div>
                     <div class="rank-details">
@@ -255,7 +345,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 2 (Блокировано) -->
+                <!-- 2 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">C4</div>
                     <div class="rank-details">
@@ -264,7 +354,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 3 (Блокировано) -->
+                <!-- 3 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">C3</div>
                     <div class="rank-details">
@@ -273,7 +363,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 4 (Блокировано) -->
+                <!-- 4 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">C2</div>
                     <div class="rank-details">
@@ -282,7 +372,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 5 (Блокировано) -->
+                <!-- 5 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">C1</div>
                     <div class="rank-details">
@@ -291,7 +381,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 6 (Блокировано) -->
+                <!-- 6 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">CS</div>
                     <div class="rank-details">
@@ -300,7 +390,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 7 (Блокировано) -->
+                <!-- 7 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">CCF</div>
                     <div class="rank-details">
@@ -309,7 +399,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 8 (Блокировано) -->
+                <!-- 8 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">CLD</div>
                     <div class="rank-details">
@@ -318,7 +408,7 @@
                     </div>
                 </div>
 
-                <!-- Звание 9 (Блокировано) -->
+                <!-- 9 -->
                 <div class="rank-card locked">
                     <div class="rank-badge">CEX</div>
                     <div class="rank-details">
@@ -332,33 +422,29 @@
 
         <!-- НИЖНЕЕ НАВИГАЦИОННОЕ ПЛАТО -->
         <div class="bottom-plate">
-            <div class="nav-btn" onclick="switchTab('default', this)">Подготовка</div>
-            <div class="nav-btn" onclick="switchTab('career', this)">Карьера</div>
-            <div class="nav-btn" onclick="switchTab('default', this)">Архив</div>
+            <div class="nav-btn" onclick="openDefault()">Подготовка</div>
+            <div class="nav-btn" id="career-trigger" onclick="openCareer()">Карьера</div>
+            <div class="nav-btn" onclick="openDefault()">Архив</div>
         </div>
         
     </div>
 
-    <!-- ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ -->
+    <!-- ТОЧНАЯ И НАДЕЖНАЯ ЛОГИКА НАЖАТИЯ -->
     <script>
-        function switchTab(sectionId, btnElement) {
-            // Скрываем все разделы
-            document.querySelectorAll('.screen-section').forEach(section => {
-                section.classList.remove('active');
-            });
+        function openCareer() {
+            // Скрываем заглушку, включаем Карьеру
+            document.getElementById('section-default').classList.remove('active');
+            document.getElementById('section-career').classList.add('active');
             
-            // Удаляем активный класс со всех кнопок
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            // Фиксируем визуальное нажатие кнопки Карьера
+            document.getElementById('career-trigger').classList.add('active');
+        }
 
-            // Показываем нужный раздел
-            if (sectionId === 'career') {
-                document.getElementById('section-career').classList.add('active');
-                btnElement.classList.add('active');
-            } else {
-                document.getElementById('section-default').classList.add('active');
-            }
+        function openDefault() {
+            // Возврат к стартовому состоянию
+            document.getElementById('section-career').classList.remove('active');
+            document.getElementById('section-default').classList.add('active');
+            document.getElementById('career-trigger').classList.remove('active');
         }
     </script>
 
