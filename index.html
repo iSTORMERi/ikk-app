@@ -35,8 +35,8 @@
         }
         .app-container::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(2, 6, 17, 0.55); z-index: 1; pointer-events: none; }
         
-        /* ВЕРХНЯЯ ПАНЕЛЬ */
-        .top-panel-wrapper { position: relative; width: 100%; z-index: 10; margin-bottom: 35px; flex-shrink: 0; }
+        /* ВЕРХНЯЯ ПАНЕЛЬ С УВЕЛИЧЕННЫМ ОТСТУПОМ */
+        .top-panel-wrapper { position: relative; width: 100%; z-index: 10; margin-bottom: 50px; flex-shrink: 0; }
         .top-plate { background: rgba(8, 20, 38, 0.92); border: 1px solid rgba(0, 212, 255, 0.25); border-bottom: 3px solid #00d4ff; padding: 12px 15px; border-radius: 4px; width: 100%; display: flex; justify-content: space-between; align-items: flex-start; box-shadow: 0 4px 25px rgba(0, 212, 255, 0.2); }
         .status-info { flex: 1; margin-right: 15px; }
         .cadet-id { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #00d4ff; font-weight: bold; }
@@ -47,16 +47,18 @@
         .xp-bar-bg { width: 100%; height: 5px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.2); overflow: hidden; }
         .xp-bar-fill { width: 0%; height: 100%; background: #00d4ff; }
         .imperial-emblem-img { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 0 5px #00d4ff) brightness(1.2); opacity: 0.95; margin-top: 10px; }
-        .hq-btn { position: absolute; right: 15px; top: 100%; width: 100px; background: linear-gradient(180deg, rgba(8, 20, 38, 0.95) 0%, rgba(0, 212, 255, 0.12) 100%); border: 1px solid rgba(0, 212, 255, 0.3); border-top: none; border-bottom: 2px solid #00d4ff; color: #00d4ff; border-radius: 0 0 4px 4px; padding: 8px 5px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.15); text-shadow: 0 0 4px rgba(0, 212, 255, 0.5); }
+        
+        /* Терминал связи теперь гарантированно перекрывает скроллящийся под ним текст */
+        .hq-btn { position: absolute; right: 15px; top: 100%; width: 100px; background: rgba(8, 20, 38, 0.98); border: 1px solid rgba(0, 212, 255, 0.3); border-top: none; border-bottom: 2px solid #00d4ff; color: #00d4ff; border-radius: 0 0 4px 4px; padding: 8px 5px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.25); text-shadow: 0 0 4px rgba(0, 212, 255, 0.5); z-index: 12; }
         .hq-title { font-size: 9px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
         
-        /* ЦЕНТРАЛЬНЫЙ КОНТЕНТ С НЕЗАВИСИМЫМ СКРОЛЛОМ */
+        /* ЦЕНТРАЛЬНЫЙ КОНТЕНТ */
         .center-content-area { 
             flex: 1;
             width: 100%;
             z-index: 5; 
             overflow-y: auto; 
-            padding-bottom: 95px; /* Защита от перекрытия нижним меню */
+            padding-bottom: 95px; 
             padding-right: 2px;
             -webkit-overflow-scrolling: touch; 
         }
@@ -66,8 +68,8 @@
         .screen-section { display: none; width: 100%; }
         .screen-section.active { display: block; }
         
-        /* ЗАГОЛОВКИ РАЗДЕЛОВ БЕЗ НАЕЗДОВ */
-        .section-title { font-size: 13px; color: #00d4ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #00d4ff; line-height: 1.2; text-shadow: 0 0 8px rgba(0, 212, 255, 0.4); }
+        /* ЗАГОЛОВКИ С КОРРЕКТНЫМ ЗАЗОРОМ */
+        .section-title { font-size: 13px; color: #00d4ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #00d4ff; line-height: 1.2; text-shadow: 0 0 8px rgba(0, 212, 255, 0.4); }
         
         /* ДЕФОЛТНЫЙ ЭКРАН */
         .archive-placeholder { background: rgba(10, 22, 41, 0.6); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
@@ -136,7 +138,7 @@
         .badge.credit { background: rgba(0, 212, 255, 0.15); color: #00d4ff; border: 1px solid rgba(0, 212, 255, 0.4); }
         .badge.exam { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
 
-        /* ПОЛНАЯ ИЕРАРХИЯ ЗВАНИЙ (КАРЬЕРА) */
+        /* ИЕРАРХИЯ ЗВАНИЙ */
         .rank-card { background: rgba(10, 22, 41, 0.8) !important; border: 1px solid rgba(0, 212, 255, 0.15) !important; padding: 14px; margin-bottom: 12px; display: flex; align-items: center; position: relative; border-radius: 2px; }
         .rank-card.current { background: rgba(8, 32, 64, 0.9) !important; border: 1px solid #00d4ff !important; box-shadow: 0 0 15px rgba(0, 212, 255, 0.25); }
         .rank-card.current::after { content: "ТЕКУЩИЙ СТАТУС"; position: absolute; right: 12px; top: 14px; font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px; background: rgba(0, 212, 255, 0.2); padding: 2px 5px; border-radius: 2px; }
@@ -147,7 +149,7 @@
         .rank-name { font-size: 14px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
         .rank-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.3; }
 
-        /* ИСПРАВЛЕННОЕ НИЖНЕЕ МЕНЮ С НЕОНОВЫМ СВЕЧЕНИЕМ КНОПОК */
+        /* ИСПРАВЛЕННОЕ НИЖНЕЕ МЕНЮ: ПРЕЖНИЙ ЦВЕТ И НЕОНОВО-ЗОЛОТАЯ ПОДСВЕТКА */
         .bottom-plate { 
             position: absolute;
             bottom: 15px;
@@ -165,13 +167,13 @@
             box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.25); 
         }
         
-        /* Кнопки в пассивном состоянии — тускло-золотые из старой темы */
+        /* Возвращен прежний классический благородно-золотой цвет кнопок */
         .nav-btn { 
             flex: 1; 
             background: linear-gradient(180deg, #bfa054 0%, #735f30 100%); 
             border: 1px solid #594924; 
             border-bottom: 3px solid #3b3118; 
-            color: rgba(255, 255, 255, 0.9); 
+            color: rgba(255, 255, 255, 0.95); 
             padding: 13px 2px; 
             font-size: 11px; 
             font-weight: 800; 
@@ -185,14 +187,14 @@
             transition: all 0.15s ease;
         }
         
-        /* ЭФФЕКТ НАЖАТИЯ И АКТИВНОГО СТАТУСА — СИНЕЕ НЕОНОВОЕ СВЕЧЕНИЕ С РАМКОЙ */
+        /* ПРИ НАЖАТИИ И АКТИВНОСТИ: ГОРЯТ РОСКОШНЫМ НЕОНОВЫМ ЗОЛОТЫМ СВЕЧЕНИЕМ */
         .nav-btn:active, .nav-btn.active { 
-            background: linear-gradient(180deg, #092c4e 0%, #031424 100%) !important; 
-            border: 1px solid #00d4ff !important; 
-            border-bottom: 3px solid #0099bc !important;
-            color: #00d4ff !important; 
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6), inset 0 0 8px rgba(0, 212, 255, 0.3) !important; 
-            text-shadow: 0 0 6px rgba(0, 212, 255, 0.8) !important;
+            background: linear-gradient(180deg, #ffd54f 0%, #b58d14 100%) !important; 
+            border: 1px solid #ffca28 !important; 
+            border-bottom: 3px solid #ffb300 !important;
+            color: #ffffff !important; 
+            box-shadow: 0 0 20px rgba(255, 202, 40, 0.75), inset 0 0 10px rgba(255, 255, 255, 0.4) !important; 
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.6) !important;
         }
         
         .hq-btn:active { transform: scale(0.97); background: rgba(0, 212, 255, 0.15); }
@@ -202,6 +204,7 @@
 
     <div class="app-container">
 
+        <!-- ВЕРХНИЙ БЛОК -->
         <div class="top-panel-wrapper">
             <div class="top-plate">
                 <div class="status-info">
@@ -217,8 +220,10 @@
             <div class="hq-btn"><div class="hq-title">Терминал<br>связи</div></div>
         </div>
 
+        <!-- ЦЕНТРАЛЬНОЕ ОКНО КОНТЕНТА -->
         <div class="center-content-area" id="main-content-scroll-area">
             
+            <!-- ДЕФОЛТНЫЙ ЭКРАН (АРХИВ) -->
             <div id="section-default" class="screen-section active">
                 <div class="section-title">Имперский Архив данных</div>
                 <div class="archive-placeholder">
@@ -226,6 +231,7 @@
                 </div>
             </div>
 
+            <!-- СЕКЦИЯ ПОДГОТОВКИ -->
             <div id="section-training" class="screen-section">
                 
                 <div id="training-stages-view">
@@ -262,7 +268,7 @@
                         </div>
                         <div class="domain-tile tile-tech" onclick="openModal('modal-tech')">
                             <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
+                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38-2.65c.03-.24.24-.42.49-.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61.22l2 3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
                             <div class="tile-code">TECH</div>
                         </div>
                         <div class="domain-tile tile-int" onclick="openModal('modal-int')">
@@ -292,9 +298,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
+            <!-- СЕКЦИЯ КАРЬЕРЫ -->
             <div id="section-career" class="screen-section">
                 <div class="section-title">Реестр продвижения по службе</div>
                 
@@ -380,6 +386,7 @@
             </div>
         </div>
 
+        <!-- НИЖНЕЕ ПЛАТО -->
         <div class="bottom-plate">
             <div class="nav-btn" id="training-trigger" onclick="switchTab('training')">Подготовка</div>
             <div class="nav-btn" id="career-trigger" onclick="switchTab('career')">Карьера</div>
@@ -388,6 +395,7 @@
         
     </div>
 
+    <!-- МОДАЛЬНЫЕ ОКНА КУПОЛОВ -->
     <div id="modal-corp" class="full-screen-modal modal-corp">
         <div class="back-modal-btn" onclick="closeModal('modal-corp')">« Закрыть купол</div>
         <div class="modal-header">
@@ -411,7 +419,7 @@
     <div id="modal-tech" class="full-screen-modal modal-tech">
         <div class="back-modal-btn" onclick="closeModal('modal-tech')">« Закрыть купол</div>
         <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73(1.69-.98l.38-2.65c.03-.24.24-.42.49-.42h4c.25 0 .46.18.49.42l.38 2.65c.61.25 1.17.59 1.69.98l2.49 1c.23.09.49 0 .61.22l2 3.46c.12.22.07.49-.12.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
+            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38-2.65c.03-.24.24-.42.49-.42h4c.25 0 .46.18.49.42l.38 2.65c.61.25 1.17.59 1.69.98l2.49 1c.23.09.49 0 .61.22l2 3.46c.12.22.07.49-.12.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
             <div class="modal-meta"><h2>TECH</h2><p>Технический купол</p></div>
         </div>
         <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.1 — Информационная безопасность</span><span class="badge exam">Экзамен</span></div></div>
@@ -426,43 +434,6 @@
         </div>
         <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.1 — Ситуационная осознанность</span><span class="badge system">Система</span></div></div>
         <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.2 — Базовая разведка: OSINT-ГРАФ</span><span class="badge exam">Экзамен</span></div></div>
-    </div>
-
-    <div id="modal-psy" class="full-screen-modal modal-psy">
-        <div class="back-modal-btn" onclick="closeModal('modal-psy')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
-            <div class="modal-meta"><h2>PSY</h2><p>Психологический купол</p></div>
-        </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">PSY 1.1 — Стоицизм и контроль эмоций</span><span class="badge system">Система</span></div></div>
-    </div>
-
-    <div id="modal-surv" class="full-screen-modal modal-surv">
-        <div class="back-modal-btn" onclick="closeModal('modal-surv')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
-            <div class="modal-meta"><h2>SURV</h2><p>Выживание и навигация</p></div>
-        </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">SURV 1.1 — Навигация на местности</span><span class="badge exam">Экзамен</span></div></div>
-    </div>
-
-    <div id="modal-cmd" class="full-screen-modal modal-cmd">
-        <div class="back-modal-btn" onclick="closeModal('modal-cmd')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
-            <div class="modal-meta"><h2>CMD</h2><p>Командный купол</p></div>
-        </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.1 — Дисциплина среды: Гарнизон</span><span class="badge system">Система</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.2 — Стандартизация отчётности</span><span class="badge exam">Экзамен</span></div></div>
-    </div>
-
-    <div id="modal-admin" class="full-screen-modal modal-admin">
-        <div class="back-modal-btn" onclick="closeModal('modal-admin')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-            <div class="modal-meta"><h2>ADMIN</h2><p>Административный купол</p></div>
-        </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">ADMIN 1.1 — Военная история</span><span class="badge exam">Экзамен</span></div></div>
     </div>
 
     <script>
