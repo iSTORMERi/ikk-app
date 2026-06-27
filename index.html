@@ -232,11 +232,10 @@
             </div>
 
             <!-- СЕКЦИЯ ПОДГОТОВКИ -->
-            <div id="section-training" class="screen-section">
-                
-                <div id="training-stages-view">
+                            <div id="training-stages-view">
                     <div class="section-title">Программы подготовки по званиям</div>
                     
+                    <!-- 1 -->
                     <div class="stage-card active-stage" onclick="openStageModules('rec-cr')">
                         <div class="stage-badge">REC</div>
                         <div class="stage-details">
@@ -245,60 +244,79 @@
                         </div>
                     </div>
 
-                    <div class="stage-card locked-stage"><div class="stage-badge">CR</div><div class="stage-details"><div class="stage-name">Кадет-Рекрут → C4</div><div class="stage-desc">Связь, электротехника, полевая десмургия.</div></div></div>
-                    <div class="stage-card locked-stage"><div class="stage-badge">C4</div><div class="stage-details"><div class="stage-name">Кадет C4 → C3</div><div class="stage-desc">Ремонт, рукопашный бой, логистика отделения.</div></div></div>
-                    <div class="stage-card locked-stage"><div class="stage-badge">C3</div><div class="stage-details"><div class="stage-name">Кадет C3 → C2</div><div class="stage-desc">Токсикология, криптография, администрирование.</div></div></div>
-                    <div class="stage-card locked-stage"><div class="stage-badge">C2</div><div class="stage-details"><div class="stage-name">Кадет C2 → C1</div><div class="stage-desc">Профайлинг, social engineering, контр-деза.</div></div></div>
-                </div>
+                    <!-- 2 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">CR</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Кадет-Рекрут → C4</div>
+                            <div class="stage-desc">Связь, электротехника, полевая десмургия.</div>
+                        </div>
+                    </div>
 
-                <div id="training-modules-view" style="display: none;">
-                    <div class="back-to-stages-btn" onclick="backToStages()">« Назад к званиям</div>
-                    <div class="section-title">Купола аттестации: REC → CR</div>
+                    <!-- 3 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">C4</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Кадет C4 → C3</div>
+                            <div class="stage-desc">Ремонт, рукопашный бой, логистика отделения.</div>
+                        </div>
+                    </div>
 
-                    <div class="domains-grid">
-                        <div class="domain-tile tile-corp" onclick="openModal('modal-corp')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
-                            <div class="tile-code">CORP</div>
+                    <!-- 4 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">C3</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Кадет C3 → C2</div>
+                            <div class="stage-desc">Токсикология, криптография, администрирование.</div>
                         </div>
-                        <div class="domain-tile tile-med" onclick="openModal('modal-med')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
-                            <div class="tile-code">MED</div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">C2</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Кадет C2 → C1</div>
+                            <div class="stage-desc">Профайлинг, social engineering, контр-деза.</div>
                         </div>
-                        <div class="domain-tile tile-tech" onclick="openModal('modal-tech')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38-2.65c.03-.24.24-.42.49-.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61.22l2 3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
-                            <div class="tile-code">TECH</div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">C1</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Кадет C1 → CS</div>
+                            <div class="stage-desc">Управление отделением, детекция лжи, основы слайсинга.</div>
                         </div>
-                        <div class="domain-tile tile-int" onclick="openModal('modal-int')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
-                            <div class="tile-code">INT</div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">CS</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Старший кадет → CCF</div>
+                            <div class="stage-desc">Фортификация, тактическое планирование и психология масс.</div>
                         </div>
-                        <div class="domain-tile tile-psy" onclick="openModal('modal-psy')">
-                            <span class="tile-counter">0/1</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
-                            <div class="tile-code">PSY</div>
+                    </div>
+
+                    <!-- 8 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">CCF</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Главный кадет → CLD</div>
+                            <div class="stage-desc">Эпидемиология, контрразведка и автономное управление взводом.</div>
                         </div>
-                        <div class="domain-tile tile-surv" onclick="openModal('modal-surv')">
-                            <span class="tile-counter">0/1</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
-                            <div class="tile-code">SURV</div>
-                        </div>
-                        <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd')">
-                            <span class="tile-counter">0/3</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
-                            <div class="tile-code">CMD</div>
-                        </div>
-                        <div class="domain-tile tile-admin" onclick="openModal('modal-admin')">
-                            <span class="tile-counter">0/1</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-                            <div class="tile-code">ADMIN</div>
+                    </div>
+
+                    <!-- 9 -->
+                    <div class="stage-card locked-stage">
+                        <div class="stage-badge">CLD</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Ведущий кадет → CEX</div>
+                            <div class="stage-desc">Медицинское планирование, диверсионная устойчивость и координация.</div>
                         </div>
                     </div>
                 </div>
-            </div>
+
 
             <!-- СЕКЦИЯ КАРЬЕРЫ -->
             <div id="section-career" class="screen-section">
