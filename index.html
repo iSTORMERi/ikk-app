@@ -158,8 +158,16 @@
             padding: 16px;
             background-size: cover;
             background-position: center 25%;
+            background-color: rgba(10, 22, 41, 0.4); /* Стандартный пустой фон для остальных */
             border: 1px solid rgba(0, 212, 255, 0.15);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* УСТАНАВЛИВАЕМ КАРТИНКУ ТОЛЬКО ДЛЯ ТЕКУЩЕЙ АКТИВНОЙ КАРТОЧКИ (НОВОБРАНЕЦ) */
+        .rank-card.current { 
+            background-image: url('./MG_0036.png');
+            border: 1px solid #00d4ff !important; 
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.25), inset 0 0 10px rgba(0, 212, 255, 0.1); 
         }
 
         /* Направленный затемняющий градиент под текст */
@@ -216,10 +224,6 @@
         }
 
         /* ТЕКУЩИЙ СТАТУС */
-        .rank-card.current { 
-            border: 1px solid #00d4ff !important; 
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.25), inset 0 0 10px rgba(0, 212, 255, 0.1); 
-        }
         .rank-card.current .rank-badge-mini {
             background: #00d4ff;
             color: #020611;
@@ -491,7 +495,7 @@
             <div id="section-career" class="screen-section">
                 <div class="section-title">Реестр продвижения по службе</div>
                 
-                <div class="rank-card current" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card current">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">REC</span>
@@ -501,7 +505,7 @@
                     </div>
                 </div>
                 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">CR</span>
@@ -511,7 +515,7 @@
                     </div>
                 </div>
                 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">C4</span>
@@ -521,7 +525,7 @@
                     </div>
                 </div>
                 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">C3</span>
@@ -531,7 +535,7 @@
                     </div>
                 </div>
                 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">C2</span>
@@ -541,7 +545,7 @@
                     </div>
                 </div>
 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">C1</span>
@@ -551,7 +555,7 @@
                     </div>
                 </div>
 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">CS</span>
@@ -561,7 +565,7 @@
                     </div>
                 </div>
 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">CCF</span>
@@ -571,7 +575,7 @@
                     </div>
                 </div>
 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">CLD</span>
@@ -581,7 +585,7 @@
                     </div>
                 </div>
 
-                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">CEX</span>
