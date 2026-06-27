@@ -2,827 +2,343 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Имперский Терминал Связи</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Имперский Терминал Аттестации</title>
     <style>
         :root {
             --bg-color: #050b14;
-            --panel-bg: rgba(10, 25, 47, 0.75);
-            --border-color: #1e3d59;
-            --glow-color: #00bcd4;
-            --glow-text: #00e5ff;
-            --text-main: #cfd8dc;
-            --text-muted: #78909c;
-            --accent-yellow: #b59410;
-            --accent-yellow-glow: rgba(181, 148, 16, 0.4);
-            --danger-color: #ff5252;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --panel-bg: rgba(10, 25, 47, 0.7);
+            --border-blue: #1e3d59;
+            --text-cyan: #00ffff;
+            --text-muted: #8892b0;
+            --accent-gold: #c5a059;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 30%, #0d2035 0%, #050b14 70%);
         }
 
-        /* Симуляция экрана смартфона */
-        .phone-container {
+        .terminal-container {
             width: 100%;
             max-width: 430px;
-            min-height: 100vh;
-            background: rgba(5, 11, 20, 0.85);
-            border-left: 1px solid rgba(30, 61, 89, 0.3);
-            border-right: 1px solid rgba(30, 61, 89, 0.3);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            padding: 60px 16px 100px 16px;
+            background: linear-gradient(180deg, rgba(6,18,34,1) 0%, rgba(3,9,19,1) 100%);
+            border: 2px solid var(--border-blue);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
         }
 
-        /* Верхняя статусная строчка */
-        .status-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .battery {
-            width: 22px;
-            height: 11px;
-            border: 1px solid var(--text-main);
-            border-radius: 3px;
-            position: relative;
-            padding: 1px;
-        }
-
-        .battery::after {
-            content: '';
-            position: absolute;
-            right: -3px;
-            top: 3px;
-            width: 2px;
-            height: 4px;
-            background: var(--text-main);
-        }
-
-        .battery-level {
-            width: 100%;
-            height: 100%;
-            background: var(--text-main);
-            border-radius: 1px;
-        }
-
-        /* Основной фиксированный заголовок профиля */
-        .profile-header {
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.15);
+        /* --- Header --- */
+        .header-panel {
+            border: 1px solid var(--border-blue);
+            background: rgba(10, 25, 47, 0.5);
+            padding: 12px;
             border-radius: 6px;
-            padding: 12px 16px;
-            margin-bottom: 16px;
             position: relative;
+            margin-bottom: 15px;
         }
+        .user-tag { color: #5271ff; font-size: 0.8rem; letter-spacing: 1px; }
+        .user-rank { font-size: 1.2rem; font-weight: bold; margin: 4px 0; }
+        .xp-bar-container { background: #112240; height: 6px; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+        .xp-bar { width: 0%; height: 100%; background: var(--text-cyan); }
 
-        .sys-id {
-            color: #00e5ff;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            margin-bottom: 2px;
-            font-weight: bold;
-        }
-
-        .rank-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .rank-tag {
-            color: #00bcd4;
-            font-size: 13px;
-            font-weight: normal;
-        }
-
-        .xp-container {
-            width: 100%;
-        }
-
-        .xp-text {
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .xp-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(30, 61, 89, 0.5);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .xp-fill {
-            width: 0%;
-            height: 100%;
-            background: var(--glow-color);
-            box-shadow: 0 0 8px var(--glow-text);
-        }
-
-        .imperial-logo {
-            position: absolute;
-            right: 16px;
-            top: 12px;
-            width: 42px;
-            height: 42px;
-            opacity: 0.9;
-        }
-
-        /* Кнопка "Терминал связи" */
-        .terminal-btn {
-            align-self: flex-end;
-            background: rgba(16, 40, 66, 0.6);
-            border: 1px solid #105070;
-            color: #80d8ff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 6px 14px;
-            border-radius: 4px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            cursor: pointer;
-            box-shadow: inset 0 0 6px rgba(0,229,255,0.1);
-        }
-
-        /* Заголовки разделов */
-        .section-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #80d8ff;
-            margin-bottom: 16px;
-            border-left: 3px solid var(--glow-color);
-            padding-left: 8px;
-        }
-
-        /* Контентные экраны */
-        .screen {
-            display: none;
-            width: 100%;
-            flex-direction: column;
-        }
-
-        .screen.active {
-            display: flex;
-        }
-
-        /* Сетка куполов (Доменов) */
+        /* --- Купола аттестации (Плиточная сетка) --- */
         .domes-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            width: 100%;
+            margin-bottom: 20px;
         }
 
         .dome-card {
-            background: rgba(8, 20, 36, 0.75);
-            border: 1px solid rgba(30, 61, 89, 0.6);
+            background: rgba(16, 36, 64, 0.5);
+            border: 1px solid var(--border-blue);
             border-radius: 6px;
-            padding: 24px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            padding: 20px 10px;
+            text-align: center;
             cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
-            min-height: 135px;
+            transition: all 0.2s ease;
+            position: relative;
         }
 
-        .dome-card:active {
-            background: rgba(0, 188, 212, 0.1);
-            border-color: var(--glow-color);
+        .dome-card:hover {
+            background: rgba(0, 255, 255, 0.08);
+            border-color: var(--text-cyan);
         }
 
-        .dome-counter {
+        .dome-card .counter {
             position: absolute;
-            top: 8px;
+            top: 6px;
             right: 8px;
-            font-size: 10px;
+            font-size: 0.75rem;
             color: var(--text-muted);
             background: rgba(0,0,0,0.3);
-            padding: 2px 5px;
+            padding: 2px 6px;
             border-radius: 3px;
-            font-weight: 600;
         }
 
         .dome-icon {
             width: 32px;
             height: 32px;
-            margin-bottom: 14px;
+            margin: 0 auto 10px auto;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* SVG иконки с точной отрисовкой */
+        /* Исправление отрисовки шестерёнки и центрирования */
         .dome-icon svg {
             width: 100%;
             height: 100%;
+            display: block;
         }
 
-        .icon-corp { fill: #f57c00; }
-        .icon-med { fill: #29b6f6; }
-        .icon-tech { fill: #78909c; }
-        .icon-int { fill: #ab47bc; }
-        .icon-psy { fill: #26a69a; }
-        .icon-surv { fill: #66bb6a; }
-        .icon-cmd { fill: #ef5350; }
-        .icon-admin { fill: #fbc02d; }
-
-        .dome-name {
-            font-size: 13px;
+        .dome-title {
+            font-size: 0.9rem;
             font-weight: bold;
             letter-spacing: 1px;
-            color: #fff;
-            text-transform: uppercase;
-            text-align: center;
         }
 
-        /* Экран детального купола */
-        .dome-detail-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            background: rgba(10, 25, 47, 0.4);
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid rgba(30, 61, 89, 0.4);
+        /* Цветовые акценты для иконок доменов */
+        .corp-color { color: #ff9f43; fill: #ff9f43; }
+        .med-color { color: #2ed573; fill: #2ed573; }
+        .tech-color { color: #54a0ff; fill: #54a0ff; }
+        .int-color { color: #a55eea; fill: #a55eea; }
+        .psy-color { color: #00d2d3; fill: #00d2d3; }
+        .surv-color { color: #1dd1a1; fill: #1dd1a1; }
+        .cmd-color { color: #ff6b6b; fill: #ff6b6b; }
+        .admin-color { color: #feca57; fill: #feca57; }
+
+        /* --- Окно деталей купола (Модальное/Выезжающее) --- */
+        .dome-details-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 11, 20, 0.95);
+            z-index: 100;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
-        .dome-detail-info {
-            display: flex;
-            flex-direction: column;
+        .details-content {
+            max-width: 400px;
+            margin: 40px auto 0 auto;
         }
 
-        .dome-detail-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .dome-detail-subtitle {
-            font-size: 11px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        .back-btn {
-            background: rgba(10, 25, 47, 0.8);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 8px 12px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .close-btn {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
-            margin-bottom: 14px;
-            align-self: flex-start;
+            text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
-        /* Списки модулей аттестации */
-        .module-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .module-card {
-            background: rgba(13, 27, 47, 0.6);
-            border: 1px solid rgba(30, 61, 89, 0.5);
-            border-radius: 5px;
-            padding: 14px;
-        }
-
-        .module-header {
+        .modules-list { margin-top: 25px; }
+        .module-item {
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(0,255,255,0.1);
+            padding: 15px 0;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .module-title {
-            font-size: 13px;
-            font-weight: bold;
-            color: #fff;
-            line-height: 1.4;
-        }
-
-        .module-badge {
-            font-size: 9px;
-            font-weight: bold;
-            padding: 3px 6px;
-            border-radius: 3px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-
-        .badge-system-exam {
-            background: rgba(181, 148, 16, 0.15);
-            color: #ffd54f;
-            border: 1px solid rgba(181, 148, 16, 0.4);
-        }
-
-        .badge-system {
-            background: rgba(76, 175, 80, 0.15);
-            color: #81c784;
-            border: 1px solid rgba(76, 175, 80, 0.4);
-        }
-
-        .badge-exam {
-            background: rgba(239, 83, 80, 0.15);
-            color: #e57373;
-            border: 1px solid rgba(239, 83, 80, 0.4);
-        }
-
-        .badge-passed {
-            background: rgba(38, 166, 154, 0.15);
-            color: #4db6ac;
-            border: 1px solid rgba(38, 166, 154, 0.4);
-        }
-
-        /* Экран реестра карьеры */
-        .career-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .rank-card {
-            background: rgba(10, 25, 47, 0.4);
-            border: 1px solid rgba(30, 61, 89, 0.4);
-            border-radius: 6px;
-            padding: 14px;
-            display: flex;
-            gap: 14px;
-            position: relative;
-            opacity: 0.5;
-        }
-
-        .rank-card.current {
-            background: rgba(10, 35, 60, 0.7);
-            border: 1px solid rgba(0, 188, 212, 0.6);
-            box-shadow: inset 0 0 10px rgba(0,188,212,0.15);
-            opacity: 1;
-        }
-
-        .rank-status-tag {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            font-size: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #00e5ff;
-            font-weight: bold;
-        }
-
-        .rank-icon-box {
-            width: 46px;
-            height: 46px;
-            background: rgba(15, 34, 59, 0.8);
-            border: 1px solid rgba(30, 61, 89, 0.8);
-            border-radius: 4px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: bold;
-            color: #80d8ff;
-            flex-shrink: 0;
+        }
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            background: rgba(197, 160, 89, 0.2);
+            color: var(--accent-gold);
         }
 
-        .rank-card.current .rank-icon-box {
-            border-color: var(--glow-color);
-            color: #fff;
-            box-shadow: 0 0 8px rgba(0,229,255,0.3);
-        }
-
-        .rank-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .rank-name {
-            font-size: 14px;
-            font-weight: bold;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .rank-desc {
-            font-size: 11px;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        /* Экран Архива */
-        .archive-placeholder {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 13px;
-            border: 1px dashed rgba(30, 61, 89, 0.4);
-            border-radius: 6px;
-        }
-
-        /* Нижнее навигационное меню */
+        /* --- Навигация внизу --- */
         .bottom-nav {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 76px;
-            background: #03070d;
-            border-top: 1px solid var(--border-color);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            padding: 12px;
-            gap: 8px;
-            z-index: 10;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .nav-btn {
-            background: rgba(181, 148, 16, 0.15);
-            border: 1px solid var(--accent-yellow);
-            color: var(--accent-yellow);
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 12px 5px;
+            text-align: center;
             border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: inset 0 0 4px rgba(181, 148, 16, 0.2);
-            transition: all 0.15s;
         }
-
         .nav-btn.active {
-            background: var(--accent-yellow);
+            background: var(--accent-gold);
             color: #000;
-            box-shadow: 0 0 12px var(--accent-yellow-glow);
         }
     </style>
 </head>
 <body>
 
-<div class="phone-container">
-    <div class="status-bar">
-        <div>18:04</div>
-        <div class="status-icons">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.58 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
-            <div class="battery"><div class="battery-level"></div></div>
+<div class="terminal-container">
+    <div class="header-panel">
+        <div class="user-tag">IMP-CD-001</div>
+        <div class="user-rank">Звание: Новобранец <span style="color: var(--text-muted); font-size: 0.85rem;">// REC</span></div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; display: flex; justify-content: space-between;">
+            <span>ОПЫТ (XP)</span>
+            <span>0 / 100</span>
+        </div>
+        <div class="xp-bar-container">
+            <div class="xp-bar"></div>
         </div>
     </div>
 
-    <div class="profile-header">
-        <div class="sys-id">IMP-CD-001</div>
-        <div class="rank-title">Звание: Новобранец <span class="rank-tag">// REC</span></div>
-        <div class="xp-container">
-            <div class="xp-text"><span>Опыт (XP)</span><span>0 / 100</span></div>
-            <div class="xp-bar"><div class="xp-fill"></div></div>
-        </div>
-        <svg class="imperial-logo" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--border-color);"/>
-            <circle cx="50" cy="50" r="40" fill="currentColor" style="color: #fff;"/>
-            <circle cx="50" cy="50" r="14" fill="none" stroke="#000" stroke-width="4"/>
-            <path d="M50 10 L50 90 M10 50 L90 50 M21.7 21.7 L78.3 78.3 M21.7 78.3 L78.3 21.7" stroke="#000" stroke-width="5"/>
-            <circle cx="50" cy="50" r="26" fill="currentColor" style="color: #fff;"/>
-            <path d="M50 18 L50 82 M18 50 L82 50" stroke="#000" stroke-width="8"/>
-            <circle cx="50" cy="50" r="8" fill="#000"/>
-        </svg>
+    <div style="font-size: 0.8rem; color: var(--text-cyan); letter-spacing: 1px; margin: 15px 0 10px 0; text-transform: uppercase;">
+        | Купола аттестации: REC &rarr; CR
     </div>
 
-    <button class="terminal-btn">Терминал связи</button>
-
-    <div id="screen-training" class="screen active">
-        <div id="sub-training-grid" style="display: flex; flex-direction: column; width: 100%;">
-            <div class="section-title">Купола аттестации: REC &rarr; CR</div>
-            <div class="domes-grid">
-                <div class="dome-card" onclick="openDomeDetail('corp')">
-                    <div class="dome-counter">0 / 2</div>
-                    <div class="dome-icon icon-corp">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
-                    </div>
-                    <div class="dome-name">Corp</div>
-                </div>
-                <div class="dome-card" onclick="openDomeDetail('med')">
-                    <div class="dome-counter">0 / 2</div>
-                    <div class="dome-icon icon-med">
-                        <svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg>
-                    </div>
-                    <div class="dome-name">Med</div>
-                </div>
-                <div class="dome-card" onclick="openDomeDetail('tech')">
-                    <div class="dome-counter">0 / 2</div>
-                    <div class="dome-icon icon-tech">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3-1.57-3-3.5s1.07-3.5 3-3.5 3 1.57 3 3.5-1.07 3.5-3 3.5z"/>
-                        </svg>
-                    </div>
-                    <div class="dome-name">Tech</div>
-                </div>
-                <div class="dome-card" onclick="openDomeDetail('int')">
-                    <div class="dome-counter">0 / 2</div>
-                    <div class="dome-icon icon-int">
-                        <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    </div>
-                    <div class="dome-name">Int</div>
-                </div>
-                <div class="dome-card" onclick="openDomeDetail('psy')">
-                    <div class="dome-counter">0 / 1</div>
-                    <div class="dome-icon icon-psy">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 9l10 7 10-7-10-7zM2 14l10 7 10-7v-2l-10 7-10-7v2z"/></svg>
-                    </div>
-                    <div class="dome-name">Psy</div>
-                </div>
-                <div class="dome-card" onclick="openDomeDetail('surv')">
-                    <div class="dome-counter">0 / 1</div>
-                    <div class="dome-icon icon-surv">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L11 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                    </div>
-                    <div class="dome-name">Surv</div>
-                </div>
-                <div class="dome-card" onclick="openDomeDetail('cmd')">
-                    <div class="dome-counter">0 / 3</div>
-                    <div class="dome-icon icon-cmd">
-                        <svg viewBox="0 0 24 24"><path d="M14.3 10.1l-4.2-4.2c-.39-.39-1.02-.39-1.41 0L3.1 11.5c-.39.39-.39 1.02 0 1.41l4.2 4.2c.39.39 1.02.39 1.41 0l5.6-5.6c.39-.38.39-1.02 0-1.41zm-6.5 4.9l-2.8-2.8 4.9-4.9 2.8 2.8-4.9 4.9zm13.1-9.3c-.39-.39-1.02-.39-1.41 0l-4.2 4.2c-.39.39-.39 1.02 0 1.41l4.2 4.2c.39.39 1.02.39 1.41 0l4.2-4.2c.39-.39.39-1.02 0-1.41l-4.2-4.2zm-.7 7l-2.1-2.1 2.1-2.1 2.1 2.1-2.1 2.1z"/></svg>
-                    </div>
-                    <div class="dome-name">Cmd</div>
-                </div>
-                <div class="dome-card" onclick="openDomeDetail('admin')">
-                    <div class="dome-counter">0 / 1</div>
-                    <div class="dome-icon icon-admin">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    </div>
-                    <div class="dome-name">Admin</div>
-                </div>
+    <div class="domes-grid">
+        <div class="dome-card" onclick="openDome('CORP', 'ФИЗИЧЕСКИЙ КУПОЛ', [
+            { name: 'CORP 1.1 — ФИЗИЧЕСКАЯ ГОТОВНОСТЬ', status: 'СИСТЕМА + ЭКЗАМЕН' },
+            { name: 'CORP 1.2 — СИСТЕМА ПИТАНИЯ', status: 'СИСТЕМА' }
+        ])">
+            <div class="counter">0 / 2</div>
+            <div class="dome-icon corp-color">
+                <svg viewBox="0 0 24 24"><path d="M11.5 2L2 13h9l-1 9 9.5-11h-9l1-9z"/></svg>
             </div>
+            <div class="dome-title">CORP</div>
         </div>
 
-        <div id="sub-training-detail" style="display: none; flex-direction: column; width: 100%;">
-            <button class="back-btn" onclick="closeDomeDetail()">&laquo; Закрыть купол</button>
-            
-            <div class="dome-detail-header">
-                <div class="dome-icon" id="detail-dome-icon"></div>
-                <div class="dome-detail-info">
-                    <div class="dome-detail-title" id="detail-dome-title">Название Купола</div>
-                    <div class="dome-detail-subtitle" id="detail-dome-type">Физический купол</div>
-                </div>
+        <div class="dome-card" onclick="openDome('MED', 'МЕДИЦИНСКИЙ КУПОЛ', [
+            { name: 'MED 1.1 — ТАКТИЧЕСКАЯ МЕДИЦИНА: MARCH', status: 'ЭКЗАМЕН' },
+            { name: 'MED 1.2 — ГРАЖДАНСКАЯ МЕДИЦИНА', status: 'ЗАЧЁТ' }
+        ])">
+            <div class="counter">0 / 2</div>
+            <div class="dome-icon med-color">
+                <svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg>
             </div>
-
-            <div class="module-list" id="detail-modules-list">
-                </div>
+            <div class="dome-title">MED</div>
         </div>
-    </div>
 
-    <div id="screen-career" class="screen">
-        <div class="section-title">Реестр продвижения по службе</div>
-        <div class="career-list">
-            <div class="rank-card current">
-                <span class="rank-status-tag">Текущий статус</span>
-                <div class="rank-icon-box">REC</div>
-                <div class="rank-info">
-                    <div class="rank-name">Новобранец</div>
-                    <div class="rank-desc">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</div>
-                </div>
+        <div class="dome-card" onclick="openDome('TECH', 'ТЕХНИЧЕСКИЙ КУПОЛ', [
+            { name: 'TECH 1.1 — ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ', status: 'ЭКЗАМЕН' },
+            { name: 'TECH 1.2 — ЦИФРОВАЯ ГИГИЕНА И ЧИСТЫЙ СТОЛ', status: 'ЗАЧЁТ' }
+        ])">
+            <div class="counter">0 / 2</div>
+            <div class="dome-icon tech-color">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
             </div>
-            <div class="rank-card">
-                <div class="rank-icon-box">CR</div>
-                <div class="rank-info">
-                    <div class="rank-name">Кадет-Рекрут</div>
-                    <div class="rank-desc">Фундамент дисциплины. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</div>
-                </div>
-            </div>
-            <div class="rank-card">
-                <div class="rank-icon-box">C4</div>
-                <div class="rank-info">
-                    <div class="rank-name">Кадет Четвёртого Класса</div>
-                    <div class="rank-desc">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнём и водой, уставы.</div>
-                </div>
-            </div>
-            <div class="rank-card">
-                <div class="rank-icon-box">C3</div>
-                <div class="rank-info">
-                    <div class="rank-name">Кадет Третьего Класса</div>
-                    <div class="rank-desc">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</div>
-                </div>
-            </div>
-            <div class="rank-card">
-                <div class="rank-icon-box">C2</div>
-                <div class="rank-info">
-                    <div class="rank-name">Кадет Второго Класса</div>
-                    <div class="rank-desc">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</div>
-                </div>
-            </div>
+            <div class="dome-title">TECH</div>
         </div>
-    </div>
 
-    <div id="screen-archive" class="screen">
-        <div class="section-title">Архив данных</div>
-        <div class="archive-placeholder">
-            Доступ заблокирован. Требуется уровень допуска Кадет-Рекрут (CR) или выше.
+        <div class="dome-card" onclick="openDome('INT', 'РАЗВЕДКА И АНАЛИЗ', [
+            { name: 'INT 1.1 — СИТУАЦИОННАЯ ОСОЗНАННОСТЬ', status: 'СИСТЕМА' },
+            { name: 'INT 1.2 — БАЗОВАЯ РАЗВЕДКА: OSINT-ГРАФ', status: 'ЭКЗАМЕН' }
+        ])">
+            <div class="counter">0 / 2</div>
+            <div class="dome-icon int-color">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </div>
+            <div class="dome-title">INT</div>
+        </div>
+
+        <div class="dome-card" onclick="openDome('PSY', 'ПСИХОЛОГИЧЕСКИЙ КУПОЛ', [
+            { name: 'PSY 1.1 — ПСИХОЛОГИЧЕСКАЯ УСТОЙЧИВОСТЬ', status: 'ТЕСТ' }
+        ])">
+            <div class="counter">0 / 1</div>
+            <div class="dome-icon psy-color">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 9l10 13 10-13L12 2zm0 3.84L18.44 9 12 17.37 5.56 9 12 5.84z"/></svg>
+            </div>
+            <div class="dome-title">PSY</div>
+        </div>
+
+        <div class="dome-card" onclick="openDome('SURV', 'ВЫЖИВАНИЕ И НАВИГАЦИЯ', [
+            { name: 'SURV 1.1 — ТОПОГРАФИЯ И ОРИЕНТИРОВАНИЕ', status: 'ЗАЧЁТ' }
+        ])">
+            <div class="counter">0 / 1</div>
+            <div class="dome-icon surv-color">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16.51V17h-2v1.51c-3.11-.22-5.63-2.58-6.08-5.63H6.5v-2H4.92c.45-3.05 2.97-5.41 6.08-5.63V5h2v1.51c3.11.22 5.63 2.58 6.08 5.63H17.5v2h1.58c-.45 3.05-2.97 5.41-6.08 5.63z"/></svg>
+            </div>
+            <div class="dome-title">SURV</div>
+        </div>
+
+        <div class="dome-card" onclick="openDome('CMD', 'КОМАНДНЫЙ КУПОЛ', [
+            { name: 'CMD 1.1 — ТАКТИКА И УПРАВЛЕНИЕ', status: 'КУРС' },
+            { name: 'CMD 1.2 — РАБОТА С ЛИЧНЫМ СОСТАВОМ', status: 'СИСТЕМА' },
+            { name: 'CMD 1.3 — РЕГЛАМЕНТ СВЯЗИ', status: 'ЭКЗАМЕН' }
+        ])">
+            <div class="counter">0 / 3</div>
+            <div class="dome-icon cmd-color">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            </div>
+            <div class="dome-title">CMD</div>
+        </div>
+
+        <div class="dome-card" onclick="openDome('ADMIN', 'АДМИНИСТРАТИВНЫЙ КУПОЛ', [
+            { name: 'ADMIN 1.1 — ВНУТРЕННИЙ РЕГЛАМЕНТ ГАРНИЗОНА', status: 'ТЕСТ' }
+        ])">
+            <div class="counter">0 / 1</div>
+            <div class="dome-icon admin-color">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </div>
+            <div class="dome-title">ADMIN</div>
         </div>
     </div>
 
     <div class="bottom-nav">
-        <button class="nav-btn active" onclick="switchScreen('training', this)">Подготовка</button>
-        <button class="nav-btn" onclick="switchScreen('career', this)">Карьера</button>
-        <button class="nav-btn" onclick="switchScreen('archive', this)">Архив</button>
+        <div class="nav-btn active">ПОДГОТОВКА</div>
+        <div class="nav-btn">КАРЬЕРА</div>
+        <div class="nav-btn">АРХИВ</div>
+    </div>
+</div>
+
+<div id="domeOverlay" class="dome-details-overlay">
+    <div class="details-content">
+        <button class="close-btn" onclick="closeDome()">&laquo; Закрыть купол</button>
+        <h2 id="overlayTitle" style="margin-top: 30px; letter-spacing: 1px;">DOMEN</h2>
+        <p id="overlaySubtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: -5px; text-transform: uppercase;"></p>
+        
+        <div class="modules-list" id="modulesContainer">
+            </div>
     </div>
 </div>
 
 <script>
-    // База данных модулей по каждому куполу
-    const domeData = {
-        corp: {
-            title: "CORP",
-            type: "Физический купол",
-            colorClass: "icon-corp",
-            svg: `<svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>`,
-            modules: [
-                { id: "CORP 1.1", name: "ФИЗИЧЕСКАЯ ГОТОВНОСТЬ", badge: "СИСТЕМА + ЭКЗАМЕН", badgeClass: "badge-system-exam" },
-                { id: "CORP 1.2", name: "СИСТЕМА ПИТАНИЯ", badge: "СИСТЕМА", badgeClass: "badge-system" }
-            ]
-        },
-        med: {
-            title: "MED",
-            type: "Медицинский купол",
-            colorClass: "icon-med",
-            svg: `<svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg>`,
-            modules: [
-                { id: "MED 1.1", name: "ТАКТИЧЕСКАЯ МЕДИЦИНА: MARCH", badge: "ЭКЗАМЕН", badgeClass: "badge-exam" },
-                { id: "MED 1.2", name: "ГРАЖДАНСКАЯ МЕДИЦИНА", badge: "ЗАЧЁТ", badgeClass: "badge-passed" }
-            ]
-        },
-        tech: {
-            title: "TECH",
-            type: "Технический купол",
-            colorClass: "icon-tech",
-            svg: `<svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3-1.57-3-3.5s1.07-3.5 3-3.5 3 1.57 3 3.5-1.07 3.5-3 3.5z"/></svg>`,
-            modules: [
-                { id: "TECH 1.1", name: "ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ", badge: "ЭКЗАМЕН", badgeClass: "badge-exam" },
-                { id: "TECH 1.2", name: "ЦИФРОВАЯ ГИГИЕНА И ЧИСТЫЙ СТОЛ", badge: "ЗАЧЁТ", badgeClass: "badge-passed" }
-            ]
-        },
-        int: {
-            title: "INT",
-            type: "Разведка и анализ",
-            colorClass: "icon-int",
-            svg: `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>`,
-            modules: [
-                { id: "INT 1.1", name: "СИТУАЦИОННАЯ ОСОЗНАННОСТЬ", badge: "СИСТЕМА", badgeClass: "badge-system" },
-                { id: "INT 1.2", name: "БАЗОВАЯ РАЗВЕДКА: OSINT-ГРАФ", badge: "ЭКЗАМЕН", badgeClass: "badge-exam" }
-            ]
-        },
-        psy: {
-            title: "PSY",
-            type: "Психологический купол",
-            colorClass: "icon-psy",
-            svg: `<svg viewBox="0 0 24 24"><path d="M12 2L2 9l10 7 10-7-10-7zM2 14l10 7 10-7v-2l-10 7-10-7v2z"/></svg>`,
-            modules: [
-                { id: "PSY 1.1", name: "СТРЕССОУСТОЙЧИВОСТЬ И МЕНТАЛЬНАЯ ГИГИЕНА", badge: "ЭКЗАМЕН", badgeClass: "badge-exam" }
-            ]
-        },
-        surv: {
-            title: "SURV",
-            type: "Выживание и навигация",
-            colorClass: "icon-surv",
-            svg: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L11 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
-            modules: [
-                { id: "SURV 1.1", name: "АВТОНОМНОЕ ВЫЖИВАНИЕ В ДИКОЙ СРЕДЕ", badge: "СИСТЕМА + ЭКЗАМЕН", badgeClass: "badge-system-exam" }
-            ]
-        },
-        cmd: {
-            title: "CMD",
-            type: "Командный купол",
-            colorClass: "icon-cmd",
-            svg: `<svg viewBox="0 0 24 24"><path d="M14.3 10.1l-4.2-4.2c-.39-.39-1.02-.39-1.41 0L3.1 11.5c-.39.39-.39 1.02 0 1.41l4.2 4.2c.39.39 1.02.39 1.41 0l5.6-5.6c.39-.38.39-1.02 0-1.41zm-6.5 4.9l-2.8-2.8 4.9-4.9 2.8 2.8-4.9 4.9zm13.1-9.3c-.39-.39-1.02-.39-1.41 0l-4.2 4.2c-.39.39-.39 1.02 0 1.41l4.2 4.2c.39.39 1.02.39 1.41 0l4.2-4.2c.39-.39.39-1.02 0-1.41l-4.2-4.2zm-.7 7l-2.1-2.1 2.1-2.1 2.1 2.1-2.1 2.1z"/></svg>`,
-            modules: [
-                { id: "CMD 1.1", name: "ОСНОВЫ ИМПЕРСКОГО СУБОРДИНАЦИОННОГО УСТАВА", badge: "СИСТЕМА", badgeClass: "badge-system" },
-                { id: "CMD 1.2", name: "РАБОТА В МАЛЫХ ТАКТИЧЕСКИХ ГРУППАХ", badge: "ЭКЗАМЕН", badgeClass: "badge-exam" },
-                { id: "CMD 1.3", name: "УПРАВЛЕНИЕ РЕСУРСАМИ ОТДЕЛЕНИЯ", badge: "ЗАЧЁТ", badgeClass: "badge-passed" }
-            ]
-        },
-        admin: {
-            title: "ADMIN",
-            type: "Административный купол",
-            colorClass: "icon-admin",
-            svg: `<svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>`,
-            modules: [
-                { id: "ADMIN 1.1", name: "ДОКУМЕНТООБОРОТ И ВНУТРЕННЯЯ ОТЧЁТНОСТЬ ГАРНИЗОНА", badge: "СИСТЕМА", badgeClass: "badge-system" }
-            ]
-        }
-    };
-
-    // Навигация между главными экранами (Подготовка, Карьера, Архив)
-    function switchScreen(screenId, btnElement) {
-        // Убираем активность со всех экранов и кнопок
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    // Универсальная функция для открытия абсолютно любого купола
+    function openDome(code, fullName, modules) {
+        document.getElementById('overlayTitle').innerText = code;
+        document.getElementById('overlaySubtitle').innerText = fullName;
         
-        // Включаем нужный экран
-        document.getElementById(`screen-${screenId}`).classList.add('active');
-        btnElement.classList.add('active');
-
-        // Если переключаемся на подготовку, сбрасываем состояние до сетки куполов
-        if(screenId === 'training') {
-            closeDomeDetail();
-        }
-    }
-
-    // Открытие детальной информации о ЛЮБОМ куполе
-    function openDomeDetail(key) {
-        const data = domeData[key];
-        if (!data) return;
-
-        // Заполняем шапку купола
-        document.getElementById('detail-dome-title').innerText = data.title;
-        document.getElementById('detail-dome-type').innerText = data.type;
+        const container = document.getElementById('modulesContainer');
+        container.innerHTML = ''; // Очистка старых модулей
         
-        const iconContainer = document.getElementById('detail-dome-icon');
-        iconContainer.className = `dome-icon ${data.colorClass}`;
-        iconContainer.innerHTML = data.svg;
-
-        // Рендерим модули
-        const listContainer = document.getElementById('detail-modules-list');
-        listContainer.innerHTML = '';
-
-        data.modules.forEach(m => {
-            const card = document.createElement('div');
-            card.className = 'module-card';
-            card.innerHTML = `
-                <div class="module-header">
-                    <div class="module-title">${m.id} &mdash; ${m.name}</div>
-                    <span class="module-badge ${m.badgeClass}">${m.badge}</span>
-                </div>
+        modules.forEach(mod => {
+            const item = document.createElement('div');
+            item.className = 'module-item';
+            item.innerHTML = `
+                <div style="font-size: 0.85rem; padding-right: 10px; font-weight: 500;">${mod.name}</div>
+                <div class="status-badge">${mod.status}</div>
             `;
-            listContainer.appendChild(card);
+            container.appendChild(item);
         });
-
-        // Переключаем под-экраны
-        document.getElementById('sub-training-grid').style.display = 'none';
-        document.getElementById('sub-training-detail').style.display = 'flex';
+        
+        document.getElementById('domeOverlay').style.display = 'block';
     }
 
-    // Закрытие детальной информации и возврат к сетке куполов
-    function closeDomeDetail() {
-        document.getElementById('sub-training-detail').style.display = 'none';
-        document.getElementById('sub-training-grid').style.display = 'flex';
+    function closeDome() {
+        document.getElementById('domeOverlay').style.display = 'none';
     }
 </script>
+
 </body>
 </html>
