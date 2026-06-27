@@ -36,7 +36,7 @@
         .app-container::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(2, 6, 17, 0.55); z-index: 1; pointer-events: none; }
         
         /* ВЕРХНЯЯ ПАНЕЛЬ */
-        .top-panel-wrapper { position: relative; width: 100%; z-index: 10; }
+        .top-panel-wrapper { position: relative; width: 100%; z-index: 10; margin-bottom: 35px; flex-shrink: 0; }
         .top-plate { background: rgba(8, 20, 38, 0.92); border: 1px solid rgba(0, 212, 255, 0.25); border-bottom: 3px solid #00d4ff; padding: 12px 15px; border-radius: 4px; width: 100%; display: flex; justify-content: space-between; align-items: flex-start; box-shadow: 0 4px 25px rgba(0, 212, 255, 0.2); }
         .status-info { flex: 1; margin-right: 15px; }
         .cadet-id { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #00d4ff; font-weight: bold; }
@@ -50,16 +50,14 @@
         .hq-btn { position: absolute; right: 15px; top: 100%; width: 100px; background: linear-gradient(180deg, rgba(8, 20, 38, 0.95) 0%, rgba(0, 212, 255, 0.12) 100%); border: 1px solid rgba(0, 212, 255, 0.3); border-top: none; border-bottom: 2px solid #00d4ff; color: #00d4ff; border-radius: 0 0 4px 4px; padding: 8px 5px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.15); text-shadow: 0 0 4px rgba(0, 212, 255, 0.5); }
         .hq-title { font-size: 9px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
         
-        /* ЦЕНТРАЛЬНЫЙ КОНТЕНТ (ОГРАНИЧЕН ПО ВЫСОТЕ) */
+        /* ЦЕНТРАЛЬНЫЙ КОНТЕНТ С НЕЗАВИСИМЫМ СКРОЛЛОМ */
         .center-content-area { 
-            position: absolute;
-            top: 140px;
-            bottom: 110px;
-            left: 15px;
-            right: 15px;
+            flex: 1;
+            width: 100%;
             z-index: 5; 
             overflow-y: auto; 
-            padding-right: 3px; 
+            padding-bottom: 95px; /* Защита от перекрытия нижним меню */
+            padding-right: 2px;
             -webkit-overflow-scrolling: touch; 
         }
         .center-content-area::-webkit-scrollbar { width: 4px; }
@@ -67,19 +65,21 @@
         
         .screen-section { display: none; width: 100%; }
         .screen-section.active { display: block; }
-        .section-title { font-size: 12px; color: #00d4ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; padding-left: 5px; border-left: 2px solid #00d4ff; }
+        
+        /* ЗАГОЛОВКИ РАЗДЕЛОВ БЕЗ НАЕЗДОВ */
+        .section-title { font-size: 13px; color: #00d4ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #00d4ff; line-height: 1.2; text-shadow: 0 0 8px rgba(0, 212, 255, 0.4); }
         
         /* ДЕФОЛТНЫЙ ЭКРАН */
         .archive-placeholder { background: rgba(10, 22, 41, 0.6); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
         .archive-placeholder p { font-size: 13px; color: #88a0c0; line-height: 1.5; }
 
-        /* КАРТОЧКИ ЗВАНИЙ */
-        .stage-card { background: rgba(10, 22, 41, 0.75); border: 1px solid rgba(0, 212, 255, 0.15); padding: 14px; margin-bottom: 10px; display: flex; align-items: center; position: relative; border-radius: 3px; cursor: pointer; }
+        /* КАРТОЧКИ ЗВАНИЙ (ПОДГОТОВКА) */
+        .stage-card { background: rgba(10, 22, 41, 0.75); border: 1px solid rgba(0, 212, 255, 0.15); padding: 14px; margin-bottom: 12px; display: flex; align-items: center; position: relative; border-radius: 3px; cursor: pointer; }
         .stage-card.active-stage { background: rgba(8, 32, 64, 0.9); border: 1px solid #00d4ff; box-shadow: 0 0 15px rgba(0, 212, 255, 0.2); }
         .stage-card.active-stage::after { content: "ДОСТУПНО"; position: absolute; right: 12px; top: 14px; font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px; background: rgba(0, 212, 255, 0.15); padding: 2px 5px; border-radius: 2px; }
         .stage-card.locked-stage { opacity: 0.45; background: rgba(4, 10, 20, 0.8); cursor: not-allowed; }
         .stage-card.locked-stage::after { content: "🔒 ЗАБЛОК."; position: absolute; right: 12px; top: 14px; font-size: 8px; color: #ef4444; font-weight: bold; letter-spacing: 0.5px; background: rgba(239, 68, 68, 0.15); padding: 2px 5px; border-radius: 2px; }
-        .stage-badge { font-size: 13px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); width: 50px; height: 36px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-family: monospace; border-radius: 2px; }
+        .stage-badge { font-size: 13px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); width: 50px; height: 36px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-family: monospace; border-radius: 2px; flex-shrink: 0; }
         .stage-card.active-stage .stage-badge { background: #00d4ff; color: #020611; border: 1px solid #00d4ff; }
         .stage-details { flex: 1; padding-right: 75px; }
         .stage-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -89,7 +89,7 @@
 
         /* СЕТКА ПЛИТОК 2х4 */
         .domains-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; padding-bottom: 20px; }
-        .domain-tile { background: rgba(6, 14, 28, 0.85); position: relative; aspect-ratio: 1.05 / 1; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.1s ease, box-shadow 0.2s ease; padding: 15px; text-align: center; }
+        .domain-tile { background: rgba(6, 14, 28, 0.85); position: relative; aspect-ratio: 1.05 / 1; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.1s ease; padding: 15px; text-align: center; }
         .domain-tile:active { transform: scale(0.96); }
         
         .tile-icon { width: 32px; height: 32px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
@@ -107,7 +107,7 @@
         .tile-cmd { border: 1px solid rgba(238, 82, 83, 0.25); } .tile-cmd .tile-icon, .tile-cmd .tile-counter { color: #ee5253; }
         .tile-admin { border: 1px solid rgba(255, 221, 89, 0.25); } .tile-admin .tile-icon, .tile-admin .tile-counter { color: #ffdd59; }
 
-        /* ТАКТИЧЕСКИЕ ОКНА */
+        /* ТАКТИЧЕСКИЕ ОКНА (МОДУЛИ) */
         .full-screen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 17, 0.98); z-index: 100; padding: 20px 15px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
         .modal-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; }
         .modal-icon-large { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
@@ -126,7 +126,6 @@
 
         .back-modal-btn { display: inline-flex; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid currentColor; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 10px 16px; text-transform: uppercase; border-radius: 3px; margin-bottom: 25px; cursor: pointer; }
         
-        /* МОДУЛИ */
         .module-item { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
         .module-item:last-child { border-bottom: none; }
         .module-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; }
@@ -137,24 +136,24 @@
         .badge.credit { background: rgba(0, 212, 255, 0.15); color: #00d4ff; border: 1px solid rgba(0, 212, 255, 0.4); }
         .badge.exam { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
 
-        /* КАРЬЕРА */
-        .rank-card { background: rgba(10, 22, 41, 0.8) !important; border: 1px solid rgba(0, 212, 255, 0.15) !important; padding: 12px 14px; margin-bottom: 10px; display: flex; align-items: center; position: relative; border-radius: 2px; }
+        /* ПОЛНАЯ ИЕРАРХИЯ ЗВАНИЙ (КАРЬЕРА) */
+        .rank-card { background: rgba(10, 22, 41, 0.8) !important; border: 1px solid rgba(0, 212, 255, 0.15) !important; padding: 14px; margin-bottom: 12px; display: flex; align-items: center; position: relative; border-radius: 2px; }
         .rank-card.current { background: rgba(8, 32, 64, 0.9) !important; border: 1px solid #00d4ff !important; box-shadow: 0 0 15px rgba(0, 212, 255, 0.25); }
-        .rank-card.current::after { content: "ТЕКУЩИЙ СТАТУС"; position: absolute; right: 12px; top: 12px; font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px; background: rgba(0, 212, 255, 0.2); padding: 2px 5px; border-radius: 2px; }
+        .rank-card.current::after { content: "ТЕКУЩИЙ СТАТУС"; position: absolute; right: 12px; top: 14px; font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px; background: rgba(0, 212, 255, 0.2); padding: 2px 5px; border-radius: 2px; }
         .rank-card.locked { opacity: 0.52; background: rgba(5, 12, 24, 0.75) !important; }
-        .rank-badge { font-size: 14px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); width: 50px; height: 36px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-family: monospace; }
+        .rank-badge { font-size: 14px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); width: 50px; height: 36px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-family: monospace; flex-shrink: 0; }
         .rank-card.current .rank-badge { background: #00d4ff; color: #020611; border: 1px solid #00d4ff; box-shadow: 0 0 8px #00d4ff; }
         .rank-details { flex: 1; padding-right: 40px; }
         .rank-name { font-size: 14px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
         .rank-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.3; }
 
-        /* ЖЕСТКОЕ АБСОЛЮТНОЕ ПОЗИЦИОНИРОВАНИЕ НАВИГАЦИИ К НИЗУ ЭКРАНА */
+        /* ИСПРАВЛЕННОЕ НИЖНЕЕ МЕНЮ С НЕОНОВЫМ СВЕЧЕНИЕМ КНОПОК */
         .bottom-plate { 
             position: absolute;
             bottom: 15px;
             left: 15px;
             right: 15px;
-            z-index: 10; 
+            z-index: 20; 
             background: rgba(8, 20, 38, 0.97); 
             border: 1px solid rgba(0, 212, 255, 0.25); 
             border-top: 3px solid #00d4ff; 
@@ -163,11 +162,39 @@
             display: flex; 
             justify-content: center; 
             gap: 10px; 
-            box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.2); 
+            box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.25); 
         }
-        .nav-btn { flex: 1; background: linear-gradient(180deg, #c49a00 0%, #8a6d00 100%); border: 1px solid #6e5700; border-bottom: 3px solid #4a3a00; color: #ffffff; padding: 14px 2px; font-size: 12px; font-weight: 800; text-align: center; text-transform: uppercase; letter-spacing: 1px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 8px rgba(0,0,0,0.4); text-shadow: 0 1px 2px rgba(0,0,0,0.6); cursor: pointer; }
-        .nav-btn:active { background: linear-gradient(180deg, #8a6d00 0%, #5c4900 100%); border: 1px solid #4a3a00; border-bottom: 1px solid #292000; box-shadow: inset 0 3px 6px rgba(0,0,0,0.6); transform: translateY(2px); }
-        .nav-btn.active { background: linear-gradient(180deg, #8a6d00 0%, #5c4900 100%); border: 1px solid #00d4ff; color: #00d4ff; box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+        
+        /* Кнопки в пассивном состоянии — тускло-золотые из старой темы */
+        .nav-btn { 
+            flex: 1; 
+            background: linear-gradient(180deg, #bfa054 0%, #735f30 100%); 
+            border: 1px solid #594924; 
+            border-bottom: 3px solid #3b3118; 
+            color: rgba(255, 255, 255, 0.9); 
+            padding: 13px 2px; 
+            font-size: 11px; 
+            font-weight: 800; 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 6px rgba(0,0,0,0.3); 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+            cursor: pointer; 
+            border-radius: 3px;
+            transition: all 0.15s ease;
+        }
+        
+        /* ЭФФЕКТ НАЖАТИЯ И АКТИВНОГО СТАТУСА — СИНЕЕ НЕОНОВОЕ СВЕЧЕНИЕ С РАМКОЙ */
+        .nav-btn:active, .nav-btn.active { 
+            background: linear-gradient(180deg, #092c4e 0%, #031424 100%) !important; 
+            border: 1px solid #00d4ff !important; 
+            border-bottom: 3px solid #0099bc !important;
+            color: #00d4ff !important; 
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6), inset 0 0 8px rgba(0, 212, 255, 0.3) !important; 
+            text-shadow: 0 0 6px rgba(0, 212, 255, 0.8) !important;
+        }
+        
         .hq-btn:active { transform: scale(0.97); background: rgba(0, 212, 255, 0.15); }
     </style>
 </head>
@@ -175,7 +202,6 @@
 
     <div class="app-container">
 
-        <!-- ВЕРХНИЙ БЛОК -->
         <div class="top-panel-wrapper">
             <div class="top-plate">
                 <div class="status-info">
@@ -191,10 +217,8 @@
             <div class="hq-btn"><div class="hq-title">Терминал<br>связи</div></div>
         </div>
 
-        <!-- ЦЕНТРАЛЬНОЕ ОКНО КОНТЕНТА -->
         <div class="center-content-area" id="main-content-scroll-area">
             
-            <!-- ДЕФОЛТНЫЙ ЭКРАН (АРХИВ) -->
             <div id="section-default" class="screen-section active">
                 <div class="section-title">Имперский Архив данных</div>
                 <div class="archive-placeholder">
@@ -202,10 +226,8 @@
                 </div>
             </div>
 
-            <!-- СЕКЦИЯ ПОДГОТОВКИ -->
             <div id="section-training" class="screen-section">
                 
-                <!-- УРОВЕНЬ 1: Выбор звания -->
                 <div id="training-stages-view">
                     <div class="section-title">Программы подготовки по званиям</div>
                     
@@ -223,55 +245,46 @@
                     <div class="stage-card locked-stage"><div class="stage-badge">C2</div><div class="stage-details"><div class="stage-name">Кадет C2 → C1</div><div class="stage-desc">Профайлинг, social engineering, контр-деза.</div></div></div>
                 </div>
 
-                <!-- УРОВЕНЬ 2: Плиточная сетка 2х4 -->
                 <div id="training-modules-view" style="display: none;">
                     <div class="back-to-stages-btn" onclick="backToStages()">« Назад к званиям</div>
                     <div class="section-title">Купола аттестации: REC → CR</div>
 
                     <div class="domains-grid">
-                        <!-- CORP -->
                         <div class="domain-tile tile-corp" onclick="openModal('modal-corp')">
                             <span class="tile-counter">0/2</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
                             <div class="tile-code">CORP</div>
                         </div>
-                        <!-- MED -->
                         <div class="domain-tile tile-med" onclick="openModal('modal-med')">
                             <span class="tile-counter">0/2</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
                             <div class="tile-code">MED</div>
                         </div>
-                        <!-- TECH -->
                         <div class="domain-tile tile-tech" onclick="openModal('modal-tech')">
                             <span class="tile-counter">0/2</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
                             <div class="tile-code">TECH</div>
                         </div>
-                        <!-- INT -->
                         <div class="domain-tile tile-int" onclick="openModal('modal-int')">
                             <span class="tile-counter">0/2</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
                             <div class="tile-code">INT</div>
                         </div>
-                        <!-- PSY -->
                         <div class="domain-tile tile-psy" onclick="openModal('modal-psy')">
                             <span class="tile-counter">0/1</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
                             <div class="tile-code">PSY</div>
                         </div>
-                        <!-- SURV -->
                         <div class="domain-tile tile-surv" onclick="openModal('modal-surv')">
                             <span class="tile-counter">0/1</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
                             <div class="tile-code">SURV</div>
                         </div>
-                        <!-- CMD -->
                         <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd')">
                             <span class="tile-counter">0/3</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
                             <div class="tile-code">CMD</div>
                         </div>
-                        <!-- ADMIN -->
                         <div class="domain-tile tile-admin" onclick="openModal('modal-admin')">
                             <span class="tile-counter">0/1</span>
                             <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
@@ -282,18 +295,91 @@
 
             </div>
 
-            <!-- СЕКЦИЯ КАРЬЕРЫ -->
             <div id="section-career" class="screen-section">
                 <div class="section-title">Реестр продвижения по службе</div>
-                <div class="rank-card current"><div class="rank-badge">REC</div><div class="rank-details"><div class="rank-name">Новобранец</div><div class="rank-desc">Точка входа. Гражданский, принявший присягу Порядку.</div></div></div>
-                <div class="rank-card locked"><div class="rank-badge">CR</div><div class="rank-details"><div class="rank-name">Кадет-Рекрут</div><div class="rank-desc">Тело, психика и навыки выживания приведены к единому стандарту.</div></div></div>
-                <div class="rank-card locked"><div class="rank-badge">C4</div><div class="rank-details"><div class="rank-name">Кадет 4-го Класса</div><div class="rank-desc">Инструментальное расширение. Радиосвязь, электротехника, десмургия.</div></div></div>
-                <div class="rank-card locked"><div class="rank-badge">C3</div><div class="rank-details"><div class="rank-name">Кадет 3-го Класса</div><div class="rank-desc">Рукопашный бой, инвазивная медицина, наружное наблюдение.</div></div></div>
-                <div class="rank-card locked"><div class="rank-badge">C2</div><div class="rank-details"><div class="rank-name">Кадет 2-го Класса</div><div class="rank-desc">Токсикология, криптография, администрирование гарнизона.</div></div></div>
+                
+                <div class="rank-card current">
+                    <div class="rank-badge">REC</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Новобранец</div>
+                        <div class="rank-desc">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</div>
+                    </div>
+                </div>
+                
+                <div class="rank-card locked">
+                    <div class="rank-badge">CR</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Кадет-Рекрут</div>
+                        <div class="rank-desc">Фундамент дисциплины. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</div>
+                    </div>
+                </div>
+                
+                <div class="rank-card locked">
+                    <div class="rank-badge">C4</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Кадет четвёртого класса</div>
+                        <div class="rank-desc">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнём и водой, уставы.</div>
+                    </div>
+                </div>
+                
+                <div class="rank-card locked">
+                    <div class="rank-badge">C3</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Кадет третьего класса</div>
+                        <div class="rank-desc">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</div>
+                    </div>
+                </div>
+                
+                <div class="rank-card locked">
+                    <div class="rank-badge">C2</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Кадет второго класса</div>
+                        <div class="rank-desc">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</div>
+                    </div>
+                </div>
+
+                <div class="rank-card locked">
+                    <div class="rank-badge">C1</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Кадет первого класса</div>
+                        <div class="rank-desc">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</div>
+                    </div>
+                </div>
+
+                <div class="rank-card locked">
+                    <div class="rank-badge">CS</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Старший кадет</div>
+                        <div class="rank-desc">Командир отделения. Сортировка раненых, фортификация, психология масс, планирование операции взвода.</div>
+                    </div>
+                </div>
+
+                <div class="rank-card locked">
+                    <div class="rank-badge">CCF</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Главный кадет</div>
+                        <div class="rank-desc">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</div>
+                    </div>
+                </div>
+
+                <div class="rank-card locked">
+                    <div class="rank-badge">CLD</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Ведущий кадет</div>
+                        <div class="rank-desc">Стратег-автоном. Медицинское планирование, диверсии, устойчивость к допросам, координация подразделений.</div>
+                    </div>
+                </div>
+
+                <div class="rank-card locked">
+                    <div class="rank-badge">CEX</div>
+                    <div class="rank-details">
+                        <div class="rank-name">Кадет-выпускник</div>
+                        <div class="rank-desc">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- НИЖНЕЕ НАВИГАЦИОННОЕ ПЛАТО -->
         <div class="bottom-plate">
             <div class="nav-btn" id="training-trigger" onclick="switchTab('training')">Подготовка</div>
             <div class="nav-btn" id="career-trigger" onclick="switchTab('career')">Карьера</div>
@@ -302,8 +388,6 @@
         
     </div>
 
-    <!-- МОДАЛЬНЫЕ ОКНА КУПОЛОВ -->
-    <!-- CORP -->
     <div id="modal-corp" class="full-screen-modal modal-corp">
         <div class="back-modal-btn" onclick="closeModal('modal-corp')">« Закрыть купол</div>
         <div class="modal-header">
@@ -314,7 +398,6 @@
         <div class="module-item"><div class="module-top"><span class="module-code-name">CORP 1.2 — Система питания</span><span class="badge system">Система</span></div></div>
     </div>
 
-    <!-- MED -->
     <div id="modal-med" class="full-screen-modal modal-med">
         <div class="back-modal-btn" onclick="closeModal('modal-med')">« Закрыть купол</div>
         <div class="modal-header">
@@ -325,18 +408,16 @@
         <div class="module-item"><div class="module-top"><span class="module-code-name">MED 1.2 — Гражданская медицина</span><span class="badge credit">Зачёт</span></div></div>
     </div>
 
-    <!-- TECH -->
     <div id="modal-tech" class="full-screen-modal modal-tech">
         <div class="back-modal-btn" onclick="closeModal('modal-tech')">« Закрыть купол</div>
         <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
+            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73(1.69-.98l.38-2.65c.03-.24.24-.42.49-.42h4c.25 0 .46.18.49.42l.38 2.65c.61.25 1.17.59 1.69.98l2.49 1c.23.09.49 0 .61.22l2 3.46c.12.22.07.49-.12.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
             <div class="modal-meta"><h2>TECH</h2><p>Технический купол</p></div>
         </div>
         <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.1 — Информационная безопасность</span><span class="badge exam">Экзамен</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.2 — Цифровая гигиена</span><span class="badge credit">Зачёт</span></div></div>
+        <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.2 — Цифровая гигиена и чистый стол</span><span class="badge credit">Зачёт</span></div></div>
     </div>
 
-    <!-- INT -->
     <div id="modal-int" class="full-screen-modal modal-int">
         <div class="back-modal-btn" onclick="closeModal('modal-int')">« Закрыть купол</div>
         <div class="modal-header">
@@ -344,10 +425,9 @@
             <div class="modal-meta"><h2>INT</h2><p>Разведка и анализ</p></div>
         </div>
         <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.1 — Ситуационная осознанность</span><span class="badge system">Система</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.2 — Базовая разведка: OSINT</span><span class="badge exam">Экзамен</span></div></div>
+        <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.2 — Базовая разведка: OSINT-ГРАФ</span><span class="badge exam">Экзамен</span></div></div>
     </div>
 
-    <!-- PSY -->
     <div id="modal-psy" class="full-screen-modal modal-psy">
         <div class="back-modal-btn" onclick="closeModal('modal-psy')">« Закрыть купол</div>
         <div class="modal-header">
@@ -357,7 +437,6 @@
         <div class="module-item"><div class="module-top"><span class="module-code-name">PSY 1.1 — Стоицизм и контроль эмоций</span><span class="badge system">Система</span></div></div>
     </div>
 
-    <!-- SURV -->
     <div id="modal-surv" class="full-screen-modal modal-surv">
         <div class="back-modal-btn" onclick="closeModal('modal-surv')">« Закрыть купол</div>
         <div class="modal-header">
@@ -367,7 +446,6 @@
         <div class="module-item"><div class="module-top"><span class="module-code-name">SURV 1.1 — Навигация на местности</span><span class="badge exam">Экзамен</span></div></div>
     </div>
 
-    <!-- CMD -->
     <div id="modal-cmd" class="full-screen-modal modal-cmd">
         <div class="back-modal-btn" onclick="closeModal('modal-cmd')">« Закрыть купол</div>
         <div class="modal-header">
@@ -378,7 +456,6 @@
         <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.2 — Стандартизация отчётности</span><span class="badge exam">Экзамен</span></div></div>
     </div>
 
-    <!-- ADMIN -->
     <div id="modal-admin" class="full-screen-modal modal-admin">
         <div class="back-modal-btn" onclick="closeModal('modal-admin')">« Закрыть купол</div>
         <div class="modal-header">
