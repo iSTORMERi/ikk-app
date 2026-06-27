@@ -76,17 +76,126 @@
         .archive-placeholder { background: rgba(10, 22, 41, 0.6); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
         .archive-placeholder p { font-size: 13px; color: #88a0c0; line-height: 1.5; }
 
-        /* КАРТОЧКИ ЗВАНИЙ (ПОДГОТОВКА) */
-        .stage-card { background: rgba(10, 22, 41, 0.75); border: 1px solid rgba(0, 212, 255, 0.15); padding: 14px; margin-bottom: 12px; display: flex; align-items: center; position: relative; border-radius: 3px; cursor: pointer; }
-        .stage-card.active-stage { background: rgba(8, 32, 64, 0.9); border: 1px solid #00d4ff; box-shadow: 0 0 15px rgba(0, 212, 255, 0.2); }
-        .stage-card.active-stage::after { content: "ДОСТУПНО"; position: absolute; right: 12px; top: 14px; font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px; background: rgba(0, 212, 255, 0.15); padding: 2px 5px; border-radius: 2px; }
-        .stage-card.locked-stage { opacity: 0.45; background: rgba(4, 10, 20, 0.8); cursor: not-allowed; }
-        .stage-card.locked-stage::after { content: "🔒 ЗАБЛОК."; position: absolute; right: 12px; top: 14px; font-size: 8px; color: #ef4444; font-weight: bold; letter-spacing: 0.5px; background: rgba(239, 68, 68, 0.15); padding: 2px 5px; border-radius: 2px; }
-        .stage-badge { font-size: 13px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); width: 50px; height: 36px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-family: monospace; border-radius: 2px; flex-shrink: 0; }
-        .stage-card.active-stage .stage-badge { background: #00d4ff; color: #020611; border: 1px solid #00d4ff; }
-        .stage-details { flex: 1; padding-right: 75px; }
-        .stage-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stage-desc { font-size: 11px; color: #a0b8d0; margin-top: 4px; line-height: 1.3; }
+        /* ОБНОВЛЕННЫЙ ИМПЕРСКИЙ ИНТЕРФЕЙС «ПОДГОТОВКИ» (ОСЬ + СКОШЕННЫЕ УГЛЫ) */
+        .training-timeline-container {
+            position: relative;
+            padding-left: 25px;
+            margin-top: 5px;
+        }
+        /* Вертикальный энергетический кабель (ось прогресса) */
+        .training-timeline-container::before {
+            content: "";
+            position: absolute;
+            left: 25px;
+            top: 15px;
+            bottom: 15px;
+            width: 1px;
+            background: linear-gradient(180deg, #00d4ff 0%, rgba(0, 212, 255, 0.3) 70%, rgba(0, 212, 255, 0.05) 100%);
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+            z-index: 1;
+        }
+
+        .stage-card { 
+            background: rgba(10, 22, 41, 0.7); 
+            border: 1px solid rgba(0, 212, 255, 0.15); 
+            padding: 14px 14px 14px 45px; 
+            margin-bottom: 18px; 
+            display: flex; 
+            align-items: center; 
+            position: relative; 
+            cursor: pointer; 
+            /* Эстетичный Sci-Fi срез: убираем правый верхний угол */
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+            transition: all 0.2s ease;
+        }
+        
+        /* КРУГЛЫЕ ВИЗИРЫ С РИМСКИМИ ЦИФРАМИ */
+        .stage-circle-indicator {
+            position: absolute;
+            left: -26px; /* Идеальное центрирование относительно оси */
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: serif;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+            background: #020611;
+        }
+
+        /* СОСТОЯНИЕ: ДОСТУПНО */
+        .stage-card.active-stage { 
+            background: rgba(8, 32, 64, 0.85); 
+            border: 1px solid #00d4ff; 
+        }
+        .stage-card.active-stage .stage-circle-indicator {
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            text-shadow: 0 0 4px #00d4ff;
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.3), inset 0 0 4px rgba(0, 212, 255, 0.2);
+        }
+        .stage-card.active-stage::after { 
+            content: "ДОСТУПНО"; 
+            position: absolute; 
+            right: 15px; 
+            top: 0px; 
+            font-size: 7px; 
+            color: #00d4ff; 
+            font-weight: 900; 
+            letter-spacing: 1px; 
+            background: rgba(0, 212, 255, 0.15); 
+            padding: 2px 5px; 
+            border-bottom-left-radius: 3px;
+            border-left: 1px solid rgba(0, 212, 255, 0.3);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* СОСТОЯНИЕ: ЗАБЛОКИРОВАНО */
+        .stage-card.locked-stage { 
+            opacity: 0.55; 
+            background: rgba(4, 10, 20, 0.75); 
+            cursor: not-allowed; 
+        }
+        .stage-card.locked-stage .stage-circle-indicator {
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            color: #55687d;
+        }
+        .stage-card.locked-stage::after { 
+            content: "БЛОК"; 
+            position: absolute; 
+            right: 15px; 
+            top: 0px; 
+            font-size: 7px; 
+            color: #ef4444; 
+            font-weight: 900; 
+            letter-spacing: 0.5px; 
+            background: rgba(239, 68, 68, 0.1); 
+            padding: 2px 5px; 
+            border-bottom-left-radius: 3px;
+            border-left: 1px solid rgba(239, 68, 68, 0.2);
+            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .stage-details { flex: 1; padding-right: 45px; }
+        .stage-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        
+        /* Технический шифр переходов */
+        .stage-spec-tag {
+            font-size: 9px;
+            color: rgba(0, 212, 255, 0.6);
+            font-family: monospace;
+            background: rgba(0, 212, 255, 0.08);
+            padding: 1px 4px;
+            border-radius: 2px;
+            font-weight: normal;
+        }
+        .stage-card.locked-stage .stage-spec-tag { color: #55687d; background: rgba(255,255,255,0.02); }
+        
+        .stage-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.35; }
 
         .back-to-stages-btn { display: inline-flex; align-items: center; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); color: #00d4ff; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 8px 12px; text-transform: uppercase; border-radius: 3px; margin-bottom: 15px; cursor: pointer; }
 
@@ -158,19 +267,18 @@
             padding: 16px;
             background-size: cover;
             background-position: center 25%;
-            background-color: rgba(10, 22, 41, 0.4); /* Стандартный пустой фон для остальных */
+            background-color: rgba(10, 22, 41, 0.4); 
             border: 1px solid rgba(0, 212, 255, 0.15);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* УСТАНАВЛИВАЕМ КАРТИНКУ ТОЛЬКО ДЛЯ ТЕКУЩЕЙ АКТИВНОЙ КАРТОЧКИ (НОВОБРАНЕЦ) */
+        /* УСТАНАВЛИВАЕМ ИСПРАВЛЕННУЮ КАРТИНКУ ДЛЯ ТЕКУЩЕЙ АКТИВНОЙ КАРТОЧКИ */
         .rank-card.current { 
             background-image: url('./IMG_0036.png');
             border: 1px solid #00d4ff !important; 
             box-shadow: 0 0 15px rgba(0, 212, 255, 0.25), inset 0 0 10px rgba(0, 212, 255, 0.1); 
         }
 
-        /* Направленный затемняющий градиент под текст */
         .rank-card::before {
             content: "";
             position: absolute;
@@ -223,7 +331,6 @@
             line-height: 1.35;
         }
 
-        /* ТЕКУЩИЙ СТАТУС */
         .rank-card.current .rank-badge-mini {
             background: #00d4ff;
             color: #020611;
@@ -245,7 +352,6 @@
             border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
-        /* ЗАБЛОКИРОВАННЫЕ ЗВАНИЯ */
         .rank-card.locked { 
             border: 1px solid rgba(239, 68, 68, 0.15);
             filter: grayscale(35%);
@@ -361,84 +467,88 @@
             <div id="section-training" class="screen-section">
                 
                 <div id="training-stages-view">
-                    <div class="section-title">Программы подготовки по званиям</div>
+                    <div class="section-title">Программы подготовки курсантов</div>
                     
-                    <div class="stage-card active-stage" onclick="openStageModules('rec-cr')">
-                        <div class="stage-badge">REC</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Новобранец → Кадет-Рекрут</div>
-                            <div class="stage-desc">Базовый аттестационный купол дисциплины и выживания.</div>
+                    <div class="training-timeline-container">
+                        
+                        <div class="stage-card active-stage" onclick="openStageModules('rec-cr')">
+                            <div class="stage-circle-indicator">I</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «ГЕНЕЗИС» <span class="stage-spec-tag">REC ➔ CR</span></div>
+                                <div class="stage-desc">Базовый аттестационный купол дисциплины и выживания.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">CR</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Кадет-Рекрут → C4</div>
-                            <div class="stage-desc">Связь, электротехника, полевая десмургия.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">II</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «ВЕКТОР» <span class="stage-spec-tag">CR ➔ C4</span></div>
+                                <div class="stage-desc">Связь, электротехника, полевая десмургия.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">C4</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Кадет C4 → C3</div>
-                            <div class="stage-desc">Ремонт, рукопашный бой, логистика отделения.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">III</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «НЕБЬЮЛА» <span class="stage-spec-tag">C4 ➔ C3</span></div>
+                                <div class="stage-desc">Ремонт, рукопашный бой, тактическая логистика отделения.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">C3</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Кадет C3 → C2</div>
-                            <div class="stage-desc">Токсикология, криптография, администрирование.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">IV</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «СПЕКТР» <span class="stage-spec-tag">C3 ➔ C2</span></div>
+                                <div class="stage-desc">Токсикология, криптография, базовое администрирование.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">C2</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Кадет C2 → C1</div>
-                            <div class="stage-desc">Профайлинг, social engineering, контр-деза.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">V</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «МИРАЖ» <span class="stage-spec-tag">C2 ➔ C1</span></div>
+                                <div class="stage-desc">Профайлинг, социальная инженерия, контр-дезинформация.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">C1</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Кадет C1 → CS</div>
-                            <div class="stage-desc">Управление отделением, детекция лжи, основы слайсинга.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">VI</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «СТРАТУМ» <span class="stage-spec-tag">C1 ➔ CS</span></div>
+                                <div class="stage-desc">Управление отделением, детекция лжи, основы слайсинга.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">CS</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Старший кадет → CCF</div>
-                            <div class="stage-desc">Фортификация, тактическое планирование и психология масс.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">VII</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «КВАНТОР» <span class="stage-spec-tag">CS ➔ CCF</span></div>
+                                <div class="stage-desc">Фортификация, тактическое планирование, психология масс.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">CCF</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Главный кадет → CLD</div>
-                            <div class="stage-desc">Эпидемиология, контрразведка и автономное управление взводом.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">VIII</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «ЭГИДА» <span class="stage-spec-tag">CCF ➔ CLD</span></div>
+                                <div class="stage-desc">Эпидемиология, контрразведка, автономное управление взводом.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="stage-card locked-stage">
-                        <div class="stage-badge">CLD</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Ведущий кадет → CEX</div>
-                            <div class="stage-desc">Медицинское планирование, диверсионная устойчивость и координация.</div>
+                        <div class="stage-card locked-stage">
+                            <div class="stage-circle-indicator">IX</div>
+                            <div class="stage-details">
+                                <div class="stage-name">Программа «ПУЛЬСАР» <span class="stage-spec-tag">CLD ➔ CEX</span></div>
+                                <div class="stage-desc">Медицинское планирование, диверсионная устойчивость, глобальная координация.</div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
                 <div id="training-modules-view" style="display: none;">
-                    <div class="back-to-stages-btn" onclick="backToStages()">« Назад к званиям</div>
-                    <div class="section-title">Купола аттестации: REC → CR</div>
+                    <div class="back-to-stages-btn" onclick="backToStages()">« Назад к программам</div>
+                    <div class="section-title">Купола аттестации: ГЕНЕЗИС</div>
 
                     <div class="domains-grid">
                         <div class="domain-tile tile-corp" onclick="openModal('modal-corp')">
@@ -501,7 +611,7 @@
                             <span class="rank-badge-mini">REC</span>
                             <h3 class="rank-name-text">Новобранец</h3>
                         </div>
-                        <p class="rank-description-text">Гражданский, принявший присягу порядку и ожидающий первого приказа.</p>
+                        <p class="rank-description-text">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</p>
                     </div>
                 </div>
                 
