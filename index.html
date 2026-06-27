@@ -145,16 +145,139 @@
         .badge.exam { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
         .badge.test { background: rgba(165, 94, 234, 0.15); color: #a55eea; border: 1px solid rgba(165, 94, 234, 0.4); }
 
-        /* ИЕРАРХИЯ ЗВАНИЙ */
-        .rank-card { background: rgba(10, 22, 41, 0.8) !important; border: 1px solid rgba(0, 212, 255, 0.15) !important; padding: 14px; margin-bottom: 12px; display: flex; align-items: center; position: relative; border-radius: 2px; }
-        .rank-card.current { background: rgba(8, 32, 64, 0.9) !important; border: 1px solid #00d4ff !important; box-shadow: 0 0 15px rgba(0, 212, 255, 0.25); }
-        .rank-card.current::after { content: "ТЕКУЩИЙ СТАТУС"; position: absolute; right: 12px; top: 14px; font-size: 8px; color: #00d4ff; font-weight: bold; letter-spacing: 1px; background: rgba(0, 212, 255, 0.2); padding: 2px 5px; border-radius: 2px; }
-        .rank-card.locked { opacity: 0.52; background: rgba(5, 12, 24, 0.75) !important; }
-        .rank-badge { font-size: 14px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); width: 50px; height: 36px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-family: monospace; flex-shrink: 0; }
-        .rank-card.current .rank-badge { background: #00d4ff; color: #020611; border: 1px solid #00d4ff; box-shadow: 0 0 8px #00d4ff; }
-        .rank-details { flex: 1; padding-right: 40px; }
-        .rank-name { font-size: 14px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
-        .rank-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.3; }
+        /* ОБНОВЛЕННЫЙ ТАКТИЧЕСКИЙ ДИЗАЙН ЗВАНИЙ С КАРТИНКАМИ */
+        .rank-card { 
+            position: relative; 
+            min-height: 125px; 
+            margin-bottom: 16px; 
+            border-radius: 6px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 16px;
+            background-size: cover;
+            background-position: center 25%;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Направленный затемняющий градиент под текст */
+        .rank-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(2, 6, 17, 0.95) 0%, 
+                rgba(2, 6, 17, 0.82) 45%, 
+                rgba(2, 6, 17, 0.25) 100%);
+            z-index: 1;
+        }
+
+        .rank-content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 75%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .rank-header-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank-badge-mini {
+            font-size: 11px;
+            font-weight: 900;
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.12);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .rank-name-text {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rank-description-text {
+            font-size: 11px;
+            color: #a0b8d0;
+            line-height: 1.35;
+        }
+
+        /* ТЕКУЩИЙ СТАТУС */
+        .rank-card.current { 
+            border: 1px solid #00d4ff !important; 
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.25), inset 0 0 10px rgba(0, 212, 255, 0.1); 
+        }
+        .rank-card.current .rank-badge-mini {
+            background: #00d4ff;
+            color: #020611;
+            border: 1px solid #00d4ff;
+        }
+        .rank-card.current::after { 
+            content: "ТЕКУЩИЙ СТАТУС //"; 
+            position: absolute; 
+            right: 12px; 
+            top: 12px; 
+            font-size: 8px; 
+            color: #00d4ff; 
+            font-weight: 900; 
+            letter-spacing: 1px; 
+            z-index: 2;
+            background: rgba(2, 6, 17, 0.7);
+            padding: 2px 6px;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* ЗАБЛОКИРОВАННЫЕ ЗВАНИЯ */
+        .rank-card.locked { 
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            filter: grayscale(35%);
+        }
+        .rank-card.locked::before {
+            background: linear-gradient(90deg, 
+                rgba(4, 8, 18, 0.98) 0%, 
+                rgba(4, 8, 18, 0.92) 50%, 
+                rgba(4, 8, 18, 0.60) 100%);
+        }
+        .rank-card.locked .rank-badge-mini {
+            color: #88a0c0;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .rank-card.locked .rank-name-text {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .rank-card.locked .rank-description-text {
+            color: #55687d;
+        }
+        .rank-card.locked::after { 
+            content: "🔒 ДОСТУП ОГРАНИЧЕН"; 
+            position: absolute; 
+            right: 12px; 
+            top: 12px; 
+            font-size: 8px; 
+            color: #ef4444; 
+            font-weight: 900; 
+            letter-spacing: 0.5px; 
+            z-index: 2;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 2px 6px;
+            border-radius: 2px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
 
         /* НАВИГАЦИОННАЯ ПАНЕЛЬ И КНОПКИ */
         .bottom-plate { 
@@ -174,7 +297,6 @@
             box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.25); 
         }
         
-        /* Базовый стиль кнопок — Прежний классический золотой цвет */
         .nav-btn { 
             flex: 1; 
             background: linear-gradient(180deg, #bfa054 0%, #735f30 100%); 
@@ -194,7 +316,6 @@
             transition: all 0.1s ease;
         }
         
-        /* РОСКОШНОЕ НЕОНОВО-ЗОЛОТОЕ СВЕЧЕНИЕ (ПРИ НАЖАТИИ И В АКТИВНОМ РЕЖИМЕ) */
         .nav-btn:active, .nav-btn.active { 
             background: linear-gradient(180deg, #ffd54f 0%, #b58d14 100%) !important; 
             border: 1px solid #ffca28 !important; 
@@ -370,83 +491,103 @@
             <div id="section-career" class="screen-section">
                 <div class="section-title">Реестр продвижения по службе</div>
                 
-                <div class="rank-card current">
-                    <div class="rank-badge">REC</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Новобранец</div>
-                        <div class="rank-desc">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</div>
+                <div class="rank-card current" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">REC</span>
+                            <h3 class="rank-name-text">Новобранец</h3>
+                        </div>
+                        <p class="rank-description-text">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</p>
                     </div>
                 </div>
                 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CR</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет-Рекрут</div>
-                        <div class="rank-desc">Фундамент дисциплины. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">CR</span>
+                            <h3 class="rank-name-text">Кадет-Рекрут</h3>
+                        </div>
+                        <p class="rank-description-text">Фундамент дисциплины. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</p>
                     </div>
                 </div>
                 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C4</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет четвертого класса</div>
-                        <div class="rank-desc">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнем и водой, уставы.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">C4</span>
+                            <h3 class="rank-name-text">Кадет четвертого класса</h3>
+                        </div>
+                        <p class="rank-description-text">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнем и водой, уставы.</p>
                     </div>
                 </div>
                 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C3</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет третьего класса</div>
-                        <div class="rank-desc">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">C3</span>
+                            <h3 class="rank-name-text">Кадет третьего класса</h3>
+                        </div>
+                        <p class="rank-description-text">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</p>
                     </div>
                 </div>
                 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C2</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет второго класса</div>
-                        <div class="rank-desc">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">C2</span>
+                            <h3 class="rank-name-text">Кадет второго класса</h3>
+                        </div>
+                        <p class="rank-description-text">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</p>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">C1</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет первого класса</div>
-                        <div class="rank-desc">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">C1</span>
+                            <h3 class="rank-name-text">Кадет первого класса</h3>
+                        </div>
+                        <p class="rank-description-text">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</p>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CS</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Старший кадет</div>
-                        <div class="rank-desc">Командир отделения. Сортировка раненых, фортификация, психология масс, планирование операции взвода.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">CS</span>
+                            <h3 class="rank-name-text">Старший кадет</h3>
+                        </div>
+                        <p class="rank-description-text">Командир отделения. Сортировка раненых, фортификация, психология масс, планирование операции взвода.</p>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CCF</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Главный кадет</div>
-                        <div class="rank-desc">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">CCF</span>
+                            <h3 class="rank-name-text">Главный кадет</h3>
+                        </div>
+                        <p class="rank-description-text">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</p>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CLD</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Ведущий кадет</div>
-                        <div class="rank-desc">Стратег-автоном. Медицинское планирование, диверсии, устойчивость к допросам, координация подразделений.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">CLD</span>
+                            <h3 class="rank-name-text">Ведущий кадет</h3>
+                        </div>
+                        <p class="rank-description-text">Стратег-автоном. Медицинское планирование, диверсии, устойчивость к допросам, координация подразделений.</p>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-badge">CEX</div>
-                    <div class="rank-details">
-                        <div class="rank-name">Кадет-выпускник</div>
-                        <div class="rank-desc">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</div>
+                <div class="rank-card locked" style="background-image: url('./MG_0036.png');">
+                    <div class="rank-content-wrapper">
+                        <div class="rank-header-line">
+                            <span class="rank-badge-mini">CEX</span>
+                            <h3 class="rank-name-text">Кадет-выпускник</h3>
+                        </div>
+                        <p class="rank-description-text">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</p>
                     </div>
                 </div>
             </div>
