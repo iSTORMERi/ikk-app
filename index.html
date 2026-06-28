@@ -76,13 +76,12 @@
         .archive-placeholder { background: rgba(10, 22, 41, 0.6); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
         .archive-placeholder p { font-size: 13px; color: #88a0c0; line-height: 1.5; }
 
-        /* ОБНОВЛЕННЫЙ ИМПЕРСКИЙ ИНТЕРФЕЙС «ПОДГОТОВКИ» (ОСЬ + СКОШЕННЫЕ УГЛЫ) */
+        /* ОБНОВЛЕННЫЙ ИНТЕРФЕЙС «ПОДГОТОВКИ» С ИНТЕГРИРОВАННЫМ АККОРДЕОНОМ */
         .training-timeline-container {
             position: relative;
             padding-left: 25px;
             margin-top: 5px;
         }
-        /* Вертикальный энергетический кабель (ось прогресса) */
         .training-timeline-container::before {
             content: "";
             position: absolute;
@@ -96,23 +95,26 @@
         }
 
         .stage-card { 
-            background: rgba(10, 22, 41, 0.7); 
-            border: 1px solid rgba(0, 212, 255, 0.15); 
+            background: linear-gradient(135deg, rgba(10, 22, 41, 0.85) 0%, rgba(8, 20, 38, 0.92) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.2); 
             padding: 14px 14px 14px 45px; 
             margin-bottom: 18px; 
-            display: flex; 
-            align-items: center; 
             position: relative; 
             cursor: pointer; 
-            /* Эстетичный Sci-Fi срез: убираем правый верхний угол */
-            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
-            transition: all 0.2s ease;
+            border-radius: 0px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* КРУГЛЫЕ ВИЗИРЫ С РИМСКИМИ ЦИФРАМИ */
+        .stage-header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .stage-circle-indicator {
             position: absolute;
-            left: -26px; /* Идеальное центрирование относительно оси */
+            left: -26px;
+            top: 12px;
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -125,12 +127,13 @@
             z-index: 5;
             box-shadow: 0 0 10px rgba(0,0,0,0.8);
             background: #020611;
+            transition: all 0.3s ease;
         }
 
         /* СОСТОЯНИЕ: ДОСТУПНО */
         .stage-card.active-stage { 
-            background: rgba(8, 32, 64, 0.85); 
-            border: 1px solid #00d4ff; 
+            border-color: #00d4ff; 
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.1);
         }
         .stage-card.active-stage .stage-circle-indicator {
             border: 1px solid #00d4ff;
@@ -141,7 +144,7 @@
         .stage-card.active-stage::after { 
             content: "ДОСТУПНО"; 
             position: absolute; 
-            right: 15px; 
+            right: 0px; 
             top: 0px; 
             font-size: 7px; 
             color: #00d4ff; 
@@ -157,7 +160,7 @@
         /* СОСТОЯНИЕ: ЗАБЛОКИРОВАНО */
         .stage-card.locked-stage { 
             opacity: 0.55; 
-            background: rgba(4, 10, 20, 0.75); 
+            background: linear-gradient(135deg, rgba(4, 10, 20, 0.8) 0%, rgba(2, 6, 15, 0.9) 100%);
             cursor: not-allowed; 
         }
         .stage-card.locked-stage .stage-circle-indicator {
@@ -167,7 +170,7 @@
         .stage-card.locked-stage::after { 
             content: "БЛОК"; 
             position: absolute; 
-            right: 15px; 
+            right: 0px; 
             top: 0px; 
             font-size: 7px; 
             color: #ef4444; 
@@ -180,10 +183,9 @@
             border-bottom: 1px solid rgba(239, 68, 68, 0.2);
         }
 
-        .stage-details { flex: 1; padding-right: 45px; }
-        .stage-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .stage-details { flex: 1; padding-right: 50px; }
+        .stage-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         
-        /* Технический шифр переходов */
         .stage-spec-tag {
             font-size: 9px;
             color: rgba(0, 212, 255, 0.6);
@@ -194,27 +196,61 @@
             font-weight: normal;
         }
         .stage-card.locked-stage .stage-spec-tag { color: #55687d; background: rgba(255,255,255,0.02); }
-        
         .stage-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.35; }
 
-        .back-to-stages-btn { display: inline-flex; align-items: center; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); color: #00d4ff; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 8px 12px; text-transform: uppercase; border-radius: 3px; margin-bottom: 15px; cursor: pointer; }
+        /* ЭКСПАНД-ЗАКЛАДКА ДЛЯ ОБЛАСТИ КУПОЛОВ */
+        .stage-expand-area {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+        }
+        .stage-card.expanded-active .stage-expand-area {
+            max-height: 500px; /* С запасом для сетки доменов */
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .stage-code-full { font-family: monospace; color: #00d4ff; font-size: 10px; letter-spacing: 1px; margin-bottom: 12px; opacity: 0.8; }
 
-        /* СЕТКА ПЛИТОК 2х4 */
-        .domains-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; padding-bottom: 20px; }
-        .domain-tile { background: rgba(6, 14, 28, 0.85); position: relative; aspect-ratio: 1.05 / 1; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.1s ease; padding: 15px; text-align: center; }
+        /* СЕТКА ПЛИТОК ВНУТРИ АККОРДЕОНА */
+        .domains-inline-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px; 
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .domain-tile { 
+            background: rgba(6, 14, 28, 0.85); 
+            position: relative; 
+            aspect-ratio: 1.1 / 1; 
+            border-radius: 4px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: transform 0.1s ease; 
+            padding: 12px; 
+            text-align: center; 
+        }
         .domain-tile:active { transform: scale(0.96); }
         
-        .tile-icon { width: 32px; height: 32px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
+        .tile-icon { width: 28px; height: 28px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; }
         .tile-icon svg { width: 100%; height: 100%; fill: currentColor; }
         
-        /* Индивидуальное исправление заливки для SVG-иконки TECH */
         .tile-tech .tile-icon svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
         .modal-tech .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
-        .tile-code { font-size: 15px; font-weight: 900; letter-spacing: 1.5px; color: #ffffff; text-transform: uppercase; }
-        .tile-counter { position: absolute; top: 10px; right: 10px; font-size: 10px; font-family: monospace; padding: 2px 5px; border-radius: 2px; font-weight: bold; background: rgba(255,255,255,0.04); }
+        .tile-code { font-size: 13px; font-weight: 900; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
+        .tile-counter { position: absolute; top: 8px; right: 8px; font-size: 9px; font-family: monospace; padding: 1px 4px; border-radius: 2px; font-weight: bold; background: rgba(255,255,255,0.04); }
 
-        /* ЦВЕТА ПЛИТОК */
+        /* ЦВЕТА ДОМЕНОВ */
         .tile-corp { border: 1px solid rgba(255, 159, 67, 0.25); } .tile-corp .tile-icon, .tile-corp .tile-counter { color: #ff9f43; }
         .tile-med { border: 1px solid rgba(46, 204, 113, 0.25); } .tile-med .tile-icon, .tile-med .tile-counter { color: #2ecc71; }
         .tile-tech { border: 1px solid rgba(84, 160, 255, 0.25); } .tile-tech .tile-icon, .tile-tech .tile-counter { color: #54a0ff; }
@@ -254,7 +290,7 @@
         .badge.exam { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
         .badge.test { background: rgba(165, 94, 234, 0.15); color: #a55eea; border: 1px solid rgba(165, 94, 234, 0.4); }
 
-        /* ОБНОВЛЕННЫЙ ТАКТИЧЕСКИЙ ДИЗАЙН ЗВАНИЙ С КАРТИНКАМИ */
+        /* ТАКТИЧЕСКИЙ ДИЗАЙН ЗВАНИЙ С КАРТИНКАМИ */
         .rank-card { 
             position: relative; 
             min-height: 125px; 
@@ -272,7 +308,6 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* УСТАНАВЛИВАЕМ ИСПРАВЛЕННУЮ КАРТИНКУ ДЛЯ ТЕКУЩЕЙ АКТИВНОЙ КАРТОЧКИ */
         .rank-card.current { 
             background-image: url('./IMG_0036.png');
             border: 1px solid #00d4ff !important; 
@@ -465,140 +500,152 @@
             </div>
 
             <div id="section-training" class="screen-section">
+                <div class="section-title">Программы подготовки курсантов</div>
                 
-                <div id="training-stages-view">
-                    <div class="section-title">Программы подготовки курсантов</div>
+                <div class="training-timeline-container">
                     
-                    <div class="training-timeline-container">
-                        
-                        <div class="stage-card active-stage" onclick="openStageModules('rec-cr')">
-                            <div class="stage-circle-indicator">I</div>
+                    <div class="stage-card active-stage" id="card-genesis" onclick="toggleGenesisAccordion(event)">
+                        <div class="stage-circle-indicator">I</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «ГЕНЕЗИС» <span class="stage-spec-tag">REC ➔ CR</span></div>
-                                <div class="stage-desc">Базовый аттестационный купол дисциплины и выживания.</div>
+                                <div class="stage-desc">Базовый аттестационный купол дисциплины и выживания. Нажмите для просмотра куполов.</div>
                             </div>
                         </div>
+                        
+                        <div class="stage-expand-area" id="genesis-expand">
+                            <div class="stage-code-full">ШИФР ДОСТУПА: ATTESTATION_DOME_GENESIS // REC-CR</div>
+                            
+                            <div class="domains-inline-grid">
+                                <div class="domain-tile tile-corp" onclick="openModal('modal-corp', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
+                                    <div class="tile-code">CORP</div>
+                                </div>
+                                <div class="domain-tile tile-med" onclick="openModal('modal-med', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
+                                    <div class="tile-code">MED</div>
+                                </div>
+                                <div class="domain-tile tile-tech" onclick="openModal('modal-tech', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="tile-code">TECH</div>
+                                </div>
+                                <div class="domain-tile tile-int" onclick="openModal('modal-int', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
+                                    <div class="tile-code">INT</div>
+                                </div>
+                                <div class="domain-tile tile-psy" onclick="openModal('modal-psy', event)">
+                                    <span class="tile-counter">0/1</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
+                                    <div class="tile-code">PSY</div>
+                                </div>
+                                <div class="domain-tile tile-surv" onclick="openModal('modal-surv', event)">
+                                    <span class="tile-counter">0/1</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
+                                    <div class="tile-code">SURV</div>
+                                </div>
+                                <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd', event)">
+                                    <span class="tile-counter">0/3</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
+                                    <div class="tile-code">CMD</div>
+                                </div>
+                                <div class="domain-tile tile-admin" onclick="openModal('modal-admin', event)">
+                                    <span class="tile-counter">0/1</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
+                                    <div class="tile-code">ADMIN</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">II</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">II</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «ВЕКТОР» <span class="stage-spec-tag">CR ➔ C4</span></div>
                                 <div class="stage-desc">Связь, электротехника, полевая десмургия.</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">III</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">III</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «НЕБЬЮЛА» <span class="stage-spec-tag">C4 ➔ C3</span></div>
                                 <div class="stage-desc">Ремонт, рукопашный бой, тактическая логистика отделения.</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">IV</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">IV</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «СПЕКТР» <span class="stage-spec-tag">C3 ➔ C2</span></div>
                                 <div class="stage-desc">Токсикология, криптография, базовое администрирование.</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">V</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">V</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «МИРАЖ» <span class="stage-spec-tag">C2 ➔ C1</span></div>
                                 <div class="stage-desc">Профайлинг, социальная инженерия, контр-дезинформация.</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">VI</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">VI</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «СТРАТУМ» <span class="stage-spec-tag">C1 ➔ CS</span></div>
                                 <div class="stage-desc">Управление отделением, детекция лжи, основы слайсинга.</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">VII</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">VII</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «КВАНТОР» <span class="stage-spec-tag">CS ➔ CCF</span></div>
                                 <div class="stage-desc">Фортификация, тактическое планирование, психология масс.</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">VIII</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">VIII</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «ЭГИДА» <span class="stage-spec-tag">CCF ➔ CLD</span></div>
                                 <div class="stage-desc">Эпидемиология, контрразведка, автономное управление взводом.</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="stage-card locked-stage">
-                            <div class="stage-circle-indicator">IX</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-circle-indicator">IX</div>
+                        <div class="stage-header">
                             <div class="stage-details">
                                 <div class="stage-name">Программа «ПУЛЬСАР» <span class="stage-spec-tag">CLD ➔ CEX</span></div>
                                 <div class="stage-desc">Медицинское планирование, диверсионная устойчивость, глобальная координация.</div>
                             </div>
                         </div>
-
                     </div>
-                </div>
 
-                <div id="training-modules-view" style="display: none;">
-                    <div class="back-to-stages-btn" onclick="backToStages()">« Назад к программам</div>
-                    <div class="section-title">Купола аттестации: ГЕНЕЗИС</div>
-
-                    <div class="domains-grid">
-                        <div class="domain-tile tile-corp" onclick="openModal('modal-corp')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
-                            <div class="tile-code">CORP</div>
-                        </div>
-                        <div class="domain-tile tile-med" onclick="openModal('modal-med')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
-                            <div class="tile-code">MED</div>
-                        </div>
-                        
-                        <div class="domain-tile tile-tech" onclick="openModal('modal-tech')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon">
-                                <svg viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                </svg>
-                            </div>
-                            <div class="tile-code">TECH</div>
-                        </div>
-                        
-                        <div class="domain-tile tile-int" onclick="openModal('modal-int')">
-                            <span class="tile-counter">0/2</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
-                            <div class="tile-code">INT</div>
-                        </div>
-                        <div class="domain-tile tile-psy" onclick="openModal('modal-psy')">
-                            <span class="tile-counter">0/1</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
-                            <div class="tile-code">PSY</div>
-                        </div>
-                        <div class="domain-tile tile-surv" onclick="openModal('modal-surv')">
-                            <span class="tile-counter">0/1</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
-                            <div class="tile-code">SURV</div>
-                        </div>
-                        <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd')">
-                            <span class="tile-counter">0/3</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
-                            <div class="tile-code">CMD</div>
-                        </div>
-                        <div class="domain-tile tile-admin" onclick="openModal('modal-admin')">
-                            <span class="tile-counter">0/1</span>
-                            <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-                            <div class="tile-code">ADMIN</div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -809,7 +856,6 @@
             if (sectionId === 'training') {
                 document.getElementById('section-training').classList.add('active');
                 document.getElementById('training-trigger').classList.add('active');
-                backToStages();
             } else if (sectionId === 'career') {
                 document.getElementById('section-career').classList.add('active');
                 document.getElementById('career-trigger').classList.add('active');
@@ -819,21 +865,21 @@
             }
         }
 
-        function openStageModules(stageId) {
-            if (stageId === 'rec-cr') {
-                document.getElementById('training-stages-view').style.display = 'none';
-                document.getElementById('training-modules-view').style.display = 'block';
-                document.getElementById('main-content-scroll-area').scrollTop = 0;
+        // Новая логика аккордеона «ГЕНЕЗИС»
+        function toggleGenesisAccordion(event) {
+            const card = document.getElementById('card-genesis');
+            
+            // Если кликнули непосредственно внутри сетки плиток или по плитке, игнорируем сворачивание
+            if (event.target.closest('.domains-inline-grid')) {
+                return;
             }
+            
+            card.classList.toggle('expanded-active');
         }
 
-        function backToStages() {
-            document.getElementById('training-modules-view').style.display = 'none';
-            document.getElementById('training-stages-view').style.display = 'block';
-            document.querySelectorAll('.full-screen-modal').forEach(modal => modal.style.display = 'none');
-        }
-
-        function openModal(modalId) {
+        // Корректное открытие модалок с изоляцией всплытия событий клика (stopPropagation)
+        function openModal(modalId, event) {
+            if (event) event.stopPropagation(); // Не дает аккордеону закрыться при клике на плитку
             document.getElementById(modalId).style.display = 'block';
         }
 
