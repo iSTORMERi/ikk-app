@@ -15,7 +15,7 @@
             height: 100vh; 
             height: 100dvh; 
             overflow: hidden; 
-            background-color: #020611; 
+            background-color: #0a0a0c; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             color: #ffffff; 
         }
@@ -25,7 +25,7 @@
             height: 100vh;
             height: 100dvh; 
             position: relative; 
-            background-image: url('./IMG_9985.jpeg'), url('./IMG_9985.jpg'), url('./IMG 9985jpeg'), radial-gradient(circle at center, #061938 0%, #01050f 100%); 
+            background-image: url('./IMG_9985.jpeg'), url('./IMG_9985.jpg'), url('./IMG 9985jpeg'), radial-gradient(circle at center, #1c1d21 0%, #070708 100%); 
             background-size: cover; 
             background-position: center; 
             background-repeat: no-repeat; 
@@ -33,23 +33,23 @@
             display: flex;
             flex-direction: column;
         }
-        .app-container::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(2, 6, 17, 0.55); z-index: 1; pointer-events: none; }
+        .app-container::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 12, 0.65); z-index: 1; pointer-events: none; }
         
-        /* ВЕРХНЯЯ ПАНЕЛЬ С УВЕЛИЧЕННЫМ ОТСТУПОМ */
+        /* ВЕРХНЯЯ ПАНЕЛЬ В ТАКТИЧЕСКОМ СЕРОМ СТИЛЕ */
         .top-panel-wrapper { position: relative; width: 100%; z-index: 10; margin-bottom: 35px; flex-shrink: 0; }
-        .top-plate { background: rgba(8, 20, 38, 0.92); border: 1px solid rgba(0, 212, 255, 0.25); border-bottom: 3px solid #00d4ff; padding: 12px 15px; border-radius: 4px; width: 100%; display: flex; justify-content: space-between; align-items: flex-start; box-shadow: 0 4px 25px rgba(0, 212, 255, 0.2); }
+        .top-plate { background: rgba(24, 25, 28, 0.95); border: 1px solid rgba(0, 212, 255, 0.3); border-bottom: 3px solid #00d4ff; padding: 12px 15px; border-radius: 4px; width: 100%; display: flex; justify-content: space-between; align-items: flex-start; box-shadow: 0 4px 25px rgba(0, 212, 255, 0.15); }
         .status-info { flex: 1; margin-right: 15px; }
         .cadet-id { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #00d4ff; font-weight: bold; }
         .cadet-rank { font-size: 16px; font-weight: bold; color: #ffffff; margin-top: 2px; margin-bottom: 12px; letter-spacing: 0.5px; line-height: 1.2; }
-        .rank-tag { font-size: 12px; color: rgba(0, 212, 255, 0.7); font-weight: normal; }
+        .rank-tag { font-size: 12px; color: rgba(0, 212, 255, 0.8); font-weight: normal; }
         .xp-container { width: 100%; }
-        .xp-text { font-size: 10px; color: #88a0c0; display: flex; justify-content: space-between; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .xp-bar-bg { width: 100%; height: 5px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.2); overflow: hidden; }
+        .xp-text { font-size: 10px; color: #a0a5b0; display: flex; justify-content: space-between; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .xp-bar-bg { width: 100%; height: 5px; background: rgba(0,0,0,0.6); border: 1px solid rgba(0, 212, 255, 0.2); overflow: hidden; }
         .xp-bar-fill { width: 0%; height: 100%; background: #00d4ff; }
         .imperial-emblem-img { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 0 5px #00d4ff) brightness(1.2); opacity: 0.95; margin-top: 10px; }
         
         /* Терминал связи */
-        .hq-btn { position: absolute; right: 15px; top: 100%; width: 100px; background: rgba(8, 20, 38, 0.98); border: 1px solid rgba(0, 212, 255, 0.3); border-top: none; border-bottom: 2px solid #00d4ff; color: #00d4ff; border-radius: 0 0 4px 4px; padding: 8px 5px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.25); text-shadow: 0 0 4px rgba(0, 212, 255, 0.5); z-index: 12; cursor: pointer; }
+        .hq-btn { position: absolute; right: 15px; top: 100%; width: 100px; background: rgba(20, 21, 24, 0.98); border: 1px solid rgba(0, 212, 255, 0.35); border-top: none; border-bottom: 2px solid #00d4ff; color: #00d4ff; border-radius: 0 0 4px 4px; padding: 8px 5px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2); text-shadow: 0 0 4px rgba(0, 212, 255, 0.5); z-index: 12; cursor: pointer; }
         .hq-title { font-size: 9px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
         .hq-btn:active { transform: scale(0.97); background: rgba(0, 212, 255, 0.15); }
         
@@ -71,8 +71,8 @@
         
         .section-title { font-size: 13px; color: #00d4ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #00d4ff; line-height: 1.2; text-shadow: 0 0 8px rgba(0, 212, 255, 0.4); }
         
-        .archive-placeholder { background: rgba(10, 22, 41, 0.6); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
-        .archive-placeholder p { font-size: 13px; color: #88a0c0; line-height: 1.5; }
+        .archive-placeholder { background: rgba(24, 25, 28, 0.65); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
+        .archive-placeholder p { font-size: 13px; color: #a0a5b0; line-height: 1.5; }
 
         /* ИМПЕРСКАЯ СТРУКТУРНАЯ ГРУППИРОВКА */
         .rank-group {
@@ -84,7 +84,7 @@
         .rank-card { 
             position: relative; 
             min-height: 125px; 
-            border-radius: 6px 6px 0 0; /* Округление только сверху для сопряжения */
+            border-radius: 6px 6px 0 0; 
             overflow: hidden; 
             display: flex; 
             flex-direction: column; 
@@ -92,9 +92,9 @@
             padding: 16px;
             background-size: cover;
             background-position: center 25%;
-            background-color: rgba(10, 22, 41, 0.4); 
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            background-color: rgba(20, 21, 24, 0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .rank-card.current { 
@@ -109,9 +109,9 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(90deg, 
-                rgba(2, 6, 17, 0.95) 0%, 
-                rgba(2, 6, 17, 0.82) 45%, 
-                rgba(2, 6, 17, 0.25) 100%);
+                rgba(10, 10, 12, 0.96) 0%, 
+                rgba(10, 10, 12, 0.85) 45%, 
+                rgba(10, 10, 12, 0.3) 100%);
             z-index: 1;
         }
 
@@ -125,11 +125,11 @@
         }
 
         .rank-header-line { display: flex; align-items: center; gap: 10px; }
-        .rank-badge-mini { font-size: 11px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.12); border: 1px solid rgba(0, 212, 255, 0.4); padding: 2px 6px; border-radius: 3px; font-family: monospace; letter-spacing: 0.5px; }
+        .rank-badge-mini { font-size: 11px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.35); padding: 2px 6px; border-radius: 3px; font-family: monospace; letter-spacing: 0.5px; }
         .rank-name-text { font-size: 15px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
-        .rank-description-text { font-size: 11px; color: #a0b8d0; line-height: 1.35; }
+        .rank-description-text { font-size: 11px; color: #ba9fa0c0; color: #a0a5b0; line-height: 1.35; }
 
-        .rank-card.current .rank-badge-mini { background: #00d4ff; color: #020611; border: 1px solid #00d4ff; }
+        .rank-card.current .rank-badge-mini { background: #00d4ff; color: #0a0a0c; border: 1px solid #00d4ff; }
         .rank-card.current::after { 
             content: "ТЕКУЩИЙ СТАТУС //"; 
             position: absolute; 
@@ -140,7 +140,7 @@
             font-weight: 900; 
             letter-spacing: 1px; 
             z-index: 2;
-            background: rgba(2, 6, 17, 0.7);
+            background: rgba(10, 10, 12, 0.8);
             padding: 2px 6px;
             border-radius: 2px;
             border: 1px solid rgba(0, 212, 255, 0.3);
@@ -149,17 +149,17 @@
         .rank-card.locked { 
             border: 1px solid rgba(239, 68, 68, 0.15);
             border-bottom: none !important;
-            filter: grayscale(35%);
+            filter: grayscale(45%);
         }
         .rank-card.locked::before {
             background: linear-gradient(90deg, 
-                rgba(4, 8, 18, 0.98) 0%, 
-                rgba(4, 8, 18, 0.92) 50%, 
-                rgba(4, 8, 18, 0.60) 100%);
+                rgba(8, 8, 10, 0.98) 0%, 
+                rgba(8, 8, 10, 0.94) 50%, 
+                rgba(8, 8, 10, 0.65) 100%);
         }
-        .rank-card.locked .rank-badge-mini { color: #88a0c0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); }
-        .rank-card.locked .rank-name-text { color: rgba(255, 255, 255, 0.5); }
-        .rank-card.locked .rank-description-text { color: #55687d; }
+        .rank-card.locked .rank-badge-mini { color: #7a808a; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.12); }
+        .rank-card.locked .rank-name-text { color: rgba(255, 255, 255, 0.4); }
+        .rank-card.locked .rank-description-text { color: #5a606a; }
         .rank-card.locked::after { 
             content: "🔒 ДОСТУП ОГРАНИЧЕН"; 
             position: absolute; 
@@ -178,9 +178,9 @@
 
         /* ТОНКАЯ ПРИШИТАЯ ЛИНИЯ ПОДГОТОВКИ */
         .stage-card { 
-            background: rgba(4, 12, 26, 0.9);
-            border: 1px solid rgba(0, 212, 255, 0.15); 
-            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(20, 21, 24, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
             padding: 8px 14px; 
             position: relative; 
             cursor: pointer; 
@@ -204,8 +204,8 @@
             flex: 1;
         }
 
-        .stage-name { font-size: 11px; font-weight: bold; color: #88a0c0; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
-        .stage-spec-tag { font-size: 9px; color: rgba(0, 212, 255, 0.7); font-family: monospace; background: rgba(0, 212, 255, 0.1); padding: 1px 5px; border-radius: 2px; }
+        .stage-name { font-size: 11px; font-weight: bold; color: #a0a5b0; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .stage-spec-tag { font-size: 9px; color: rgba(0, 212, 255, 0.8); font-family: monospace; background: rgba(0, 212, 255, 0.1); padding: 1px 5px; border-radius: 2px; }
         
         /* Иконка переключателя */
         .stage-arrow-indicator {
@@ -217,8 +217,8 @@
 
         /* Активное состояние линии */
         .stage-card.active-stage { 
-            border-color: rgba(0, 212, 255, 0.4); 
-            background: rgba(6, 19, 38, 0.95);
+            border-color: rgba(0, 212, 255, 0.35); 
+            background: rgba(26, 27, 31, 0.98);
         }
         .stage-card.active-stage .stage-name { color: #ffffff; }
 
@@ -230,14 +230,14 @@
 
         /* Заблокированное состояние линии */
         .stage-card.locked-stage { 
-            opacity: 0.6; 
-            background: rgba(3, 8, 18, 0.9);
+            opacity: 0.5; 
+            background: rgba(14, 14, 16, 0.95);
             cursor: not-allowed; 
             border-color: rgba(239, 68, 68, 0.15);
         }
-        .stage-card.locked-stage .stage-name { color: #55687d; }
-        .stage-card.locked-stage .stage-spec-tag { color: #55687d; background: rgba(255,255,255,0.02); }
-        .stage-card.locked-stage .stage-arrow-indicator { color: #55687d; text-shadow: none; }
+        .stage-card.locked-stage .stage-name { color: #5a606a; }
+        .stage-card.locked-stage .stage-spec-tag { color: #5a606a; background: rgba(255,255,255,0.02); }
+        .stage-card.locked-stage .stage-arrow-indicator { color: #5a606a; text-shadow: none; }
 
         /* ЭКСПАНД-ОБЛАСТЬ ДЛЯ СЕТКИ МОДУЛЕЙ */
         .stage-expand-area {
@@ -251,27 +251,27 @@
             opacity: 1;
             margin-top: 12px;
             padding-top: 10px;
-            border-top: 1px solid rgba(0, 212, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
         .stage-card.expanded-active .stage-arrow-indicator {
             transform: rotate(180deg);
         }
         
-        .stage-code-full { font-family: monospace; color: #00d4ff; font-size: 9px; letter-spacing: 1px; margin-bottom: 10px; opacity: 0.7; }
+        .stage-code-full { font-family: monospace; color: #00d4ff; font-size: 9px; letter-spacing: 1px; margin-bottom: 10px; opacity: 0.8; }
 
         /* СЕТКА ПЛИТОК */
         .domains-inline-grid { 
             display: grid; 
             grid-template-columns: repeat(2, minmax(0, 1fr)); 
             gap: 8px; 
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             padding: 6px;
             border-radius: 4px;
             width: 100%;
         }
         
         .domain-tile { 
-            background: rgba(6, 14, 28, 0.85); 
+            background: rgba(18, 19, 21, 0.9); 
             position: relative; 
             border-radius: 4px; 
             display: flex; 
@@ -284,34 +284,43 @@
             text-align: center; 
             min-height: 68px;
             width: 100%;
+            overflow: hidden;
         }
         .domain-tile:active { transform: scale(0.96); }
         
-        .tile-icon { width: 20px; height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tile-icon { width: 20px; height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 3; }
         .tile-icon svg { width: 100%; height: 100%; fill: currentColor; display: block; }
         .tile-tech .tile-icon svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
         
-        .tile-code { font-size: 10px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; }
-        .tile-counter { position: absolute; top: 4px; right: 4px; font-size: 8px; font-family: monospace; padding: 1px 3px; border-radius: 2px; font-weight: bold; background: rgba(255,255,255,0.04); }
+        .tile-code { font-size: 10px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; z-index: 3; }
+        .tile-counter { position: absolute; top: 4px; right: 4px; font-size: 8px; font-family: monospace; padding: 1px 3px; border-radius: 2px; font-weight: bold; background: rgba(0,0,0,0.4); z-index: 3; }
 
-        /* ЦВЕТА ДОМЕНОВ */
-        .tile-corp { border: 1px solid rgba(255, 159, 67, 0.25); } .tile-corp .tile-icon, .tile-corp .tile-counter { color: #ff9f43; }
-        .tile-med { border: 1px solid rgba(46, 204, 113, 0.25); } .tile-med .tile-icon, .tile-med .tile-counter { color: #2ecc71; }
-        .tile-tech { border: 1px solid rgba(84, 160, 255, 0.25); } .tile-tech .tile-icon, .tile-tech .tile-counter { color: #54a0ff; }
-        .tile-int { border: 1px solid rgba(165, 94, 234, 0.25); } .tile-int .tile-icon, .tile-int .tile-counter { color: #a55eea; }
-        .tile-psy { border: 1px solid rgba(72, 219, 251, 0.25); } .tile-psy .tile-icon, .tile-psy .tile-counter { color: #48dbfb; }
-        .tile-surv { border: 1px solid rgba(16, 172, 132, 0.25); } .tile-surv .tile-icon, .tile-surv .tile-counter { color: #10ac84; }
-        .tile-cmd { border: 1px solid rgba(238, 82, 83, 0.25); } .tile-cmd .tile-icon, .tile-cmd .tile-counter { color: #ee5253; }
-        .tile-admin { border: 1px solid rgba(255, 221, 89, 0.25); } .tile-admin .tile-icon, .tile-admin .tile-counter { color: #ffdd59; }
+        /* ИНТЕГРАЦИЯ КАРТИНКИ ДЛЯ КАРТОЧКИ CORP */
+        .tile-corp { 
+            border: 1px solid rgba(255, 159, 67, 0.35); 
+            background-image: linear-gradient(180deg, rgba(14, 15, 17, 0.75) 0%, rgba(14, 15, 17, 0.9) 100%), url('./IMG_0106.png');
+            background-size: cover;
+            background-position: center;
+        } 
+        .tile-corp .tile-icon, .tile-corp .tile-counter { color: #ff9f43; }
+        
+        /* ОСТАЛЬНЫЕ ЦВЕТА ДОМЕНОВ */
+        .tile-med { border: 1px solid rgba(46, 204, 113, 0.3); } .tile-med .tile-icon, .tile-med .tile-counter { color: #2ecc71; }
+        .tile-tech { border: 1px solid rgba(84, 160, 255, 0.3); } .tile-tech .tile-icon, .tile-tech .tile-counter { color: #54a0ff; }
+        .tile-int { border: 1px solid rgba(165, 94, 234, 0.3); } .tile-int .tile-icon, .tile-int .tile-counter { color: #a55eea; }
+        .tile-psy { border: 1px solid rgba(72, 219, 251, 0.3); } .tile-psy .tile-icon, .tile-psy .tile-counter { color: #48dbfb; }
+        .tile-surv { border: 1px solid rgba(16, 172, 132, 0.3); } .tile-surv .tile-icon, .tile-surv .tile-counter { color: #10ac84; }
+        .tile-cmd { border: 1px solid rgba(238, 82, 83, 0.3); } .tile-cmd .tile-icon, .tile-cmd .tile-counter { color: #ee5253; }
+        .tile-admin { border: 1px solid rgba(255, 221, 89, 0.3); } .tile-admin .tile-icon, .tile-admin .tile-counter { color: #ffdd59; }
 
-        /* ТАКТИЧЕСКИЕ ОКНА (МОДУЛИ) */
-        .full-screen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 17, 0.98); z-index: 100; padding: 20px 15px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        /* ТАКТИЧЕСКИЕ ОКНА (МОДУЛИ) В МОНОХРОМНОМ СТИЛЕ */
+        .full-screen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 13, 15, 0.99); z-index: 100; padding: 20px 15px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
         .modal-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; }
         .modal-icon-large { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
         .modal-icon-large svg { width: 100%; height: 100%; fill: currentColor; }
-        .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; } /* Для тех. купола */
+        .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; } 
         .modal-meta h2 { font-size: 18px; font-weight: 900; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
-        .modal-meta p { font-size: 12px; color: #88a0c0; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .modal-meta p { font-size: 12px; color: #a0a5b0; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
         
         .modal-corp { border: 2px solid #ff9f43; } .modal-corp .modal-icon-large, .modal-corp .back-modal-btn { color: #ff9f43; }
         .modal-med { border: 2px solid #2ecc71; } .modal-med .modal-icon-large, .modal-med .back-modal-btn { color: #2ecc71; }
@@ -322,9 +331,9 @@
         .modal-cmd { border: 2px solid #ee5253; } .modal-cmd .modal-icon-large, .modal-cmd .back-modal-btn { color: #ee5253; }
         .modal-admin { border: 2px solid #ffdd59; } .modal-admin .modal-icon-large, .modal-admin .back-modal-btn { color: #ffdd59; }
 
-        .back-modal-btn { display: inline-flex; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid currentColor; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 10px 16px; text-transform: uppercase; border-radius: 3px; margin-bottom: 25px; cursor: pointer; }
+        .back-modal-btn { display: inline-flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid currentColor; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 10px 16px; text-transform: uppercase; border-radius: 3px; margin-bottom: 25px; cursor: pointer; }
         
-        .module-item { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+        .module-item { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .module-item:last-child { border-bottom: none; }
         .module-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; }
         .module-code-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; line-height: 1.3; }
@@ -335,22 +344,22 @@
         .badge.exam { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
         .badge.test { background: rgba(165, 94, 234, 0.15); color: #a55eea; border: 1px solid rgba(165, 94, 234, 0.4); }
 
-        /* НАВИГАЦИОННАЯ ПАНЕЛЬ */
+        /* НАВИГАЦИОННАЯ ПАНЕЛЬ С СИНЕЙ НЕОНОВОЙ КРОМКОЙ */
         .bottom-plate { 
             position: absolute;
             bottom: 15px;
             left: 15px;
             right: 15px;
             z-index: 20; 
-            background: rgba(8, 20, 38, 0.97); 
-            border: 1px solid rgba(0, 212, 255, 0.25); 
+            background: rgba(24, 25, 28, 0.98); 
+            border: 1px solid rgba(0, 212, 255, 0.3); 
             border-top: 3px solid #00d4ff; 
             padding: 12px; 
             border-radius: 4px; 
             display: flex; 
             justify-content: center; 
             gap: 10px; 
-            box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.25); 
+            box-shadow: 0 -4px 25px rgba(0, 212, 255, 0.15); 
         }
         
         .nav-btn { 
@@ -791,12 +800,10 @@
         function toggleAccordion(cardId, event) {
             const card = document.getElementById(cardId);
             
-            // Если кликнули на саму сетку доменов или плитку, не сворачиваем аккордеон
             if (event.target.closest('.domains-inline-grid')) {
                 return;
             }
             
-            // Если карточка заблокирована, ничего не делаем
             if (card.classList.contains('locked-stage')) {
                 return;
             }
