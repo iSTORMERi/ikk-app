@@ -72,26 +72,20 @@
         /* ЗАГОЛОВКИ С КОРРЕКТНЫМ ЗАЗОРОМ */
         .section-title { font-size: 13px; color: #00d4ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #00d4ff; line-height: 1.2; text-shadow: 0 0 8px rgba(0, 212, 255, 0.4); }
         
-        /* ДЕФОЛТНЫЙ ЭКРАН */
+        /* ДЕФОЛТНЫЙ ЭКРАН И ДРУГИЕ ЗАГЛУШКИ */
         .archive-placeholder { background: rgba(10, 22, 41, 0.6); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
         .archive-placeholder p { font-size: 13px; color: #88a0c0; line-height: 1.5; }
 
-        /* ОБНОВЛЕННЫЙ МОНОЛИТНЫЙ ИНТЕРФЕЙС КАРТОЧЕК */
-        .training-timeline-container {
-            width: 100%;
-            margin-top: 5px;
-        }
-
+        /* ИЗМЕНЕННЫЕ КАРТОЧКИ ПОДГОТОВКИ ДЛЯ ДИЗАЙНЕРСКОГО СОПРЯЖЕНИЯ */
         .stage-card { 
-            background: linear-gradient(135deg, rgba(10, 22, 41, 0.85) 0%, rgba(8, 20, 38, 0.92) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.2); 
-            padding: 16px; 
-            margin-bottom: 15px; 
+            background: linear-gradient(135deg, rgba(6, 15, 30, 0.75) 0%, rgba(4, 11, 23, 0.85) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.15); 
+            padding: 14px 16px; 
+            margin: 0 12px 16px 12px; /* Вложенные боковые отступы, чтобы звания доминировали */
             position: relative; 
             cursor: pointer; 
             border-radius: 4px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
         }
         
         .stage-header {
@@ -119,8 +113,8 @@
 
         /* СОСТОЯНИЕ: ДОСТУПНО */
         .stage-card.active-stage { 
-            border-color: #00d4ff; 
-            box-shadow: 0 0 12px rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.4); 
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.05);
         }
         .stage-card.active-stage .stage-circle-indicator {
             border: 1px solid #00d4ff;
@@ -129,7 +123,7 @@
             box-shadow: 0 0 8px rgba(0, 212, 255, 0.3), inset 0 0 4px rgba(0, 212, 255, 0.2);
         }
         .stage-card.active-stage::after { 
-            content: "ДОСТУПНО"; 
+            content: "МОДУЛЬ ОБУЧЕНИЯ //"; 
             position: absolute; 
             right: 0px; 
             top: 0px; 
@@ -137,39 +131,40 @@
             color: #00d4ff; 
             font-weight: 900; 
             letter-spacing: 1px; 
-            background: rgba(0, 212, 255, 0.15); 
+            background: rgba(0, 212, 255, 0.12); 
             padding: 2px 6px; 
             border-top-right-radius: 3px;
             border-bottom-left-radius: 4px;
-            border-left: 1px solid rgba(0, 212, 255, 0.3);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            border-left: 1px solid rgba(0, 212, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
         }
 
         /* СОСТОЯНИЕ: ЗАБЛОКИРОВАНО */
         .stage-card.locked-stage { 
-            opacity: 0.55; 
-            background: linear-gradient(135deg, rgba(4, 10, 20, 0.8) 0%, rgba(2, 6, 15, 0.9) 100%);
+            opacity: 0.45; 
+            background: linear-gradient(135deg, rgba(4, 10, 20, 0.6) 0%, rgba(2, 6, 15, 0.7) 100%);
             cursor: not-allowed; 
+            border-color: rgba(255, 255, 255, 0.05);
         }
         .stage-card.locked-stage .stage-circle-indicator {
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            color: #55687d;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            color: #445566;
         }
         .stage-card.locked-stage::after { 
-            content: "БЛОК"; 
+            content: "ДОСТУП ЗАКРЫТ"; 
             position: absolute; 
             right: 0px; 
             top: 0px; 
             font-size: 7px; 
-            color: #ef4444; 
+            color: #55687d; 
             font-weight: 900; 
             letter-spacing: 0.5px; 
-            background: rgba(239, 68, 68, 0.1); 
+            background: rgba(255, 255, 255, 0.03); 
             padding: 2px 6px; 
             border-top-right-radius: 3px;
             border-bottom-left-radius: 4px;
-            border-left: 1px solid rgba(239, 68, 68, 0.2);
-            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .stage-details { flex: 1; padding-right: 45px; }
@@ -489,152 +484,10 @@
             </div>
 
             <div id="section-training" class="screen-section">
-                <div class="section-title">Программы подготовки курсантов</div>
-                
-                <div class="training-timeline-container">
-                    
-                    <div class="stage-card active-stage" id="card-genesis" onclick="toggleGenesisAccordion(event)">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">I</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «ГЕНЕЗИС» <span class="stage-spec-tag">REC ➔ CR</span></div>
-                                <div class="stage-desc">Базовый аттестационный купол дисциплины и выживания. Нажмите для просмотра куполов.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="stage-expand-area" id="genesis-expand">
-                            <div class="stage-code-full">ШИФР ДОСТУПА: ATTESTATION_DOME_GENESIS // REC-CR</div>
-                            
-                            <div class="domains-inline-grid">
-                                <div class="domain-tile tile-corp" onclick="openModal('modal-corp', event)">
-                                    <span class="tile-counter">0/2</span>
-                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
-                                    <div class="tile-code">CORP</div>
-                                </div>
-                                <div class="domain-tile tile-med" onclick="openModal('modal-med', event)">
-                                    <span class="tile-counter">0/2</span>
-                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
-                                    <div class="tile-code">MED</div>
-                                </div>
-                                <div class="domain-tile tile-tech" onclick="openModal('modal-tech', event)">
-                                    <span class="tile-counter">0/2</span>
-                                    <div class="tile-icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="tile-code">TECH</div>
-                                </div>
-                                <div class="domain-tile tile-int" onclick="openModal('modal-int', event)">
-                                    <span class="tile-counter">0/2</span>
-                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
-                                    <div class="tile-code">INT</div>
-                                </div>
-                                <div class="domain-tile tile-psy" onclick="openModal('modal-psy', event)">
-                                    <span class="tile-counter">0/1</span>
-                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
-                                    <div class="tile-code">PSY</div>
-                                </div>
-                                <div class="domain-tile tile-surv" onclick="openModal('modal-surv', event)">
-                                    <span class="tile-counter">0/1</span>
-                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
-                                    <div class="tile-code">SURV</div>
-                                </div>
-                                <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd', event)">
-                                    <span class="tile-counter">0/3</span>
-                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
-                                    <div class="tile-code">CMD</div>
-                                </div>
-                                <div class="domain-tile tile-admin" onclick="openModal('modal-admin', event)">
-                                    <span class="tile-counter">0/1</span>
-                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-                                    <div class="tile-code">ADMIN</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">II</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «ВЕКТОР» <span class="stage-spec-tag">CR ➔ C4</span></div>
-                                <div class="stage-desc">Связь, электротехника, полевая десмургия.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">III</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «НЕБЬЮЛА» <span class="stage-spec-tag">C4 ➔ C3</span></div>
-                                <div class="stage-desc">Ремонт, рукопашный бой, тактическая логистика отделения.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">IV</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «СПЕКТР» <span class="stage-spec-tag">C3 ➔ C2</span></div>
-                                <div class="stage-desc">Токсикология, криптография, базовое администрирование.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">V</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «МИРАЖ» <span class="stage-spec-tag">C2 ➔ C1</span></div>
-                                <div class="stage-desc">Профайлинг, social engineering, контр-дезинформация.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">VI</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «СТРАТУМ» <span class="stage-spec-tag">C1 ➔ CS</span></div>
-                                <div class="stage-desc">Управление отделением, детекция лжи, основы слайсинга.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">VII</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «КВАНТОР» <span class="stage-spec-tag">CS ➔ CCF</span></div>
-                                <div class="stage-desc">Фортификация, тактическое планирование, психология масс.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">VIII</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «ЭГИДА» <span class="stage-spec-tag">CCF ➔ CLD</span></div>
-                                <div class="stage-desc">Эпидемиология, контрразведка, автономное управление взводом.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stage-card locked-stage">
-                        <div class="stage-header">
-                            <div class="stage-circle-indicator">IX</div>
-                            <div class="stage-details">
-                                <div class="stage-name">Программа «ПУЛЬСАР» <span class="stage-spec-tag">CLD ➔ CEX</span></div>
-                                <div class="stage-desc">Медицинское планирование, диверсионная устойчивость, глобальная координация.</div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="section-title">Центр Специальной Подготовки</div>
+                <div class="archive-placeholder" style="border-color: rgba(255, 213, 79, 0.25);">
+                    <p style="color: #ffd54f;">[ МОДУЛЬ В РАЗРАБОТКЕ ]</p>
+                    <p style="margin-top: 10px; font-size: 12px;">Центральный тактический процессор ожидает директивы командования Академии для загрузки нового функционала.</p>
                 </div>
             </div>
 
@@ -651,13 +504,85 @@
                     </div>
                 </div>
                 
+                <div class="stage-card active-stage" id="card-genesis" onclick="toggleGenesisAccordion(event)">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">I</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «ГЕНЕЗИС» <span class="stage-spec-tag">REC ➔ CR</span></div>
+                            <div class="stage-desc">Базовый аттестационный купол дисциплины и выживания. Нажмите для просмотра куполов.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stage-expand-area" id="genesis-expand">
+                        <div class="stage-code-full">ШИФР ДОСТУПА: ATTESTATION_DOME_GENESIS // REC-CR</div>
+                        
+                        <div class="domains-inline-grid">
+                            <div class="domain-tile tile-corp" onclick="openModal('modal-corp', event)">
+                                <span class="tile-counter">0/2</span>
+                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
+                                <div class="tile-code">CORP</div>
+                            </div>
+                            <div class="domain-tile tile-med" onclick="openModal('modal-med', event)">
+                                <span class="tile-counter">0/2</span>
+                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
+                                <div class="tile-code">MED</div>
+                            </div>
+                            <div class="domain-tile tile-tech" onclick="openModal('modal-tech', event)">
+                                <span class="tile-counter">0/2</span>
+                                <div class="tile-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                    </svg>
+                                </div>
+                                <div class="tile-code">TECH</div>
+                            </div>
+                            <div class="domain-tile tile-int" onclick="openModal('modal-int', event)">
+                                <span class="tile-counter">0/2</span>
+                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
+                                <div class="tile-code">INT</div>
+                            </div>
+                            <div class="domain-tile tile-psy" onclick="openModal('modal-psy', event)">
+                                <span class="tile-counter">0/1</span>
+                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
+                                <div class="tile-code">PSY</div>
+                            </div>
+                            <div class="domain-tile tile-surv" onclick="openModal('modal-surv', event)">
+                                <span class="tile-counter">0/1</span>
+                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
+                                <div class="tile-code">SURV</div>
+                            </div>
+                            <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd', event)">
+                                <span class="tile-counter">0/3</span>
+                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
+                                <div class="tile-code">CMD</div>
+                            </div>
+                            <div class="domain-tile tile-admin" onclick="openModal('modal-admin', event)">
+                                <span class="tile-counter">0/1</span>
+                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
+                                <div class="tile-code">ADMIN</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
                             <span class="rank-badge-mini">CR</span>
                             <h3 class="rank-name-text">Кадет-Рекрут</h3>
                         </div>
-                        <p class="rank-description-text">Фундамент дисциплины. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</p>
+                        <p class="rank-description-text">Фундамент discipline. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</p>
+                    </div>
+                </div>
+
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">II</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «ВЕКТОР» <span class="stage-spec-tag">CR ➔ C4</span></div>
+                            <div class="stage-desc">Связь, электротехника, полевая десмургия.</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -670,6 +595,16 @@
                         <p class="rank-description-text">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнем и водой, уставы.</p>
                     </div>
                 </div>
+
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">III</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «НЕБЬЮЛА» <span class="stage-spec-tag">C4 ➔ C3</span></div>
+                            <div class="stage-desc">Ремонт, рукопашный бой, тактическая логистика отделения.</div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="rank-card locked">
                     <div class="rank-content-wrapper">
@@ -678,6 +613,16 @@
                             <h3 class="rank-name-text">Кадет третьего класса</h3>
                         </div>
                         <p class="rank-description-text">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</p>
+                    </div>
+                </div>
+
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">IV</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «СПЕКТР» <span class="stage-spec-tag">C3 ➔ C2</span></div>
+                            <div class="stage-desc">Токсикология, криптография, базовое администрирование.</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -691,6 +636,16 @@
                     </div>
                 </div>
 
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">V</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «МИРАЖ» <span class="stage-spec-tag">C2 ➔ C1</span></div>
+                            <div class="stage-desc">Профайлинг, social engineering, контр-дезинформация.</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
@@ -698,6 +653,16 @@
                             <h3 class="rank-name-text">Кадет первого класса</h3>
                         </div>
                         <p class="rank-description-text">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</p>
+                    </div>
+                </div>
+
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">VI</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «СТРАТУМ» <span class="stage-spec-tag">C1 ➔ CS</span></div>
+                            <div class="stage-desc">Управление отделением, детекция лжи, основы слайсинга.</div>
+                        </div>
                     </div>
                 </div>
 
@@ -711,6 +676,16 @@
                     </div>
                 </div>
 
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">VII</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «КВАНТОР» <span class="stage-spec-tag">CS ➔ CCF</span></div>
+                            <div class="stage-desc">Фортификация, тактическое планирование, психология масс.</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
@@ -718,6 +693,16 @@
                             <h3 class="rank-name-text">Главный кадет</h3>
                         </div>
                         <p class="rank-description-text">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</p>
+                    </div>
+                </div>
+
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">VIII</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «ЭГИДА» <span class="stage-spec-tag">CCF ➔ CLD</span></div>
+                            <div class="stage-desc">Эпидемиология, контрразведка, автономное управление взводом.</div>
+                        </div>
                     </div>
                 </div>
 
@@ -731,6 +716,16 @@
                     </div>
                 </div>
 
+                <div class="stage-card locked-stage">
+                    <div class="stage-header">
+                        <div class="stage-circle-indicator">IX</div>
+                        <div class="stage-details">
+                            <div class="stage-name">Программа «ПУЛЬСАР» <span class="stage-spec-tag">CLD ➔ CEX</span></div>
+                            <div class="stage-desc">Медицинское планирование, диверсионная устойчивость, global координация.</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="rank-card locked">
                     <div class="rank-content-wrapper">
                         <div class="rank-header-line">
@@ -740,6 +735,7 @@
                         <p class="rank-description-text">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</p>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -834,7 +830,7 @@
         <div class="module-item"><div class="module-top"><span class="module-code-name">ADMIN 1.1 — Внутренний регламент гарнизона</span><span class="badge test">Тест</span></div></div>
     </div>
 
-    <script>
+    <script {timestamp="2026-07-01"}>
         function switchTab(sectionId) {
             document.querySelectorAll('.screen-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -872,7 +868,7 @@
         }
 
         window.onload = function() {
-            switchTab('default');
+            switchTab('career'); // По умолчанию открываем объединенную вкладку "Карьера"
         };
     </script>
 </body>
