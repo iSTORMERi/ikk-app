@@ -53,7 +53,7 @@
         .hq-title { font-size: 9px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
         .hq-btn:active { transform: scale(0.97); background: rgba(0, 212, 255, 0.15); }
         
-        /* ЦЕНТРАЛЬНЫЙ КОНТЕНТ С КОРРЕКТНЫМ СКРОЛЛОМ И ОТСТУПОМ СНИЗУ */
+        /* ЦЕНТРАЛЬНЫЙ КОНТЕНТ */
         .center-content-area { 
             flex: 1;
             width: 100%;
@@ -69,148 +69,207 @@
         .screen-section { display: none; width: 100%; }
         .screen-section.active { display: block; }
         
-        /* ЗАГОЛОВКИ С КОРРЕКТНЫМ ЗАЗОРОМ */
         .section-title { font-size: 13px; color: #00d4ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #00d4ff; line-height: 1.2; text-shadow: 0 0 8px rgba(0, 212, 255, 0.4); }
         
-        /* ДЕФОЛТНЫЙ ЭКРАН И ДРУГИЕ ЗАГЛУШКИ */
         .archive-placeholder { background: rgba(10, 22, 41, 0.6); border: 1px dashed rgba(0, 212, 255, 0.2); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
         .archive-placeholder p { font-size: 13px; color: #88a0c0; line-height: 1.5; }
 
-        /* ИЗМЕНЕННЫЕ КАРТОЧКИ ПОДГОТОВКИ ДЛЯ ДИЗАЙНЕРСКОГО СОПРЯЖЕНИЯ */
+        /* ИМПЕРСКАЯ СТРУКТУРНАЯ ГРУППИРОВКА */
+        .rank-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        /* ТАКТИЧЕСКИЙ ДИЗАЙН ЗВАНИЙ С КАРТИНКАМИ */
+        .rank-card { 
+            position: relative; 
+            min-height: 125px; 
+            border-radius: 6px 6px 0 0; /* Округление только сверху для сопряжения */
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 16px;
+            background-size: cover;
+            background-position: center 25%;
+            background-color: rgba(10, 22, 41, 0.4); 
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .rank-card.current { 
+            background-image: url('./IMG_0036.png');
+            border: 1px solid #00d4ff !important; 
+            border-bottom: none !important;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.15), inset 0 0 10px rgba(0, 212, 255, 0.1); 
+        }
+
+        .rank-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(2, 6, 17, 0.95) 0%, 
+                rgba(2, 6, 17, 0.82) 45%, 
+                rgba(2, 6, 17, 0.25) 100%);
+            z-index: 1;
+        }
+
+        .rank-content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 75%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .rank-header-line { display: flex; align-items: center; gap: 10px; }
+        .rank-badge-mini { font-size: 11px; font-weight: 900; color: #00d4ff; background: rgba(0, 212, 255, 0.12); border: 1px solid rgba(0, 212, 255, 0.4); padding: 2px 6px; border-radius: 3px; font-family: monospace; letter-spacing: 0.5px; }
+        .rank-name-text { font-size: 15px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .rank-description-text { font-size: 11px; color: #a0b8d0; line-height: 1.35; }
+
+        .rank-card.current .rank-badge-mini { background: #00d4ff; color: #020611; border: 1px solid #00d4ff; }
+        .rank-card.current::after { 
+            content: "ТЕКУЩИЙ СТАТУС //"; 
+            position: absolute; 
+            right: 12px; 
+            top: 12px; 
+            font-size: 8px; 
+            color: #00d4ff; 
+            font-weight: 900; 
+            letter-spacing: 1px; 
+            z-index: 2;
+            background: rgba(2, 6, 17, 0.7);
+            padding: 2px 6px;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .rank-card.locked { 
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-bottom: none !important;
+            filter: grayscale(35%);
+        }
+        .rank-card.locked::before {
+            background: linear-gradient(90deg, 
+                rgba(4, 8, 18, 0.98) 0%, 
+                rgba(4, 8, 18, 0.92) 50%, 
+                rgba(4, 8, 18, 0.60) 100%);
+        }
+        .rank-card.locked .rank-badge-mini { color: #88a0c0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); }
+        .rank-card.locked .rank-name-text { color: rgba(255, 255, 255, 0.5); }
+        .rank-card.locked .rank-description-text { color: #55687d; }
+        .rank-card.locked::after { 
+            content: "🔒 ДОСТУП ОГРАНИЧЕН"; 
+            position: absolute; 
+            right: 12px; 
+            top: 12px; 
+            font-size: 8px; 
+            color: #ef4444; 
+            font-weight: 900; 
+            letter-spacing: 0.5px; 
+            z-index: 2;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 2px 6px;
+            border-radius: 2px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* ТОНКАЯ ПРИШИТАЯ ЛИНИЯ ПОДГОТОВКИ */
         .stage-card { 
-            background: linear-gradient(135deg, rgba(6, 15, 30, 0.75) 0%, rgba(4, 11, 23, 0.85) 100%);
+            background: rgba(4, 12, 26, 0.9);
             border: 1px solid rgba(0, 212, 255, 0.15); 
-            padding: 14px 16px; 
-            margin: 0 12px 16px 12px; /* Вложенные боковые отступы, чтобы звания доминировали */
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 8px 14px; 
             position: relative; 
             cursor: pointer; 
-            border-radius: 4px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 0 6px 6px;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
         
         .stage-header {
             width: 100%;
             display: flex;
-            align-items: flex-start;
-            gap: 14px;
-        }
-
-        /* ИНДИКАТОР ВНУТРИ КАРТОЧКИ ДЛЯ СИММЕТРИИ */
-        .stage-circle-indicator {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            font-family: serif;
-            font-size: 12px;
-            font-weight: bold;
-            flex-shrink: 0;
-            background: rgba(2, 6, 17, 0.6);
-            transition: all 0.3s ease;
         }
 
-        /* СОСТОЯНИЕ: ДОСТУПНО */
+        .stage-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .stage-name { font-size: 11px; font-weight: bold; color: #88a0c0; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .stage-spec-tag { font-size: 9px; color: rgba(0, 212, 255, 0.7); font-family: monospace; background: rgba(0, 212, 255, 0.1); padding: 1px 5px; border-radius: 2px; }
+        
+        /* Иконка переключателя */
+        .stage-arrow-indicator {
+            font-size: 10px;
+            color: #00d4ff;
+            transition: transform 0.25s ease;
+            text-shadow: 0 0 4px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Активное состояние линии */
         .stage-card.active-stage { 
             border-color: rgba(0, 212, 255, 0.4); 
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.05);
+            background: rgba(6, 19, 38, 0.95);
         }
-        .stage-card.active-stage .stage-circle-indicator {
-            border: 1px solid #00d4ff;
-            color: #00d4ff;
-            text-shadow: 0 0 4px #00d4ff;
-            box-shadow: 0 0 8px rgba(0, 212, 255, 0.3), inset 0 0 4px rgba(0, 212, 255, 0.2);
-        }
-        .stage-card.active-stage::after { 
-            content: "МОДУЛЬ ОБУЧЕНИЯ //"; 
-            position: absolute; 
-            right: 0px; 
-            top: 0px; 
-            font-size: 7px; 
-            color: #00d4ff; 
-            font-weight: 900; 
-            letter-spacing: 1px; 
-            background: rgba(0, 212, 255, 0.12); 
-            padding: 2px 6px; 
-            border-top-right-radius: 3px;
-            border-bottom-left-radius: 4px;
-            border-left: 1px solid rgba(0, 212, 255, 0.2);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        .stage-card.active-stage .stage-name { color: #ffffff; }
+
+        .rank-card.current + .stage-card.active-stage {
+            border: 1px solid #00d4ff !important;
+            border-top: 1px solid rgba(0, 212, 255, 0.4) !important;
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.1);
         }
 
-        /* СОСТОЯНИЕ: ЗАБЛОКИРОВАНО */
+        /* Заблокированное состояние линии */
         .stage-card.locked-stage { 
-            opacity: 0.45; 
-            background: linear-gradient(135deg, rgba(4, 10, 20, 0.6) 0%, rgba(2, 6, 15, 0.7) 100%);
+            opacity: 0.6; 
+            background: rgba(3, 8, 18, 0.9);
             cursor: not-allowed; 
-            border-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(239, 68, 68, 0.15);
         }
-        .stage-card.locked-stage .stage-circle-indicator {
-            border: 1px dashed rgba(255, 255, 255, 0.15);
-            color: #445566;
-        }
-        .stage-card.locked-stage::after { 
-            content: "ДОСТУП ЗАКРЫТ"; 
-            position: absolute; 
-            right: 0px; 
-            top: 0px; 
-            font-size: 7px; 
-            color: #55687d; 
-            font-weight: 900; 
-            letter-spacing: 0.5px; 
-            background: rgba(255, 255, 255, 0.03); 
-            padding: 2px 6px; 
-            border-top-right-radius: 3px;
-            border-bottom-left-radius: 4px;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stage-details { flex: 1; padding-right: 45px; }
-        .stage-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        
-        .stage-spec-tag {
-            font-size: 9px;
-            color: rgba(0, 212, 255, 0.6);
-            font-family: monospace;
-            background: rgba(0, 212, 255, 0.08);
-            padding: 1px 4px;
-            border-radius: 2px;
-            font-weight: normal;
-        }
+        .stage-card.locked-stage .stage-name { color: #55687d; }
         .stage-card.locked-stage .stage-spec-tag { color: #55687d; background: rgba(255,255,255,0.02); }
-        .stage-desc { font-size: 11px; color: #a0b8d0; margin-top: 5px; line-height: 1.35; }
+        .stage-card.locked-stage .stage-arrow-indicator { color: #55687d; text-shadow: none; }
 
-        /* ЭКСПАНД-ЗАКЛАДКА ДЛЯ ОБЛАСТИ КУПОЛОВ */
+        /* ЭКСПАНД-ОБЛАСТЬ ДЛЯ СЕТКИ МОДУЛЕЙ */
         .stage-expand-area {
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
         }
         .stage-card.expanded-active .stage-expand-area {
-            max-height: 600px; 
+            max-height: 400px; 
             opacity: 1;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .stage-card.expanded-active .stage-arrow-indicator {
+            transform: rotate(180deg);
         }
         
-        .stage-code-full { font-family: monospace; color: #00d4ff; font-size: 10px; letter-spacing: 1px; margin-bottom: 12px; opacity: 0.8; }
+        .stage-code-full { font-family: monospace; color: #00d4ff; font-size: 9px; letter-spacing: 1px; margin-bottom: 10px; opacity: 0.7; }
 
-        /* СЕТКА ПЛИТОК ВНУТРИ АККОРДЕОНА — С ОПТИМИЗИРОВАННЫМИ ОТСТУПАМИ */
+        /* СЕТКА ПЛИТОК */
         .domains-inline-grid { 
             display: grid; 
             grid-template-columns: repeat(2, minmax(0, 1fr)); 
             gap: 8px; 
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             padding: 6px;
             border-radius: 4px;
             width: 100%;
         }
         
-        /* КАРТОЧКА ДОМЕНА — КОМПАКТНАЯ ВЕРСИЯ БЕЗ ASPECT-RATIO */
         .domain-tile { 
             background: rgba(6, 14, 28, 0.85); 
             position: relative; 
@@ -221,24 +280,18 @@
             justify-content: center; 
             cursor: pointer; 
             transition: transform 0.1s ease; 
-            padding: 14px 6px 10px 6px; 
+            padding: 12px 6px 8px 6px; 
             text-align: center; 
-            min-height: 72px;
+            min-height: 68px;
             width: 100%;
         }
         .domain-tile:active { transform: scale(0.96); }
         
-        /* УМЕНЬШЕННЫЕ ИКОНКИ ДЛЯ ПРЕДОТВРАЩЕНИЯ СРЕЗАНИЯ */
-        .tile-icon { width: 22px; height: 22px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tile-icon { width: 20px; height: 20px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .tile-icon svg { width: 100%; height: 100%; fill: currentColor; display: block; }
-        
         .tile-tech .tile-icon svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-        .modal-tech .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-
-        /* УМЕНЬШЕННЫЙ ТЕКСТ КОДА */
-        .tile-code { font-size: 11px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; }
         
-        /* СДВИГ СЧЕТЧИКА БЛИЖЕ К КРАЯМ ДЛЯ ЭКОНОМИИ МЕСТА */
+        .tile-code { font-size: 10px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; }
         .tile-counter { position: absolute; top: 4px; right: 4px; font-size: 8px; font-family: monospace; padding: 1px 3px; border-radius: 2px; font-weight: bold; background: rgba(255,255,255,0.04); }
 
         /* ЦВЕТА ДОМЕНОВ */
@@ -256,6 +309,7 @@
         .modal-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; }
         .modal-icon-large { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
         .modal-icon-large svg { width: 100%; height: 100%; fill: currentColor; }
+        .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; } /* Для тех. купола */
         .modal-meta h2 { font-size: 18px; font-weight: 900; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
         .modal-meta p { font-size: 12px; color: #88a0c0; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
         
@@ -281,141 +335,7 @@
         .badge.exam { background: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
         .badge.test { background: rgba(165, 94, 234, 0.15); color: #a55eea; border: 1px solid rgba(165, 94, 234, 0.4); }
 
-        /* ТАКТИЧЕСКИЙ ДИЗАЙН ЗВАНИЙ С КАРТИНКАМИ */
-        .rank-card { 
-            position: relative; 
-            min-height: 125px; 
-            margin-bottom: 16px; 
-            border-radius: 6px; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            padding: 16px;
-            background-size: cover;
-            background-position: center 25%;
-            background-color: rgba(10, 22, 41, 0.4); 
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .rank-card.current { 
-            background-image: url('./IMG_0036.png');
-            border: 1px solid #00d4ff !important; 
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.25), inset 0 0 10px rgba(0, 212, 255, 0.1); 
-        }
-
-        .rank-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, 
-                rgba(2, 6, 17, 0.95) 0%, 
-                rgba(2, 6, 17, 0.82) 45%, 
-                rgba(2, 6, 17, 0.25) 100%);
-            z-index: 1;
-        }
-
-        .rank-content-wrapper {
-            position: relative;
-            z-index: 2;
-            width: 75%;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .rank-header-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .rank-badge-mini {
-            font-size: 11px;
-            font-weight: 900;
-            color: #00d4ff;
-            background: rgba(0, 212, 255, 0.12);
-            border: 1px solid rgba(0, 212, 255, 0.4);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: monospace;
-            letter-spacing: 0.5px;
-        }
-
-        .rank-name-text {
-            font-size: 15px;
-            font-weight: bold;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .rank-description-text {
-            font-size: 11px;
-            color: #a0b8d0;
-            line-height: 1.35;
-        }
-
-        .rank-card.current .rank-badge-mini {
-            background: #00d4ff;
-            color: #020611;
-            border: 1px solid #00d4ff;
-        }
-        .rank-card.current::after { 
-            content: "ТЕКУЩИЙ СТАТУС //"; 
-            position: absolute; 
-            right: 12px; 
-            top: 12px; 
-            font-size: 8px; 
-            color: #00d4ff; 
-            font-weight: 900; 
-            letter-spacing: 1px; 
-            z-index: 2;
-            background: rgba(2, 6, 17, 0.7);
-            padding: 2px 6px;
-            border-radius: 2px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .rank-card.locked { 
-            border: 1px solid rgba(239, 68, 68, 0.15);
-            filter: grayscale(35%);
-        }
-        .rank-card.locked::before {
-            background: linear-gradient(90deg, 
-                rgba(4, 8, 18, 0.98) 0%, 
-                rgba(4, 8, 18, 0.92) 50%, 
-                rgba(4, 8, 18, 0.60) 100%);
-        }
-        .rank-card.locked .rank-badge-mini {
-            color: #88a0c0;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .rank-card.locked .rank-name-text {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .rank-card.locked .rank-description-text {
-            color: #55687d;
-        }
-        .rank-card.locked::after { 
-            content: "🔒 ДОСТУП ОГРАНИЧЕН"; 
-            position: absolute; 
-            right: 12px; 
-            top: 12px; 
-            font-size: 8px; 
-            color: #ef4444; 
-            font-weight: 900; 
-            letter-spacing: 0.5px; 
-            z-index: 2;
-            background: rgba(239, 68, 68, 0.1);
-            padding: 2px 6px;
-            border-radius: 2px;
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        /* НАВИГАЦИОННАЯ ПАНЕЛЬ И КНОПКИ */
+        /* НАВИГАЦИОННАЯ ПАНЕЛЬ */
         .bottom-plate { 
             position: absolute;
             bottom: 15px;
@@ -483,7 +403,7 @@
 
         <div class="center-content-area" id="main-content-scroll-area">
             
-            <div id="section-default" class="screen-section active">
+            <div id="section-default" class="screen-section">
                 <div class="section-title">Имперский Архив данных</div>
                 <div class="archive-placeholder">
                     <p>Доступ к историческим хроникам и логам операций заблокирован до получения звания <b>Кадет-Рекрут (CR)</b>.</p>
@@ -498,248 +418,259 @@
                 </div>
             </div>
 
-            <div id="section-career" class="screen-section">
+            <div id="section-career" class="screen-section active">
                 <div class="section-title">Реестр продвижения по службе</div>
                 
-                <div class="rank-card current">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">REC</span>
-                            <h3 class="rank-name-text">Новобранец</h3>
-                        </div>
-                        <p class="rank-description-text">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</p>
-                    </div>
-                </div>
-                
-                <div class="stage-card active-stage" id="card-genesis" onclick="toggleGenesisAccordion(event)">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">I</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «ГЕНЕЗИС» <span class="stage-spec-tag">REC ➔ CR</span></div>
-                            <div class="stage-desc">Базовый аттестационный купол дисциплины и выживания. Нажмите для просмотра куполов.</div>
+                <div class="rank-group">
+                    <div class="rank-card current">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">REC</span>
+                                <h3 class="rank-name-text">Новобранец</h3>
+                            </div>
+                            <p class="rank-description-text">Точка входа. Гражданский, принявший присягу Порядку и ожидающий первого приказа.</p>
                         </div>
                     </div>
                     
-                    <div class="stage-expand-area" id="genesis-expand">
-                        <div class="stage-code-full">ШИФР ДОСТУПА: ATTESTATION_DOME_GENESIS // REC-CR</div>
+                    <div class="stage-card active-stage" id="card-genesis" onclick="toggleAccordion('card-genesis', event)">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «ГЕНЕЗИС»</span>
+                                <span class="stage-spec-tag">REC ➔ CR</span>
+                            </div>
+                            <span class="stage-arrow-indicator">▼</span>
+                        </div>
                         
-                        <div class="domains-inline-grid">
-                            <div class="domain-tile tile-corp" onclick="openModal('modal-corp', event)">
-                                <span class="tile-counter">0/2</span>
-                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
-                                <div class="tile-code">CORP</div>
-                            </div>
-                            <div class="domain-tile tile-med" onclick="openModal('modal-med', event)">
-                                <span class="tile-counter">0/2</span>
-                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
-                                <div class="tile-code">MED</div>
-                            </div>
-                            <div class="domain-tile tile-tech" onclick="openModal('modal-tech', event)">
-                                <span class="tile-counter">0/2</span>
-                                <div class="tile-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83 2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                    </svg>
+                        <div class="stage-expand-area">
+                            <div class="stage-code-full">ШИФР ДОСТУПА: ATTESTATION_DOME_GENESIS // REC-CR</div>
+                            <div class="domains-inline-grid">
+                                <div class="domain-tile tile-corp" onclick="openModal('modal-corp', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
+                                    <div class="tile-code">CORP</div>
                                 </div>
-                                <div class="tile-code">TECH</div>
+                                <div class="domain-tile tile-med" onclick="openModal('modal-med', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
+                                    <div class="tile-code">MED</div>
+                                </div>
+                                <div class="domain-tile tile-tech" onclick="openModal('modal-tech', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83 2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="tile-code">TECH</div>
+                                </div>
+                                <div class="domain-tile tile-int" onclick="openModal('modal-int', event)">
+                                    <span class="tile-counter">0/2</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
+                                    <div class="tile-code">INT</div>
+                                </div>
+                                <div class="domain-tile tile-psy" onclick="openModal('modal-psy', event)">
+                                    <span class="tile-counter">0/1</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
+                                    <div class="tile-code">PSY</div>
+                                </div>
+                                <div class="domain-tile tile-surv" onclick="openModal('modal-surv', event)">
+                                    <span class="tile-counter">0/1</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
+                                    <div class="tile-code">SURV</div>
+                                </div>
+                                <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd', event)">
+                                    <span class="tile-counter">0/3</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
+                                    <div class="tile-code">CMD</div>
+                                </div>
+                                <div class="domain-tile tile-admin" onclick="openModal('modal-admin', event)">
+                                    <span class="tile-counter">0/1</span>
+                                    <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
+                                    <div class="tile-code">ADMIN</div>
+                                </div>
                             </div>
-                            <div class="domain-tile tile-int" onclick="openModal('modal-int', event)">
-                                <span class="tile-counter">0/2</span>
-                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
-                                <div class="tile-code">INT</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">CR</span>
+                                <h3 class="rank-name-text">Кадет-Рекрут</h3>
                             </div>
-                            <div class="domain-tile tile-psy" onclick="openModal('modal-psy', event)">
-                                <span class="tile-counter">0/1</span>
-                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
-                                <div class="tile-code">PSY</div>
+                            <p class="rank-description-text">Фундамент discipline. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</p>
+                        </div>
+                    </div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «ВЕКТОР»</span>
+                                <span class="stage-spec-tag">CR ➔ C4</span>
                             </div>
-                            <div class="domain-tile tile-surv" onclick="openModal('modal-surv', event)">
-                                <span class="tile-counter">0/1</span>
-                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
-                                <div class="tile-code">SURV</div>
+                            <span class="stage-arrow-indicator">▼</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">C4</span>
+                                <h3 class="rank-name-text">Кадет четвертого класса</h3>
                             </div>
-                            <div class="domain-tile tile-cmd" onclick="openModal('modal-cmd', event)">
-                                <span class="tile-counter">0/3</span>
-                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
-                                <div class="tile-code">CMD</div>
+                            <p class="rank-description-text">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнем и водой, уставы.</p>
+                        </div>
+                    </div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «НЕБЬЮЛА»</span>
+                                <span class="stage-spec-tag">C4 ➔ C3</span>
                             </div>
-                            <div class="domain-tile tile-admin" onclick="openModal('modal-admin', event)">
-                                <span class="tile-counter">0/1</span>
-                                <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-                                <div class="tile-code">ADMIN</div>
+                            <span class="stage-arrow-indicator">▼</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">C3</span>
+                                <h3 class="rank-name-text">Кадет третьего класса</h3>
                             </div>
+                            <p class="rank-description-text">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</p>
+                        </div>
+                    </div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «СПЕКТР»</span>
+                                <span class="stage-spec-tag">C3 ➔ C2</span>
+                            </div>
+                            <span class="stage-arrow-indicator">▼</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">CR</span>
-                            <h3 class="rank-name-text">Кадет-Рекрут</h3>
-                        </div>
-                        <p class="rank-description-text">Фундамент discipline. Тело, психика, среда и тактическая медицина приведены к единому стандарту выживания.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">II</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «ВЕКТОР» <span class="stage-spec-tag">CR ➔ C4</span></div>
-                            <div class="stage-desc">Связь, электротехника, полевая десмургия.</div>
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">C2</span>
+                                <h3 class="rank-name-text">Кадет второго класса</h3>
+                            </div>
+                            <p class="rank-description-text">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">C4</span>
-                            <h3 class="rank-name-text">Кадет четвертого класса</h3>
-                        </div>
-                        <p class="rank-description-text">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнем и водой, уставы.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">III</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «НЕБЬЮЛА» <span class="stage-spec-tag">C4 ➔ C3</span></div>
-                            <div class="stage-desc">Ремонт, рукопашный бой, тактическая логистика отделения.</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">C3</span>
-                            <h3 class="rank-name-text">Кадет третьего класса</h3>
-                        </div>
-                        <p class="rank-description-text">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">IV</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «СПЕКТР» <span class="stage-spec-tag">C3 ➔ C2</span></div>
-                            <div class="stage-desc">Токсикология, криптография, базовое администрирование.</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">C2</span>
-                            <h3 class="rank-name-text">Кадет второго класса</h3>
-                        </div>
-                        <p class="rank-description-text">Глубина специализации. Токсикология, криптография, вербовка, выживание в холоде, администрирование гарнизона.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">V</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «МИРАЖ» <span class="stage-spec-tag">C2 ➔ C1</span></div>
-                            <div class="stage-desc">Профайлинг, social engineering, контр-дезинформация.</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «МИРАЖ»</span>
+                                <span class="stage-spec-tag">C2 ➔ C1</span>
+                            </div>
+                            <span class="stage-arrow-indicator">▼</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">C1</span>
-                            <h3 class="rank-name-text">Кадет первого класса</h3>
-                        </div>
-                        <p class="rank-description-text">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">VI</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «СТРАТУМ» <span class="stage-spec-tag">C1 ➔ CS</span></div>
-                            <div class="stage-desc">Управление отделением, детекция лжи, основы слайсинга.</div>
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">C1</span>
+                                <h3 class="rank-name-text">Кадет первого класса</h3>
+                            </div>
+                            <p class="rank-description-text">Социальный инженер. Профайлинг, детекция лжи, слайсинг, контрдезинформация, управление отделением.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">CS</span>
-                            <h3 class="rank-name-text">Старший кадет</h3>
-                        </div>
-                        <p class="rank-description-text">Командир отделения. Сортировка раненых, фортификация, психология масс, планирование операции взвода.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">VII</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «КВАНТОР» <span class="stage-spec-tag">CS ➔ CCF</span></div>
-                            <div class="stage-desc">Фортификация, тактическое планирование, психология масс.</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «СТРАТУМ»</span>
+                                <span class="stage-spec-tag">C1 ➔ CS</span>
+                            </div>
+                            <span class="stage-arrow-indicator">▼</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">CCF</span>
-                            <h3 class="rank-name-text">Главный кадет</h3>
-                        </div>
-                        <p class="rank-description-text">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">VIII</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «ЭГИДА» <span class="stage-spec-tag">CCF ➔ CLD</span></div>
-                            <div class="stage-desc">Эпидемиология, контрразведка, автономное управление взводом.</div>
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">CS</span>
+                                <h3 class="rank-name-text">Старший кадет</h3>
+                            </div>
+                            <p class="rank-description-text">Командир отделения. Сортировка раненых, фортификация, психология масс, планирование операции взвода.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">CLD</span>
-                            <h3 class="rank-name-text">Ведущий кадет</h3>
-                        </div>
-                        <p class="rank-description-text">Стратег-автоном. Медицинское планирование, диверсии, устойчивость к допросам, координация подразделений.</p>
-                    </div>
-                </div>
-
-                <div class="stage-card locked-stage">
-                    <div class="stage-header">
-                        <div class="stage-circle-indicator">IX</div>
-                        <div class="stage-details">
-                            <div class="stage-name">Программа «ПУЛЬСАР» <span class="stage-spec-tag">CLD ➔ CEX</span></div>
-                            <div class="stage-desc">Медицинское планирование, диверсионная устойчивость, global координация.</div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «КВАНТОР»</span>
+                                <span class="stage-spec-tag">CS ➔ CCF</span>
+                            </div>
+                            <span class="stage-arrow-indicator">▼</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="rank-card locked">
-                    <div class="rank-content-wrapper">
-                        <div class="rank-header-line">
-                            <span class="rank-badge-mini">CEX</span>
-                            <h3 class="rank-name-text">Кадет-выпускник</h3>
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">CCF</span>
+                                <h3 class="rank-name-text">Главный кадет</h3>
+                            </div>
+                            <p class="rank-description-text">Междисциплинарный универсал. Эпидемиология, кустарные ВВ, контрразведка, управление взводом.</p>
                         </div>
-                        <p class="rank-description-text">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</p>
+                    </div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «ЭГИДА»</span>
+                                <span class="stage-spec-tag">CCF ➔ CLD</span>
+                            </div>
+                            <span class="stage-arrow-indicator">▼</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rank-group">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">CLD</span>
+                                <h3 class="rank-name-text">Ведущий кадет</h3>
+                            </div>
+                            <p class="rank-description-text">Стратег-автоном. Медицинское планирование, диверсии, устойчивость к допросам, координация подразделений.</p>
+                        </div>
+                    </div>
+                    <div class="stage-card locked-stage">
+                        <div class="stage-header">
+                            <div class="stage-details">
+                                <span class="stage-name">Программа подготовки «ПУЛЬСАР»</span>
+                                <span class="stage-spec-tag">CLD ➔ CEX</span>
+                            </div>
+                            <span class="stage-arrow-indicator">▼</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rank-group" style="margin-bottom: 0;">
+                    <div class="rank-card locked">
+                        <div class="rank-content-wrapper">
+                            <div class="rank-header-line">
+                                <span class="rank-badge-mini">CEX</span>
+                                <h3 class="rank-name-text">Кадет-выпускник</h3>
+                            </div>
+                            <p class="rank-description-text">Офицер на выходе. Автономная медслужба, агентурная сеть, идеологическая обработка, готовность к Этапу 2.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -780,7 +711,7 @@
             <div class="modal-icon-large">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83 2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                 </svg>
             </div>
             <div class="modal-meta"><h2>TECH</h2><p>Технический купол</p></div>
@@ -857,11 +788,19 @@
             }
         }
 
-        function toggleGenesisAccordion(event) {
-            const card = document.getElementById('card-genesis');
+        function toggleAccordion(cardId, event) {
+            const card = document.getElementById(cardId);
+            
+            // Если кликнули на саму сетку доменов или плитку, не сворачиваем аккордеон
             if (event.target.closest('.domains-inline-grid')) {
                 return;
             }
+            
+            // Если карточка заблокирована, ничего не делаем
+            if (card.classList.contains('locked-stage')) {
+                return;
+            }
+
             card.classList.toggle('expanded-active');
         }
 
@@ -875,7 +814,7 @@
         }
 
         window.onload = function() {
-            switchTab('career'); // По умолчанию открываем объединенную вкладку "Карьера"
+            switchTab('career');
         };
     </script>
 </body>
