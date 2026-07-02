@@ -73,8 +73,11 @@
         .screen-section { display: none; width: 100%; }
         .screen-section.active { display: block; }
         
-        .section-title { font-size: 13px; color: #ff3333; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #ff3333; line-height: 1.2; text-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
-        
+        /* ПРАВКА: Заголовок "Реестр продвижения по службе" стал белым */
+        .section-title { font-size: 13px; color: #ffffff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #ffffff; line-height: 1.2; text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); }
+        /* Сохраняем красный цвет для других вкладок, если у них должен быть свой стиль */
+        #section-default .section-title, #section-training .section-title { color: #ff3333; border-left-color: #ff3333; text-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
+
         .archive-placeholder { background: rgba(18, 19, 22, 0.7); border: 1px dashed rgba(255, 255, 255, 0.15); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
         .archive-placeholder p { font-size: 13px; color: #8e929c; line-height: 1.5; }
 
@@ -127,28 +130,31 @@
         }
 
         .rank-header-line { display: flex; align-items: center; gap: 10px; }
+        
+        /* ПРАВКА: Прямоугольник с шифром звания (REC) стал красным, а текст белым */
         .rank-badge-mini { font-size: 11px; font-weight: 900; color: #ffffff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.3); padding: 2px 6px; border-radius: 3px; font-family: monospace; letter-spacing: 0.5px; }
+        .rank-card.current .rank-badge-mini { background: #ff3333; color: #ffffff; border: 1px solid #ff3333; font-weight: 900; text-shadow: 0 0 4px rgba(255,255,255,0.4); box-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
+        
         .rank-name-text { font-size: 15px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
         .rank-description-text { font-size: 11px; color: #8e929c; line-height: 1.35; }
-
-        .rank-card.current .rank-badge-mini { background: #ffffff; color: #050507; border: 1px solid #ffffff; font-weight: 900; }
         
-        /* Красная неоновая метка текущего статуса */
+        /* ПРАВКА: ТЕКУЩИЙ СТАТУС перекрашен в неоновый зеленый */
         .rank-card.current::after { 
             content: "ТЕКУЩИЙ СТАТУС //"; 
             position: absolute; 
             right: 12px; 
             top: 12px; 
             font-size: 8px; 
-            color: #ff3333; 
+            color: #00ff66; 
             font-weight: 900; 
             letter-spacing: 1px; 
             z-index: 2;
             background: rgba(5, 5, 7, 0.9);
             padding: 2px 6px;
             border-radius: 2px;
-            border: 1px solid rgba(255, 51, 51, 0.3);
-            box-shadow: 0 0 6px rgba(255, 51, 51, 0.2);
+            border: 1px solid rgba(0, 255, 102, 0.4);
+            box-shadow: 0 0 8px rgba(0, 255, 102, 0.25);
+            text-shadow: 0 0 4px rgba(0, 255, 102, 0.5);
         }
 
         .rank-card.locked { 
