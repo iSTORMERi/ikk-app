@@ -101,12 +101,12 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
         }
 
-        /* Текущий статус — Строгий Неоновый Белый */
+        /* ТЕПЕРЬ СВЕТИТСЯ ИМПЕРСКИМ ЗЕЛЕНЫМ НЕОНОМ */
         .rank-card.current { 
             background-image: url('./IMG_0036.png');
-            border: 1px solid #ffffff !important; 
+            border: 1px solid #00ff66 !important; 
             border-bottom: none !important;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.12), inset 0 0 10px rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2), inset 0 0 10px rgba(0, 255, 102, 0.05); 
         }
 
         .rank-card::before {
@@ -233,10 +233,11 @@
         }
         .stage-card.active-stage .stage-name { color: #ffffff; }
 
+        /* РАМКА РАСКРЫТОЙ ПАНЕЛИ ТЕПЕРЬ СЛИВАЕТСЯ С ЗЕЛЕНЫМ НЕОНОМ КАРТОЧКИ */
         .rank-card.current + .stage-card.active-stage {
-            border: 1px solid #ffffff !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
+            border: 1px solid #00ff66 !important;
+            border-top: 1px solid rgba(0, 255, 102, 0.3) !important;
+            box-shadow: 0 6px 15px rgba(0, 255, 102, 0.12);
         }
 
         /* Заблокированная программа */
