@@ -198,7 +198,19 @@
         .stage-header { width: 100%; display: flex; justify-content: space-between; align-items: center; }
         .stage-details { display: flex; align-items: center; gap: 10px; flex: 1; }
         .stage-name { font-size: 11px; font-weight: bold; color: #8e929c; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        
+        /* ТАКТИЧЕСКИЙ ТЕГ ШИФРА СПЕЦИАЛИЗАЦИИ */
         .stage-spec-tag { font-size: 9px; color: #ffffff; font-family: monospace; background: rgba(255, 255, 255, 0.1); padding: 1px 5px; border-radius: 2px; border: 1px solid rgba(255, 255, 255, 0.15); }
+        
+        /* КРАСНЫЙ НЕОН ДЛЯ ТЕГА АКТИВНОЙ ПРОГРАММЫ (REC -> CR) */
+        .stage-spec-tag.neon-red-tag {
+            color: #ff3333;
+            background: rgba(255, 51, 51, 0.08);
+            border: 1px solid rgba(255, 51, 51, 0.4);
+            text-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
+            box-shadow: 0 0 8px rgba(255, 51, 51, 0.15);
+            font-weight: bold;
+        }
         
         /* Индикатор-стрелочка горит красным неоном */
         .stage-arrow-indicator {
@@ -287,7 +299,7 @@
         .tile-code { font-size: 10px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; z-index: 3; }
         .tile-counter { position: absolute; top: 4px; right: 4px; font-size: 8px; font-family: monospace; padding: 1px 3px; border-radius: 2px; font-weight: bold; background: rgba(0,0,0,0.5); z-index: 3; }
 
-        /* СОХРАНЕННЫЕ ЦВЕТА КУПОЛОВ ДЛЯ ВНУТРЕННЕГО КОНТРАСТА */
+        /* SOXPAНЕННЫЕ ЦВЕТА КУПОЛОВ */
         .tile-corp { border: 1px solid rgba(255, 159, 67, 0.35); background-image: linear-gradient(180deg, rgba(10, 11, 13, 0.8) 0%, rgba(10, 11, 13, 0.95) 100%), url('./IMG_0106.png'); background-size: cover; background-position: center; } 
         .tile-corp .tile-icon, .tile-corp .tile-counter { color: #ff9f43; }
         
@@ -325,14 +337,13 @@
         .module-code-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; line-height: 1.3; }
         .badge { font-size: 8px; font-weight: 900; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; flex-shrink: 0; margin-top: 1px; }
         
-        /* Приглушенные тактические бейджи в модалках */
         .badge.system { background: rgba(46, 204, 113, 0.12); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.25); }
         .badge.hybrid { background: rgba(241, 196, 15, 0.12); color: #f1c40f; border: 1px solid rgba(241, 196, 15, 0.3); }
         .badge.credit { background: rgba(255, 255, 255, 0.08); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); }
         .badge.exam { background: rgba(238, 82, 83, 0.15); color: #ee5253; border: 1px solid rgba(238, 82, 83, 0.3); }
         .badge.test { background: rgba(165, 94, 234, 0.12); color: #a55eea; border: 1px solid rgba(165, 94, 234, 0.25); }
 
-        /* ИМПЕРСКАЯ НАВИГАЦИОННАЯ ПАНЕЛЬ (БЕЛАЯ КРОМКА, КРАСНЫЕ КНОПКИ) */
+        /* ИМПЕРСКАЯ НАВИГАЦИОННАЯ ПАНЕЛЬ */
         .bottom-plate { 
             position: absolute;
             bottom: 15px;
@@ -350,7 +361,6 @@
             box-shadow: 0 -4px 25px rgba(255, 255, 255, 0.12); 
         }
         
-        /* Спокойное состояние нижних кнопок — темно-красный контур и текст */
         .nav-btn { 
             flex: 1; 
             background: linear-gradient(180deg, #1f1010 0%, #140a0a 100%); 
@@ -369,7 +379,6 @@
             transition: all 0.15s ease-in-out;
         }
         
-        /* Активное / нажатое состояние — Вспышка красного неона */
         .nav-btn:active, .nav-btn.active { 
             background: linear-gradient(180deg, #ff3333 0%, #990000 100%) !important; 
             border: 1px solid #ff6666 !important; 
@@ -434,7 +443,7 @@
                         <div class="stage-header">
                             <div class="stage-details">
                                 <span class="stage-name">Программа подготовки «ГЕНЕЗИС»</span>
-                                <span class="stage-spec-tag">REC ➔ CR</span>
+                                <span class="stage-spec-tag neon-red-tag">REC ➔ CR</span>
                             </div>
                             <span class="stage-arrow-indicator">▼</span>
                         </div>
