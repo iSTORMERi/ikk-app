@@ -334,22 +334,38 @@
             overflow: hidden;
         }
 
-        /* УВЕЛИЧЕННАЯ ВЫРАЗИТЕЛЬНАЯ ШАПКА КУПОЛА */
+        /* МОНУМЕНТАЛЬНАЯ ШАПКА НА ВСЮ ШИРИНУ ОКНА С ПРОФЕССИОНАЛЬНЫМИ ОТСТУПАМИ */
         .modal-header-panel {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Центрируем по вертикали иконку, заголовки и кнопку закрытия */
-            padding-top: 24px; /* Роскошный отступ сверху */
-            padding-bottom: 24px; /* Роскошный отступ снизу */
-            margin-bottom: 15px;
+            align-items: center; 
+            padding: 35px 20px; /* Кинематографичный просторный отступ */
+            margin-left: -15px; /* Компенсируем боковые паддинги .modal-container */
+            margin-right: -15px;
+            margin-bottom: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px 8px 0 0; /* Округление идеально совпадает с контейнером */
+            background-size: cover;
+            background-position: center;
+            position: relative;
             flex-shrink: 0;
+        }
+
+        /* ЭКСКЛЮЗИВНЫЙ ФОН И ГРАДИЕНТНАЯ МАСКА ДЛЯ ДОМЕНА CORP */
+        .modal-corp .modal-header-panel {
+            background-image: linear-gradient(90deg, 
+                rgba(5, 5, 7, 0.98) 0%, 
+                rgba(5, 5, 7, 0.85) 45%, 
+                rgba(255, 159, 67, 0.15) 100%), 
+                url('./IMG_0106.png');
         }
 
         .modal-header-left {
             display: flex;
             align-items: center;
             gap: 16px;
+            position: relative;
+            z-index: 2;
         }
 
         /* Слегка увеличен масштаб иконок */
@@ -363,6 +379,8 @@
 
         /* Более уверенная кнопка закрытия купола */
         .close-modal-icn-btn {
+            position: relative;
+            z-index: 2;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 11px;
@@ -600,7 +618,7 @@
                                 <span class="rank-badge-mini">C4</span>
                                 <h3 class="rank-name-text">Кадет четвертого класса</h3>
                             </div>
-                            <p class="rank-description-text">Инструментальное расширение. Радиосвязь, электротехника, десмургия, выживание с огнем и водой, уставы.</p>
+                            <p class="rank-description-text">Инструментальное расширение. Radioсвязь, электротехника, десмургия, выживание с огнем и водой, уставы.</p>
                         </div>
                     </div>
                     <div class="stage-card locked-stage">
@@ -619,7 +637,7 @@
                         <div class="rank-content-wrapper">
                             <div class="rank-header-line">
                                 <span class="rank-badge-mini">C3</span>
-                                <h3 class="rank-name-text">Кадет твизического класса</h3>
+                                <h3 class="rank-name-text">Кадет третьего класса</h3>
                             </div>
                             <p class="rank-description-text">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</p>
                         </div>
