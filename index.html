@@ -294,15 +294,18 @@
         .tile-code { font-size: 10px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; z-index: 3; }
         .tile-counter { position: absolute; top: 4px; right: 4px; font-size: 8px; font-family: monospace; padding: 1px 3px; border-radius: 2px; font-weight: bold; background: rgba(0,0,0,0.5); z-index: 3; }
 
-        /* ЦВЕТА КУПОЛОВ НА КАРТЕ КАРЬЕРЫ */
+        /* ЦВЕТА КУПОЛОВ НА КАРТЕ КАРЬЕРЫ (ОБНОВЛЕННЫЕ) */
         .tile-corp { border: 1px solid rgba(255, 159, 67, 0.35); background-image: linear-gradient(180deg, rgba(10, 11, 13, 0.8) 0%, rgba(10, 11, 13, 0.95) 100%), url('./IMG_0106.png'); background-size: cover; background-position: center; } 
         .tile-corp .tile-icon, .tile-corp .tile-counter { color: #ff9f43; }
         
-        .tile-med { border: 1px solid rgba(46, 204, 113, 0.3); } .tile-med .tile-icon, .tile-med .tile-counter { color: #2ecc71; }
+        /* MED -> Бирюзовый */
+        .tile-med { border: 1px solid rgba(0, 240, 255, 0.3); } .tile-med .tile-icon, .tile-med .tile-counter { color: #00f0ff; }
         .tile-tech { border: 1px solid rgba(84, 160, 255, 0.3); } .tile-tech .tile-icon, .tile-tech .tile-counter { color: #54a0ff; }
         .tile-int { border: 1px solid rgba(165, 94, 234, 0.3); } .tile-int .tile-icon, .tile-int .tile-counter { color: #a55eea; }
-        .tile-psy { border: 1px solid rgba(72, 219, 251, 0.3); } .tile-psy .tile-icon, .tile-psy .tile-counter { color: #48dbfb; }
-        .tile-surv { border: 1px solid rgba(16, 172, 132, 0.3); } .tile-surv .tile-icon, .tile-surv .tile-counter { color: #10ac84; }
+        /* PSY -> Яркий аметистовый/лавандовый */
+        .tile-psy { border: 1px solid rgba(191, 85, 236, 0.35); } .tile-psy .tile-icon, .tile-psy .tile-counter { color: #bf55ec; }
+        /* SURV -> Светло-зеленый */
+        .tile-surv { border: 1px solid rgba(46, 213, 115, 0.35); } .tile-surv .tile-icon, .tile-surv .tile-counter { color: #2ed573; }
         .tile-cmd { border: 1px solid rgba(238, 82, 83, 0.3); } .tile-cmd .tile-icon, .tile-cmd .tile-counter { color: #ee5253; }
         .tile-admin { border: 1px solid rgba(255, 221, 89, 0.3); } .tile-admin .tile-icon, .tile-admin .tile-counter { color: #ffdd59; }
 
@@ -329,7 +332,7 @@
             overflow: hidden;
         }
 
-        /* МОНУМЕНТАЛЬНАЯ ШАПКА ТЕПЕРЬ С ЦВЕТНОЙ ЛИНИЕЙ ОТСТУПОВ */
+        /* МОНУМЕНТАЛЬНАЯ ШАПКА С ПРОДЛЕННОЙ ЛИНИЕЙ ДО КРАЕВ МОДАЛКИ */
         .modal-header-panel {
             display: flex;
             justify-content: space-between;
@@ -345,13 +348,13 @@
             flex-shrink: 0;
         }
 
-        /* ПСЕВДОЭЛЕМЕНТ ДЛЯ ЦВЕТНОЙ ЛИНИИ С ОТСТУПАМИ ПО 15PX */
+        /* ЛИНИЯ ТЕПЕРЬ СЛЕВА И СПРАВА В 0 (Продлена до упора) */
         .modal-header-panel::after {
             content: "";
             position: absolute;
             bottom: 0;
-            left: 15px;
-            right: 15px;
+            left: 0;
+            right: 0;
             height: 2px;
             background: rgba(255, 255, 255, 0.1);
             z-index: 5;
@@ -396,20 +399,21 @@
 
         /* Назначение кастомных цветов для линий шапок */
         .modal-corp .modal-header-panel::after { background: #ff9f43; box-shadow: 0 0 6px rgba(255, 159, 67, 0.5); }
-        .modal-med .modal-header-panel::after { background: #2ecc71; box-shadow: 0 0 6px rgba(46, 204, 113, 0.5); }
+        .modal-med .modal-header-panel::after { background: #00f0ff; box-shadow: 0 0 6px rgba(0, 240, 255, 0.5); }
         .modal-tech .modal-header-panel::after { background: #54a0ff; box-shadow: 0 0 6px rgba(84, 160, 255, 0.5); }
         .modal-int .modal-header-panel::after { background: #a55eea; box-shadow: 0 0 6px rgba(165, 94, 234, 0.5); }
-        .modal-psy .modal-header-panel::after { background: #48dbfb; box-shadow: 0 0 6px rgba(72, 219, 251, 0.5); }
-        .modal-surv .modal-header-panel::after { background: #10ac84; box-shadow: 0 0 6px rgba(16, 172, 132, 0.5); }
+        .modal-psy .modal-header-panel::after { background: #bf55ec; box-shadow: 0 0 6px rgba(191, 85, 236, 0.5); }
+        .modal-surv .modal-header-panel::after { background: #2ed573; box-shadow: 0 0 6px rgba(46, 213, 115, 0.5); }
         .modal-cmd .modal-header-panel::after { background: #ee5253; box-shadow: 0 0 6px rgba(238, 82, 83, 0.5); }
         .modal-admin .modal-header-panel::after { background: #ffdd59; box-shadow: 0 0 6px rgba(255, 221, 89, 0.5); }
 
+        /* Стили контейнеров модулей */
         .modal-corp .modal-container { border: 2px solid #ff9f43; box-shadow: inset 0 0 15px rgba(255, 159, 67, 0.05); } .modal-corp .modal-icon-large, .modal-corp .close-modal-icn-btn { color: #ff9f43; border-color: rgba(255, 159, 67, 0.4); }
-        .modal-med .modal-container { border: 2px solid #2ecc71; box-shadow: inset 0 0 15px rgba(46, 204, 113, 0.05); } .modal-med .modal-icon-large, .modal-med .close-modal-icn-btn { color: #2ecc71; border-color: rgba(46, 204, 113, 0.4); }
+        .modal-med .modal-container { border: 2px solid #00f0ff; box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.05); } .modal-med .modal-icon-large, .modal-med .close-modal-icn-btn { color: #00f0ff; border-color: rgba(0, 240, 255, 0.4); }
         .modal-tech .modal-container { border: 2px solid #54a0ff; box-shadow: inset 0 0 15px rgba(84, 160, 255, 0.05); } .modal-tech .modal-icon-large, .modal-tech .close-modal-icn-btn { color: #54a0ff; border-color: rgba(84, 160, 255, 0.4); }
         .modal-int .modal-container { border: 2px solid #a55eea; box-shadow: inset 0 0 15px rgba(165, 94, 234, 0.05); } .modal-int .modal-icon-large, .modal-int .close-modal-icn-btn { color: #a55eea; border-color: rgba(165, 94, 234, 0.4); }
-        .modal-psy .modal-container { border: 2px solid #48dbfb; box-shadow: inset 0 0 15px rgba(72, 219, 251, 0.05); } .modal-psy .modal-icon-large, .modal-psy .close-modal-icn-btn { color: #48dbfb; border-color: rgba(72, 219, 251, 0.4); }
-        .modal-surv .modal-container { border: 2px solid #10ac84; box-shadow: inset 0 0 15px rgba(16, 172, 132, 0.05); } .modal-surv .modal-icon-large, .modal-surv .close-modal-icn-btn { color: #10ac84; border-color: rgba(16, 172, 132, 0.4); }
+        .modal-psy .modal-container { border: 2px solid #bf55ec; box-shadow: inset 0 0 15px rgba(191, 85, 236, 0.05); } .modal-psy .modal-icon-large, .modal-psy .close-modal-icn-btn { color: #bf55ec; border-color: rgba(191, 85, 236, 0.4); }
+        .modal-surv .modal-container { border: 2px solid #2ed573; box-shadow: inset 0 0 15px rgba(46, 213, 115, 0.05); } .modal-surv .modal-icon-large, .modal-surv .close-modal-icn-btn { color: #2ed573; border-color: rgba(46, 213, 115, 0.4); }
         .modal-cmd .modal-container { border: 2px solid #ee5253; box-shadow: inset 0 0 15px rgba(238, 82, 83, 0.05); } .modal-cmd .modal-icon-large, .modal-cmd .close-modal-icn-btn { color: #ee5253; border-color: rgba(238, 82, 83, 0.4); }
         .modal-admin .modal-container { border: 2px solid #ffdd59; box-shadow: inset 0 0 15px rgba(255, 221, 89, 0.05); } .modal-admin .modal-icon-large, .modal-admin .close-modal-icn-btn { color: #ffdd59; border-color: rgba(255, 221, 89, 0.4); }
 
@@ -462,13 +466,13 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Динамическое окрашивание рамок микро-виджетов по куполам */
+        /* Динамическое окрашивание рамок микро-виджетов */
         .modal-corp .module-badge-block { border-color: rgba(255, 159, 67, 0.3); background: rgba(255, 159, 67, 0.03); }
-        .modal-med .module-badge-block { border-color: rgba(46, 204, 113, 0.25); background: rgba(46, 204, 113, 0.03); }
+        .modal-med .module-badge-block { border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.03); }
         .modal-tech .module-badge-block { border-color: rgba(84, 160, 255, 0.25); background: rgba(84, 160, 255, 0.03); }
         .modal-int .module-badge-block { border-color: rgba(165, 94, 234, 0.25); background: rgba(165, 94, 234, 0.03); }
-        .modal-psy .module-badge-block { border-color: rgba(72, 219, 251, 0.25); background: rgba(72, 219, 251, 0.03); }
-        .modal-surv .module-badge-block { border-color: rgba(16, 172, 132, 0.25); background: rgba(16, 172, 132, 0.03); }
+        .modal-psy .module-badge-block { border-color: rgba(191, 85, 236, 0.3); background: rgba(191, 85, 236, 0.03); }
+        .modal-surv .module-badge-block { border-color: rgba(46, 213, 115, 0.3); background: rgba(46, 213, 115, 0.03); }
         .modal-cmd .module-badge-block { border-color: rgba(238, 82, 83, 0.25); background: rgba(238, 82, 83, 0.03); }
         .modal-admin .module-badge-block { border-color: rgba(255, 221, 89, 0.25); background: rgba(255, 221, 89, 0.03); }
         
@@ -478,11 +482,11 @@
         
         /* Раскраска иконок */
         .modal-corp .module-micricon { color: #ff9f43; }
-        .modal-med .module-micricon { color: #2ecc71; }
+        .modal-med .module-micricon { color: #00f0ff; }
         .modal-tech .module-micricon { color: #54a0ff; }
         .modal-int .module-micricon { color: #a55eea; }
-        .modal-psy .module-micricon { color: #48dbfb; }
-        .modal-surv .module-micricon { color: #10ac84; }
+        .modal-psy .module-micricon { color: #bf55ec; }
+        .modal-surv .module-micricon { color: #2ed573; }
         .modal-cmd .module-micricon { color: #ee5253; }
         .modal-admin .module-micricon { color: #ffdd59; }
 
@@ -491,19 +495,18 @@
             font-size: 9px;
             font-family: monospace;
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 0.5px;
         }
         .modal-corp .module-block-code { color: rgba(255, 159, 67, 0.7); }
-        .modal-med .module-block-code { color: rgba(46, 204, 113, 0.7); }
+        .modal-med .module-block-code { color: rgba(0, 240, 255, 0.7); }
         .modal-tech .module-block-code { color: rgba(84, 160, 255, 0.7); }
         .modal-int .module-block-code { color: rgba(165, 94, 234, 0.7); }
-        .modal-psy .module-block-code { color: rgba(72, 219, 251, 0.7); }
-        .modal-surv .module-block-code { color: rgba(16, 172, 132, 0.7); }
+        .modal-psy .module-block-code { color: rgba(191, 85, 236, 0.7); }
+        .modal-surv .module-block-code { color: rgba(46, 213, 115, 0.7); }
         .modal-cmd .module-block-code { color: rgba(238, 82, 83, 0.7); }
         .modal-admin .module-block-code { color: rgba(255, 221, 89, 0.7); }
 
-        /* Чистое название модуля */
+        /* Название модуля */
         .module-pure-name { 
             font-size: 13px; 
             font-weight: bold; 
@@ -513,7 +516,7 @@
             letter-spacing: 0.5px;
         }
         
-        /* Правая мета-зона с фиксацией по краю */
+        /* Правая мета-зона */
         .module-meta-right { 
             display: flex; 
             align-items: center; 
@@ -554,26 +557,43 @@
         
         /* Кастомный цвет левой рамки контента по доменам */
         .modal-corp .module-item.expanded-module .module-expand-area { border-left-color: #ff9f43; }
-        .modal-med .module-item.expanded-module .module-expand-area { border-left-color: #2ecc71; }
+        .modal-med .module-item.expanded-module .module-expand-area { border-left-color: #00f0ff; }
         .modal-tech .module-item.expanded-module .module-expand-area { border-left-color: #54a0ff; }
         .modal-int .module-item.expanded-module .module-expand-area { border-left-color: #a55eea; }
-        .modal-psy .module-item.expanded-module .module-expand-area { border-left-color: #48dbfb; }
-        .modal-surv .module-item.expanded-module .module-expand-area { border-left-color: #10ac84; }
+        .modal-psy .module-item.expanded-module .module-expand-area { border-left-color: #bf55ec; }
+        .modal-surv .module-item.expanded-module .module-expand-area { border-left-color: #2ed573; }
         .modal-cmd .module-item.expanded-module .module-expand-area { border-left-color: #ee5253; }
         .modal-admin .module-item.expanded-module .module-expand-area { border-left-color: #ffdd59; }
 
-        .task-sub-title { font-size: 9px; font-family: monospace; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+        /* ТАКТИЧЕСКИЕ ПОДЗАГОЛОВКИ (ДИНАМИЧЕСКИЙ ЦВЕТ ОТ КУПОЛА) */
+        .task-sub-title { 
+            font-size: 9px; 
+            font-family: monospace; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            margin-bottom: 6px; 
+        }
+        .modal-corp .task-sub-title { color: #ff9f43; }
+        .modal-med .task-sub-title { color: #00f0ff; }
+        .modal-tech .task-sub-title { color: #54a0ff; }
+        .modal-int .task-sub-title { color: #a55eea; }
+        .modal-psy .task-sub-title { color: #bf55ec; }
+        .modal-surv .task-sub-title { color: #2ed573; }
+        .modal-cmd .task-sub-title { color: #ee5253; }
+        .modal-admin .task-sub-title { color: #ffdd59; }
+
         .task-description { font-size: 12px; color: #e1e4ea; line-height: 1.45; margin-bottom: 14px; }
         
         .criteria-list { list-style: none; margin-bottom: 16px; }
         .criteria-list li { font-size: 11px; color: #8e929c; position: relative; padding-left: 14px; margin-bottom: 4px; line-height: 1.35; }
         .criteria-list li::before { content: "▪"; position: absolute; left: 0; top: -1px; font-size: 10px; }
+        
         .modal-corp .criteria-list li::before { color: #ff9f43; }
-        .modal-med .criteria-list li::before { color: #2ecc71; }
+        .modal-med .criteria-list li::before { color: #00f0ff; }
         .modal-tech .criteria-list li::before { color: #54a0ff; }
         .modal-int .criteria-list li::before { color: #a55eea; }
-        .modal-psy .criteria-list li::before { color: #48dbfb; }
-        .modal-surv .criteria-list li::before { color: #10ac84; }
+        .modal-psy .criteria-list li::before { color: #bf55ec; }
+        .modal-surv .criteria-list li::before { color: #2ed573; }
         .modal-cmd .criteria-list li::before { color: #ee5253; }
         .modal-admin .criteria-list li::before { color: #ffdd59; }
 
@@ -858,7 +878,7 @@
                         <p class="task-description">Расчет и адаптация индивидуального суточного рациона под боевые задачи. Освоение регламента распределения БЖУ в условиях дефицита ресурсов.</p>
                         <div class="task-sub-title">// КРИТЕРИИ СДАЧИ</div>
                         <ul class="criteria-list">
-                            <li>Составление карты питания на период полевого выхода (7 суток).</li>
+                            <li>Составление карты питания на period полевого выхода (7 суток).</li>
                             <li>Теоретический зачет по метаболическому окну и дегидратации.</li>
                         </ul>
                         <div class="task-action-row">
