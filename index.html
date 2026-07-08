@@ -77,7 +77,6 @@
         
         /* СДВИГ ЗАГОЛОВКОВ ВНИЗ ДЛЯ СБАЛАНСИРОВАННЫХ ОТСТУПОВ */
         .section-title { font-size: 13px; color: #ffffff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 35px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #ffffff; line-height: 1.2; text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); }
-        /* Сохраняем красный цвет для других вкладок, если у них должен быть свой стиль */
         #section-default .section-title, #section-training .section-title { color: #ff3333; border-left-color: #ff3333; text-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
 
         .archive-placeholder { background: rgba(18, 19, 22, 0.7); border: 1px dashed rgba(255, 255, 255, 0.15); padding: 30px 20px; text-align: center; border-radius: 4px; margin-top: 20px; }
@@ -117,7 +116,7 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(90deg, 
                 rgba(5, 5, 7, 0.97) 0%, 
-                rgba(5, 5, 7, 0.88) 45%, 
+                rgba(5, 5, 7) 45%, 
                 rgba(5, 5, 7, 0.35) 100%);
             z-index: 1;
         }
@@ -133,14 +132,12 @@
 
         .rank-header-line { display: flex; align-items: center; gap: 10px; }
         
-        /* ПРАВКА: Прямоугольник с шифром звания (REC) стал красным, а text белым */
         .rank-badge-mini { font-size: 11px; font-weight: 900; color: #ffffff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.3); padding: 2px 6px; border-radius: 3px; font-family: monospace; letter-spacing: 0.5px; }
         .rank-card.current .rank-badge-mini { background: #ff3333; color: #ffffff; border: 1px solid #ff3333; font-weight: 900; text-shadow: 0 0 4px rgba(255,255,255,0.4); box-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
         
         .rank-name-text { font-size: 15px; font-weight: bold; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
         .rank-description-text { font-size: 11px; color: #8e929c; line-height: 1.35; }
         
-        /* ОБНОВЛЕНО: ТЕКУЩИЙ СТАТУС перекрашен в неоновый синий */
         .rank-card.current::after { 
             content: "ТЕКУЩИЙ СТАТУС //"; 
             position: absolute; 
@@ -207,10 +204,8 @@
         .stage-details { display: flex; align-items: center; gap: 10px; flex: 1; }
         .stage-name { font-size: 11px; font-weight: bold; color: #8e929c; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
         
-        /* ТАКТИЧЕСКИЙ ТЕГ ШИФРА СПЕЦИАЛИЗАЦИИ */
         .stage-spec-tag { font-size: 9px; color: #ffffff; font-family: monospace; background: rgba(255, 255, 255, 0.1); padding: 1px 5px; border-radius: 2px; border: 1px solid rgba(255, 255, 255, 0.15); }
         
-        /* КРАСНЫЙ НЕОН ДЛЯ ТЕГА АКТИВНОЙ ПРОГРАММЫ (REC -> CR) */
         .stage-spec-tag.neon-red-tag {
             color: #ff3333;
             background: rgba(255, 51, 51, 0.08);
@@ -220,7 +215,6 @@
             font-weight: bold;
         }
         
-        /* Индикатор-стрелочка горит красным неоном */
         .stage-arrow-indicator {
             font-size: 10px;
             color: #ff3333;
@@ -228,21 +222,18 @@
             text-shadow: 0 0 5px rgba(255, 51, 51, 0.6);
         }
 
-        /* Активное состояние контура */
         .stage-card.active-stage { 
             border-color: rgba(255, 255, 255, 0.3); 
             background: rgba(22, 23, 26, 0.98);
         }
         .stage-card.active-stage .stage-name { color: #ffffff; }
 
-        /* ОБНОВЛЕНО: РАМКА РАСКРЫТОЙ ПАНЕЛИ ТЕПЕРЬ СЛИВАЕТСЯ С СИНЕМ НЕОНОМ КАРТОЧКИ */
         .rank-card.current + .stage-card.active-stage {
             border: 1px solid #00f0ff !important;
             border-top: 1px solid rgba(0, 240, 255, 0.3) !important;
             box-shadow: 0 6px 15px rgba(0, 240, 255, 0.15);
         }
 
-        /* Заблокированная программа */
         .stage-card.locked-stage { 
             opacity: 0.45; 
             background: rgba(10, 10, 12, 0.96);
@@ -269,7 +260,6 @@
         }
         .stage-card.expanded-active .stage-arrow-indicator { transform: rotate(180deg); }
         
-        /* Шифр доступа в красном неоне */
         .stage-code-full { font-family: monospace; color: #ff3333; font-size: 9px; letter-spacing: 1px; margin-bottom: 10px; opacity: 0.9; text-shadow: 0 0 4px rgba(255, 51, 51, 0.3); }
 
         /* СЕТКА ПЛИТОК КУПОЛОВ */
@@ -308,7 +298,7 @@
         .tile-code { font-size: 10px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; z-index: 3; }
         .tile-counter { position: absolute; top: 4px; right: 4px; font-size: 8px; font-family: monospace; padding: 1px 3px; border-radius: 2px; font-weight: bold; background: rgba(0,0,0,0.5); z-index: 3; }
 
-        /* SOXPAНЕННЫЕ ЦВЕТА КУПОЛОВ */
+        /* ЦВЕТА КУПОЛОВ НА КАРТЕ КАРЬЕРЫ */
         .tile-corp { border: 1px solid rgba(255, 159, 67, 0.35); background-image: linear-gradient(180deg, rgba(10, 11, 13, 0.8) 0%, rgba(10, 11, 13, 0.95) 100%), url('./IMG_0106.png'); background-size: cover; background-position: center; } 
         .tile-corp .tile-icon, .tile-corp .tile-counter { color: #ff9f43; }
         
@@ -320,32 +310,101 @@
         .tile-cmd { border: 1px solid rgba(238, 82, 83, 0.3); } .tile-cmd .tile-icon, .tile-cmd .tile-counter { color: #ee5253; }
         .tile-admin { border: 1px solid rgba(255, 221, 89, 0.3); } .tile-admin .tile-icon, .tile-admin .tile-counter { color: #ffdd59; }
 
-        /* ТАКТИЧЕСКИЕ МОДАЛЬНЫЕ ОКНА КУПОЛОВ */
-        .full-screen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 9, 11, 0.99); z-index: 100; padding: 20px 15px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-        .modal-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; }
-        .modal-icon-large { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
-        .modal-icon-large svg { width: 100%; height: 100%; fill: currentColor; }
-        .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; } 
-        .modal-meta h2 { font-size: 18px; font-weight: 900; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
-        .modal-meta p { font-size: 12px; color: #8e929c; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        .modal-corp { border: 2px solid #ff9f43; } .modal-corp .modal-icon-large, .modal-corp .back-modal-btn { color: #ff9f43; }
-        .modal-med { border: 2px solid #2ecc71; } .modal-med .modal-icon-large, .modal-med .back-modal-btn { color: #2ecc71; }
-        .modal-tech { border: 2px solid #54a0ff; } .modal-tech .modal-icon-large, .modal-tech .back-modal-btn { color: #54a0ff; }
-        .modal-int { border: 2px solid #a55eea; } .modal-int .modal-icon-large, .modal-int .back-modal-btn { color: #a55eea; }
-        .modal-psy { border: 2px solid #48dbfb; } .modal-psy .modal-icon-large, .modal-psy .back-modal-btn { color: #48dbfb; }
-        .modal-surv { border: 2px solid #10ac84; } .modal-surv .modal-icon-large, .modal-surv .back-modal-btn { color: #10ac84; }
-        .modal-cmd { border: 2px solid #ee5253; } .modal-cmd .modal-icon-large, .modal-cmd .back-modal-btn { color: #ee5253; }
-        .modal-admin { border: 2px solid #ffdd59; } .modal-admin .modal-icon-large, .modal-admin .back-modal-btn { color: #ffdd59; }
+        /* ОБНОВЛЕННАЯ АРХИТЕКТУРА ТАКТИЧЕСКИХ МОДАЛЬНЫХ ОКНО (КУПОЛОВ) */
+        .full-screen-modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: #000000; /* Глухой черный фон перекрывает все скругления смартфона */
+            z-index: 100; 
+        }
 
-        .back-modal-btn { display: inline-flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid currentColor; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 10px 16px; text-transform: uppercase; border-radius: 3px; margin-bottom: 25px; cursor: pointer; }
-        
-        .module-item { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        /* Внутренний контейнер смещен внутрь экрана для защиты от закруглений iPhone */
+        .modal-container {
+            margin: 10px;
+            height: calc(100% - 20px);
+            background: rgba(8, 9, 11, 0.98);
+            border-radius: 8px; /* Технологичное скругление */
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Выделенная панель шапки домена (В будущем сюда легко встанет фон) */
+        .modal-header-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 18px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .modal-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .modal-icon-large { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .modal-icon-large svg { width: 100%; height: 100%; fill: currentColor; }
+        .modal-tech .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; } 
+
+        .modal-meta h2 { font-size: 19px; font-weight: 900; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
+        .modal-meta p { font-size: 11px; color: #8e929c; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Минималистичная имперская кнопка закрытия купола */
+        .close-modal-icn-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 10px;
+            font-weight: 800;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+            color: #8e929c;
+            padding: 6px 10px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .close-modal-icn-btn:active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        /* Изолированное тело со списком модулей */
+        .modal-body-content {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-right: 2px;
+        }
+        .modal-body-content::-webkit-scrollbar { width: 4px; }
+        .modal-body-content::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 2px; }
+
+        /* Специфические рамки купола, завязанные на внутренний контейнер */
+        .modal-corp .modal-container { border: 2px solid #ff9f43; box-shadow: inset 0 0 15px rgba(255, 159, 67, 0.05); } .modal-corp .modal-icon-large, .modal-corp .close-modal-icn-btn { color: #ff9f43; border-color: rgba(255, 159, 67, 0.3); }
+        .modal-med .modal-container { border: 2px solid #2ecc71; box-shadow: inset 0 0 15px rgba(46, 204, 113, 0.05); } .modal-med .modal-icon-large, .modal-med .close-modal-icn-btn { color: #2ecc71; border-color: rgba(46, 204, 113, 0.3); }
+        .modal-tech .modal-container { border: 2px solid #54a0ff; box-shadow: inset 0 0 15px rgba(84, 160, 255, 0.05); } .modal-tech .modal-icon-large, .modal-tech .close-modal-icn-btn { color: #54a0ff; border-color: rgba(84, 160, 255, 0.3); }
+        .modal-int .modal-container { border: 2px solid #a55eea; box-shadow: inset 0 0 15px rgba(165, 94, 234, 0.05); } .modal-int .modal-icon-large, .modal-int .close-modal-icn-btn { color: #a55eea; border-color: rgba(165, 94, 234, 0.3); }
+        .modal-psy .modal-container { border: 2px solid #48dbfb; box-shadow: inset 0 0 15px rgba(72, 219, 251, 0.05); } .modal-psy .modal-icon-large, .modal-psy .close-modal-icn-btn { color: #48dbfb; border-color: rgba(72, 219, 251, 0.3); }
+        .modal-surv .modal-container { border: 2px solid #10ac84; box-shadow: inset 0 0 15px rgba(16, 172, 132, 0.05); } .modal-surv .modal-icon-large, .modal-surv .close-modal-icn-btn { color: #10ac84; border-color: rgba(16, 172, 132, 0.3); }
+        .modal-cmd .modal-container { border: 2px solid #ee5253; box-shadow: inset 0 0 15px rgba(238, 82, 83, 0.05); } .modal-cmd .modal-icon-large, .modal-cmd .close-modal-icn-btn { color: #ee5253; border-color: rgba(238, 82, 83, 0.3); }
+        .modal-admin .modal-container { border: 2px solid #ffdd59; box-shadow: inset 0 0 15px rgba(255, 221, 89, 0.05); } .modal-admin .modal-icon-large, .modal-admin .close-modal-icn-btn { color: #ffdd59; border-color: rgba(255, 221, 89, 0.3); }
+
+        /* Элементы модулей (В будущем легко трансформируются в отдельные карточки) */
+        .module-item { display: block; width: 100%; padding: 14px 2px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .module-item:last-child { border-bottom: none; }
-        .module-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; }
+        .module-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; width: 100%; }
         .module-code-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; line-height: 1.3; }
-        .badge { font-size: 8px; font-weight: 900; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; flex-shrink: 0; margin-top: 1px; }
         
+        .badge { font-size: 8px; font-weight: 900; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; flex-shrink: 0; margin-top: 1px; }
         .badge.system { background: rgba(46, 204, 113, 0.12); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.25); }
         .badge.hybrid { background: rgba(241, 196, 15, 0.12); color: #f1c40f; border: 1px solid rgba(241, 196, 15, 0.3); }
         .badge.credit { background: rgba(255, 255, 255, 0.08); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); }
@@ -702,86 +761,134 @@
     </div>
 
     <div id="modal-corp" class="full-screen-modal modal-corp">
-        <div class="back-modal-btn" onclick="closeModal('modal-corp')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
-            <div class="modal-meta"><h2>CORP</h2><p>Физический купол</p></div>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg></div>
+                    <div class="modal-meta"><h2>CORP</h2><p>Физический купол</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-corp')">[ esc ]</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">CORP 1.1 — Физическая готовность</span><span class="badge hybrid">Система + Экзамен</span></div></div>
+                <div class="module-item"><div class="module-top"><span class="module-code-name">CORP 1.2 — Система питания</span><span class="badge system">Система</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">CORP 1.1 — Физическая готовность</span><span class="badge hybrid">Система + Экзамен</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">CORP 1.2 — Система питания</span><span class="badge system">Система</span></div></div>
     </div>
 
     <div id="modal-med" class="full-screen-modal modal-med">
-        <div class="back-modal-btn" onclick="closeModal('modal-med')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
-            <div class="modal-meta"><h2>MED</h2><p>Медицинский купол</p></div>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg></div>
+                    <div class="modal-meta"><h2>MED</h2><p>Медицинский купол</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-med')">[ esc ]</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">MED 1.1 — Тактическая медицина: MARCH</span><span class="badge exam">Экзамен</span></div></div>
+                <div class="module-item"><div class="module-top"><span class="module-code-name">MED 1.2 — Гражданская медицина</span><span class="badge credit">Зачёт</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">MED 1.1 — Тактическая медицина: MARCH</span><span class="badge exam">Экзамен</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">MED 1.2 — Гражданская медицина</span><span class="badge credit">Зачёт</span></div></div>
     </div>
 
     <div id="modal-tech" class="full-screen-modal modal-tech">
-        <div class="back-modal-btn" onclick="closeModal('modal-tech')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83 2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83 2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <div class="modal-meta"><h2>TECH</h2><p>Технический купол</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-tech')">[ esc ]</button>
             </div>
-            <div class="modal-meta"><h2>TECH</h2><p>Технический купол</p></div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.1 — Информационная безопасность</span><span class="badge exam">Экзамен</span></div></div>
+                <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.2 — Цифровая гигиена и чистый стол</span><span class="badge credit">Зачёт</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.1 — Информационная безопасность</span><span class="badge exam">Экзамен</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">TECH 1.2 — Цифровая гигиена и чистый стол</span><span class="badge credit">Зачёт</span></div></div>
     </div>
 
     <div id="modal-int" class="full-screen-modal modal-int">
-        <div class="back-modal-btn" onclick="closeModal('modal-int')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
-            <div class="modal-meta"><h2>INT</h2><p>Разведка и анализ</p></div>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
+                    <div class="modal-meta"><h2>INT</h2><p>Разведка и анализ</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-int')">[ esc ]</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.1 — Ситуационная осознанность</span><span class="badge system">Система</span></div></div>
+                <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.2 — Базовая разведка: OSINT-ГРАФ</span><span class="badge exam">Экзамен</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.1 — Ситуационная осознанность</span><span class="badge system">Система</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">INT 1.2 — Базовая разведка: OSINT-ГРАФ</span><span class="badge exam">Экзамен</span></div></div>
     </div>
 
     <div id="modal-psy" class="full-screen-modal modal-psy">
-        <div class="back-modal-btn" onclick="closeModal('modal-psy')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
-            <div class="modal-meta"><h2>PSY</h2><p>Психологический купол</p></div>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12.14 2.15L3.1 8.54l2.45 13.31h12.91l2.44-13.31-9.06-6.39zM12 4.44l6.19 4.37-1.38 7.53H7.19l-1.38-7.53L12 4.44z"/></svg></div>
+                    <div class="modal-meta"><h2>PSY</h2><p>Психологический купол</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-psy')">[ esc ]</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">PSY 1.1 — Психологическая устойчивость</span><span class="badge test">Тест</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">PSY 1.1 — Психологическая устойчивость</span><span class="badge test">Тест</span></div></div>
     </div>
 
     <div id="modal-surv" class="full-screen-modal modal-surv">
-        <div class="back-modal-btn" onclick="closeModal('modal-surv')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
-            <div class="modal-meta"><h2>SURV</h2><p>Выживание и навигация</p></div>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.56V14h-2v3.56c-2.45-.45-4.41-2.41-4.86-4.86H9.7v-2H6.14c.45-2.45 2.41-4.41 4.86-4.86V7.3h2v3.56c2.45.45 4.41 2.41 4.86 4.86h-3.56v2h3.56c-.45 2.45-2.41 4.41-4.86 4.86z"/></svg></div>
+                    <div class="modal-meta"><h2>SURV</h2><p>Выживание и навигация</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-surv')">[ esc ]</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">SURV 1.1 — Топография и ориентирование</span><span class="badge credit">Зачёт</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">SURV 1.1 — Топография и ориентирование</span><span class="badge credit">Зачёт</span></div></div>
     </div>
 
     <div id="modal-cmd" class="full-screen-modal modal-cmd">
-        <div class="back-modal-btn" onclick="closeModal('modal-cmd')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
-            <div class="modal-meta"><h2>CMD</h2><p>Командный купол</p></div>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M21 21H3v-2l2-2V9c0-3.87 3.13-7 7-7s7 3.13 7 7v8l2 2v2zm-9-15c-2.76 0-5 2.24-5 5v7h10v-7c0-2.76-2.24-5-5-5z"/></svg></div>
+                    <div class="modal-meta"><h2>CMD</h2><p>Командный купол</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-cmd')">[ esc ]</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.1 — Тактика и управление</span><span class="badge hybrid">Курс</span></div></div>
+                <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.2 — Работа с личным составом</span><span class="badge system">Система</span></div></div>
+                <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.3 — Регламент связи</span><span class="badge exam">Экзамен</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.1 — Тактика и управление</span><span class="badge hybrid">Курс</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.2 — Работа с личным составом</span><span class="badge system">Система</span></div></div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">CMD 1.3 — Регламент связи</span><span class="badge exam">Экзамен</span></div></div>
     </div>
 
     <div id="modal-admin" class="full-screen-modal modal-admin">
-        <div class="back-modal-btn" onclick="closeModal('modal-admin')">« Закрыть купол</div>
-        <div class="modal-header">
-            <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-            <div class="modal-meta"><h2>ADMIN</h2><p>Административный купол</p></div>
+        <div class="modal-container">
+            <div class="modal-header-panel">
+                <div class="modal-header-left">
+                    <div class="modal-icon-large"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
+                    <div class="modal-meta"><h2>ADMIN</h2><p>Административный купол</p></div>
+                </div>
+                <button class="close-modal-icn-btn" onclick="closeModal('modal-admin')">[ esc ]</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="module-item"><div class="module-top"><span class="module-code-name">ADMIN 1.1 — Внутренний регламент гарнизона</span><span class="badge test">Тест</span></div></div>
+            </div>
         </div>
-        <div class="module-item"><div class="module-top"><span class="module-code-name">ADMIN 1.1 — Внутренний регламент гарнизона</span><span class="badge test">Тест</span></div></div>
     </div>
 
     <script>
