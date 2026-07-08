@@ -322,25 +322,26 @@
             z-index: 100; 
         }
 
-        /* Внутренний контейнер смещен внутрь экрана для защиты от закруглений iPhone */
+        /* ПОДНЯТА НИЖНЯЯ ГРАНИЦА: Динамическая адаптация под safe-area дисплея на полный экран */
         .modal-container {
-            margin: 10px;
-            height: calc(100% - 20px);
+            margin: 10px 10px calc(15px + env(safe-area-inset-bottom)) 10px;
+            height: calc(100% - 20px - env(safe-area-inset-bottom));
             background: rgba(8, 9, 11, 0.98);
             border-radius: 8px; /* Технологичное скругление */
-            padding: 20px 15px;
+            padding: 0 15px 20px 15px; /* Перенесли padding-top в саму шапку */
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
-        /* Выделенная панель шапки домена (В будущем сюда легко встанет фон) */
+        /* УВЕЛИЧЕННАЯ ВЫРАЗИТЕЛЬНАЯ ШАПКА КУПОЛА */
         .modal-header-panel {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding-bottom: 18px;
-            margin-bottom: 20px;
+            align-items: center; /* Центрируем по вертикали иконку, заголовки и кнопку закрытия */
+            padding-top: 24px; /* Роскошный отступ сверху */
+            padding-bottom: 24px; /* Роскошный отступ снизу */
+            margin-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             flex-shrink: 0;
         }
@@ -348,34 +349,36 @@
         .modal-header-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
         }
 
-        .modal-icon-large { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        /* Слегка увеличен масштаб иконок */
+        .modal-icon-large { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .modal-icon-large svg { width: 100%; height: 100%; fill: currentColor; }
         .modal-tech .modal-icon-large svg { fill: none; stroke: currentColor; stroke-width: 2.5; } 
 
-        .modal-meta h2 { font-size: 19px; font-weight: 900; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
-        .modal-meta p { font-size: 11px; color: #8e929c; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+        /* Крупный, кинематографичный шрифт заголовков */
+        .modal-meta h2 { font-size: 22px; font-weight: 900; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; line-height: 1.1; }
+        .modal-meta p { font-size: 11px; color: #8e929c; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
 
-        /* Минималистичная имперская кнопка закрытия купола */
+        /* Более уверенная кнопка закрытия купола */
         .close-modal-icn-btn {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            font-size: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 11px;
             font-weight: 800;
             font-family: monospace;
             letter-spacing: 0.5px;
-            color: #8e929c;
-            padding: 6px 10px;
+            color: #ffffff;
+            padding: 8px 14px; /* Сделали более ухватистой */
             text-transform: uppercase;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.15s ease;
         }
         .close-modal-icn-btn:active {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(0.97);
         }
 
         /* Изолированное тело со списком модулей */
@@ -389,14 +392,14 @@
         .modal-body-content::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 2px; }
 
         /* Специфические рамки купола, завязанные на внутренний контейнер */
-        .modal-corp .modal-container { border: 2px solid #ff9f43; box-shadow: inset 0 0 15px rgba(255, 159, 67, 0.05); } .modal-corp .modal-icon-large, .modal-corp .close-modal-icn-btn { color: #ff9f43; border-color: rgba(255, 159, 67, 0.3); }
-        .modal-med .modal-container { border: 2px solid #2ecc71; box-shadow: inset 0 0 15px rgba(46, 204, 113, 0.05); } .modal-med .modal-icon-large, .modal-med .close-modal-icn-btn { color: #2ecc71; border-color: rgba(46, 204, 113, 0.3); }
-        .modal-tech .modal-container { border: 2px solid #54a0ff; box-shadow: inset 0 0 15px rgba(84, 160, 255, 0.05); } .modal-tech .modal-icon-large, .modal-tech .close-modal-icn-btn { color: #54a0ff; border-color: rgba(84, 160, 255, 0.3); }
-        .modal-int .modal-container { border: 2px solid #a55eea; box-shadow: inset 0 0 15px rgba(165, 94, 234, 0.05); } .modal-int .modal-icon-large, .modal-int .close-modal-icn-btn { color: #a55eea; border-color: rgba(165, 94, 234, 0.3); }
-        .modal-psy .modal-container { border: 2px solid #48dbfb; box-shadow: inset 0 0 15px rgba(72, 219, 251, 0.05); } .modal-psy .modal-icon-large, .modal-psy .close-modal-icn-btn { color: #48dbfb; border-color: rgba(72, 219, 251, 0.3); }
-        .modal-surv .modal-container { border: 2px solid #10ac84; box-shadow: inset 0 0 15px rgba(16, 172, 132, 0.05); } .modal-surv .modal-icon-large, .modal-surv .close-modal-icn-btn { color: #10ac84; border-color: rgba(16, 172, 132, 0.3); }
-        .modal-cmd .modal-container { border: 2px solid #ee5253; box-shadow: inset 0 0 15px rgba(238, 82, 83, 0.05); } .modal-cmd .modal-icon-large, .modal-cmd .close-modal-icn-btn { color: #ee5253; border-color: rgba(238, 82, 83, 0.3); }
-        .modal-admin .modal-container { border: 2px solid #ffdd59; box-shadow: inset 0 0 15px rgba(255, 221, 89, 0.05); } .modal-admin .modal-icon-large, .modal-admin .close-modal-icn-btn { color: #ffdd59; border-color: rgba(255, 221, 89, 0.3); }
+        .modal-corp .modal-container { border: 2px solid #ff9f43; box-shadow: inset 0 0 15px rgba(255, 159, 67, 0.05); } .modal-corp .modal-icon-large, .modal-corp .close-modal-icn-btn { color: #ff9f43; border-color: rgba(255, 159, 67, 0.4); }
+        .modal-med .modal-container { border: 2px solid #2ecc71; box-shadow: inset 0 0 15px rgba(46, 204, 113, 0.05); } .modal-med .modal-icon-large, .modal-med .close-modal-icn-btn { color: #2ecc71; border-color: rgba(46, 204, 113, 0.4); }
+        .modal-tech .modal-container { border: 2px solid #54a0ff; box-shadow: inset 0 0 15px rgba(84, 160, 255, 0.05); } .modal-tech .modal-icon-large, .modal-tech .close-modal-icn-btn { color: #54a0ff; border-color: rgba(84, 160, 255, 0.4); }
+        .modal-int .modal-container { border: 2px solid #a55eea; box-shadow: inset 0 0 15px rgba(165, 94, 234, 0.05); } .modal-int .modal-icon-large, .modal-int .close-modal-icn-btn { color: #a55eea; border-color: rgba(165, 94, 234, 0.4); }
+        .modal-psy .modal-container { border: 2px solid #48dbfb; box-shadow: inset 0 0 15px rgba(72, 219, 251, 0.05); } .modal-psy .modal-icon-large, .modal-psy .close-modal-icn-btn { color: #48dbfb; border-color: rgba(72, 219, 251, 0.4); }
+        .modal-surv .modal-container { border: 2px solid #10ac84; box-shadow: inset 0 0 15px rgba(16, 172, 132, 0.05); } .modal-surv .modal-icon-large, .modal-surv .close-modal-icn-btn { color: #10ac84; border-color: rgba(16, 172, 132, 0.4); }
+        .modal-cmd .modal-container { border: 2px solid #ee5253; box-shadow: inset 0 0 15px rgba(238, 82, 83, 0.05); } .modal-cmd .modal-icon-large, .modal-cmd .close-modal-icn-btn { color: #ee5253; border-color: rgba(238, 82, 83, 0.4); }
+        .modal-admin .modal-container { border: 2px solid #ffdd59; box-shadow: inset 0 0 15px rgba(255, 221, 89, 0.05); } .modal-admin .modal-icon-large, .modal-admin .close-modal-icn-btn { color: #ffdd59; border-color: rgba(255, 221, 89, 0.4); }
 
         /* Элементы модулей (В будущем легко трансформируются в отдельные карточки) */
         .module-item { display: block; width: 100%; padding: 14px 2px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
@@ -616,7 +619,7 @@
                         <div class="rank-content-wrapper">
                             <div class="rank-header-line">
                                 <span class="rank-badge-mini">C3</span>
-                                <h3 class="rank-name-text">Кадет третьего класса</h3>
+                                <h3 class="rank-name-text">Кадет твизического класса</h3>
                             </div>
                             <p class="rank-description-text">Тактико-технический слой. Рукопашный бой, инвазивная медицина, пайка и ремонт, наружное наблюдение, логистика отделения.</p>
                         </div>
