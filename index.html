@@ -417,28 +417,66 @@
         .modal-body-content::-webkit-scrollbar { width: 4px; }
         .modal-body-content::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 2px; }
 
-        /* ИНТЕРАКТИВНЫЕ МОДУЛИ-АККОРДЕОНЫ */
+        /* ОБНОВЛЕННЫЕ ИНТЕРАКТИВНЫЕ МОДУЛИ-КАРТОЧКИ */
         .module-item { 
             display: block; 
             width: 100%; 
-            padding: 14px 6px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            padding: 8px; 
+            margin-bottom: 8px;
+            background: rgba(18, 19, 22, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
         }
-        .module-item:last-child { border-bottom: none; }
         .module-item:active { background: rgba(255, 255, 255, 0.02); }
         
-        .module-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; }
+        .module-top { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            width: 100%; 
+            position: relative;
+        }
         
-        .module-info-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .module-info-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+            flex: 1; 
+            padding-right: 10px;
+        }
+
+        /* ТАКТИЧЕСКИЙ ЛЕВЫЙ МИКРО-ВИДЖЕТ */
+        .module-badge-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(5, 5, 7, 0.8);
+            border-radius: 4px;
+            flex-shrink: 0;
+            gap: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Динамическое окрашивание рамок микро-виджетов по куполам */
+        .modal-corp .module-badge-block { border-color: rgba(255, 159, 67, 0.3); background: rgba(255, 159, 67, 0.03); }
+        .modal-med .module-badge-block { border-color: rgba(46, 204, 113, 0.25); background: rgba(46, 204, 113, 0.03); }
+        .modal-tech .module-badge-block { border-color: rgba(84, 160, 255, 0.25); background: rgba(84, 160, 255, 0.03); }
+        .modal-int .module-badge-block { border-color: rgba(165, 94, 234, 0.25); background: rgba(165, 94, 234, 0.03); }
+        .modal-psy .module-badge-block { border-color: rgba(72, 219, 251, 0.25); background: rgba(72, 219, 251, 0.03); }
+        .modal-surv .module-badge-block { border-color: rgba(16, 172, 132, 0.25); background: rgba(16, 172, 132, 0.03); }
+        .modal-cmd .module-badge-block { border-color: rgba(238, 82, 83, 0.25); background: rgba(238, 82, 83, 0.03); }
+        .modal-admin .module-badge-block { border-color: rgba(255, 221, 89, 0.25); background: rgba(255, 221, 89, 0.03); }
         
-        /* Стили персональных иконок внутри модулей */
         .module-micricon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .module-micricon svg { width: 100%; height: 100%; fill: currentColor; }
         .modal-tech .module-micricon svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
         
-        /* Раскраска иконок по доменам */
+        /* Раскраска иконок */
         .modal-corp .module-micricon { color: #ff9f43; }
         .modal-med .module-micricon { color: #2ecc71; }
         .modal-tech .module-micricon { color: #54a0ff; }
@@ -448,11 +486,53 @@
         .modal-cmd .module-micricon { color: #ee5253; }
         .modal-admin .module-micricon { color: #ffdd59; }
 
-        .module-code-name { font-size: 13px; font-weight: bold; color: #ffffff; text-transform: uppercase; line-height: 1.3; }
-        
-        .module-meta-right { display: flex; align-items: center; gap: 8px; }
+        /* Текст шифра внутри виджета */
+        .module-block-code {
+            font-size: 9px;
+            font-family: monospace;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.5px;
+        }
+        .modal-corp .module-block-code { color: rgba(255, 159, 67, 0.7); }
+        .modal-med .module-block-code { color: rgba(46, 204, 113, 0.7); }
+        .modal-tech .module-block-code { color: rgba(84, 160, 255, 0.7); }
+        .modal-int .module-block-code { color: rgba(165, 94, 234, 0.7); }
+        .modal-psy .module-block-code { color: rgba(72, 219, 251, 0.7); }
+        .modal-surv .module-block-code { color: rgba(16, 172, 132, 0.7); }
+        .modal-cmd .module-block-code { color: rgba(238, 82, 83, 0.7); }
+        .modal-admin .module-block-code { color: rgba(255, 221, 89, 0.7); }
 
-        .module-arrow-indicator { font-size: 9px; color: rgba(255, 255, 255, 0.3); transition: transform 0.2s ease; }
+        /* Чистое название модуля */
+        .module-pure-name { 
+            font-size: 13px; 
+            font-weight: bold; 
+            color: #ffffff; 
+            text-transform: uppercase; 
+            line-height: 1.3; 
+            letter-spacing: 0.5px;
+        }
+        
+        /* Правая мета-зона с фиксацией по краю */
+        .module-meta-right { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .module-arrow-indicator { 
+            font-size: 9px; 
+            color: rgba(255, 255, 255, 0.3); 
+            transition: transform 0.2s ease; 
+            width: 10px;
+            text-align: center;
+        }
+        .module-item.expanded-module {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(22, 23, 26, 0.6);
+        }
         .module-item.expanded-module .module-arrow-indicator { transform: rotate(180deg); color: #ffffff; }
 
         /* ВНУТРЕННЯЯ ВЫПЛЫВАЮЩАЯ ПАНЕЛЬ ЗАДАЧИ */
@@ -461,15 +541,17 @@
             overflow: hidden;
             opacity: 0;
             transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+            padding: 0 6px;
         }
         .module-item.expanded-module .module-expand-area {
-            max-height: 350px;
+            max-height: 450px;
             opacity: 1;
-            margin-top: 14px;
-            padding: 12px 10px;
-            background: rgba(0, 0, 0, 0.3);
+            margin-top: 12px;
+            padding: 12px 10px 6px 10px;
+            background: rgba(0, 0, 0, 0.4);
             border-left: 2px solid rgba(255, 255, 255, 0.15);
         }
+        
         /* Кастомный цвет левой рамки контента по доменам */
         .modal-corp .module-item.expanded-module .module-expand-area { border-left-color: #ff9f43; }
         .modal-med .module-item.expanded-module .module-expand-area { border-left-color: #2ecc71; }
@@ -726,10 +808,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><path d="M5 9h2v6H5zm12 0h2v6h-2zM2 11h3v2H2zm17 0h3v2h-3zM7 11h10v2H7z"/></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><path d="M5 9h2v6H5zm12 0h2v6h-2zM2 11h3v2H2zm17 0h3v2h-3zM7 11h10v2H7z"/></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">CORP 1.1 — Физическая готовность</span>
+                            <span class="module-pure-name">Физическая готовность</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge hybrid">Система + Экзамен</span>
@@ -755,10 +840,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm8-7h-1c-2.21 0-4 1.79-4 4v7h5v9h3V2c0 0-1.5 0-3 0z"/></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm8-7h-1c-2.21 0-4 1.79-4 4v7h5v9h3V2c0 0-1.5 0-3 0z"/></svg>
+                                </div>
+                                <span class="module-block-code">1.2</span>
                             </div>
-                            <span class="module-code-name">CORP 1.2 — Система питания</span>
+                            <span class="module-pure-name">Система питания</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge system">Система</span>
@@ -798,10 +886,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><path d="M19 10.5h-4.5V6h-5v4.5H5v5h4.5V20h5v-4.5H19v-5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><path d="M19 10.5h-4.5V6h-5v4.5H5v5h4.5V20h5v-4.5H19v-5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">MED 1.1 — Тактическая медицина: MARCH</span>
+                            <span class="module-pure-name">Тактическая медицина: MARCH</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge exam">Экзамен</span>
@@ -827,10 +918,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><path d="M6 3h12c1.66 0 3 1.34 3 3v12c0 1.66-1.34 3-3 3H6c-1.66 0-3-1.34-3-3V6c0-1.66 1.34-3 3-3zm6 2V19h6c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1h-6z"/></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><path d="M6 3h12c1.66 0 3 1.34 3 3v12c0 1.66-1.34 3-3 3H6c-1.66 0-3-1.34-3-3V6c0-1.66 1.34-3 3-3zm6 2V19h6c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1h-6z"/></svg>
+                                </div>
+                                <span class="module-block-code">1.2</span>
                             </div>
-                            <span class="module-code-name">MED 1.2 — Гражданская медицина</span>
+                            <span class="module-pure-name">Гражданская медицина</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge credit">Зачёт</span>
@@ -872,10 +966,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">TECH 1.1 — Информационная безопасность</span>
+                            <span class="module-pure-name">Информационная безопасность</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge exam">Экзамен</span>
@@ -900,10 +997,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                                </div>
+                                <span class="module-block-code">1.2</span>
                             </div>
-                            <span class="module-code-name">TECH 1.2 — Цифровая гигиена и чистый стол</span>
+                            <span class="module-pure-name">Цифровая гигиена и чистый стол</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge credit">Зачёт</span>
@@ -943,10 +1043,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">INT 1.1 — Ситуационная осознанность</span>
+                            <span class="module-pure-name">Ситуационная осознанность</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge system">Система</span>
@@ -971,10 +1074,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                                </div>
+                                <span class="module-block-code">1.2</span>
                             </div>
-                            <span class="module-code-name">INT 1.2 — Базовая разведка: OSINT-ГРАФ</span>
+                            <span class="module-pure-name">Базовая разведка: OSINT-ГРАФ</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge exam">Экзамен</span>
@@ -1014,10 +1120,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 22 8.5 12 22 2 8.5 12 2"></polygon><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="8.5" x2="22" y2="8.5"></line></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><polygon points="12 2 22 8.5 12 22 2 8.5 12 2"></polygon><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="8.5" x2="22" y2="8.5"></line></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">PSY 1.1 — Психологическая устойчивость</span>
+                            <span class="module-pure-name">Психологическая устойчивость</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge test">Тест</span>
@@ -1057,10 +1166,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">SURV 1.1 — Топография и ориентирование</span>
+                            <span class="module-pure-name">Топография и ориентирование</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge credit">Зачёт</span>
@@ -1100,10 +1212,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">CMD 1.1 — Тактика и управление</span>
+                            <span class="module-pure-name">Тактика и управление</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge hybrid">Курс</span>
@@ -1128,10 +1243,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                </div>
+                                <span class="module-block-code">1.2</span>
                             </div>
-                            <span class="module-code-name">CMD 1.2 — Работа с личным составом</span>
+                            <span class="module-pure-name">Работа с личным составом</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge system">Система</span>
@@ -1156,10 +1274,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                </div>
+                                <span class="module-block-code">1.3</span>
                             </div>
-                            <span class="module-code-name">CMD 1.3 — Регламент связи</span>
+                            <span class="module-pure-name">Регламент связи</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge exam">Экзамен</span>
@@ -1199,10 +1320,13 @@
                 <div class="module-item" onclick="toggleModuleAccordion(this)">
                     <div class="module-top">
                         <div class="module-info-left">
-                            <div class="module-micricon">
-                                <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            <div class="module-badge-block">
+                                <div class="module-micricon">
+                                    <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                </div>
+                                <span class="module-block-code">1.1</span>
                             </div>
-                            <span class="module-code-name">ADMIN 1.1 — Внутренний регламент гарнизона</span>
+                            <span class="module-pure-name">Внутренний регламент гарнизона</span>
                         </div>
                         <div class="module-meta-right">
                             <span class="badge test">Тест</span>
@@ -1263,9 +1387,7 @@
             document.getElementById(modalId).style.display = 'none';
         }
 
-        // Функция управления раскрытием внутренних модулей-аккордеонов
         function toggleModuleAccordion(element) {
-            // Если модуль уже открыт — закрываем его, если нет — закрываем другие в этом окне и открываем текущий
             const wasExpanded = element.classList.contains('expanded-module');
             const parent = element.parentElement;
             
@@ -1278,9 +1400,8 @@
             }
         }
 
-        // Обработка кнопки прикрепления рапорта (заглушка с изоляцией клика)
         function handleReportUpload(event) {
-            event.stopPropagation(); // Чтобы аккордеон не закрывался при нажатии на кнопку
+            event.stopPropagation(); 
             alert("Запуск защищенного канала загрузки рапортов... Выберите файл.");
         }
 
