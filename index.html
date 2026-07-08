@@ -25,7 +25,7 @@
             height: 100vh;
             height: 100dvh; 
             position: relative; 
-            background-image: url('./IMG_0124.jpeg'), url('./IMG_0124.jpg'), url('./IMG 0124jpeg'), radial-gradient(circle at center, #16171a 0%, #050506 100%); 
+            background-image: url('./IMG_0124.jpeg'), radial-gradient(circle at center, #16171a 0%, #050506 100%); 
             background-size: cover; 
             background-position: center; 
             background-repeat: no-repeat; 
@@ -50,7 +50,9 @@
         .xp-text { font-size: 10px; color: #8e929c; display: flex; justify-content: space-between; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
         .xp-bar-bg { width: 100%; height: 5px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255, 255, 255, 0.15); overflow: hidden; }
         .xp-bar-fill { width: 0%; height: 100%; background: #ff3333; box-shadow: 0 0 8px #ff3333; }
-        .imperial-emblem-img { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)) brightness(1.3); opacity: 0.95; margin-top: 10px; }
+        
+        /* УБРАНО СВЕЧЕНИЕ И ИЗЛИШНЯЯ ЯРКОСТЬ ИМПЕРСКОГО ГЕРБА */
+        .imperial-emblem-img { width: 45px; height: 45px; object-fit: contain; opacity: 0.95; margin-top: 10px; }
         
         /* Терминал связи в неоновом белом */
         .hq-btn { position: absolute; right: 15px; top: 100%; width: 100px; background: rgba(15, 16, 18, 0.98); border: 1px solid rgba(255, 255, 255, 0.25); border-top: none; border-bottom: 2px solid #ffffff; color: #ffffff; border-radius: 0 0 4px 4px; padding: 8px 5px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); z-index: 12; cursor: pointer; }
@@ -73,8 +75,8 @@
         .screen-section { display: none; width: 100%; }
         .screen-section.active { display: block; }
         
-        /* ПРАВКА: Заголовок "Реестр продвижения по службе" стал белым */
-        .section-title { font-size: 13px; color: #ffffff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #ffffff; line-height: 1.2; text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); }
+        /* СДВИГ ЗАГОЛОВКОВ ВНИЗ ДЛЯ СБАЛАНСИРОВАННЫХ ОТСТУПОВ */
+        .section-title { font-size: 13px; color: #ffffff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 35px; margin-bottom: 20px; padding-left: 8px; border-left: 2px solid #ffffff; line-height: 1.2; text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); }
         /* Сохраняем красный цвет для других вкладок, если у них должен быть свой стиль */
         #section-default .section-title, #section-training .section-title { color: #ff3333; border-left-color: #ff3333; text-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
 
